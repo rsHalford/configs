@@ -1,0 +1,74 @@
+syntax enable
+filetype plugin on
+
+call plug#begin('~/.local/share/vim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'jremmen/vim-ripgrep'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mbbill/undotree'
+Plug 'mattn/emmet-vim'
+Plug 'junegunn/goyo.vim'
+call plug#end()
+
+set nocompatible
+set encoding=utf-8
+set number relativenumber
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.cache/vim/undo
+set viminfo=""
+set undofile
+set incsearch
+set splitbelow splitright
+set termwinsize=8x0
+set path+=**
+set wildmenu
+set wildmode=longest,list,full
+colorscheme gruvbox
+set background=dark
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=#1d2021
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+let mapleader=" "
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>z :UndotreeShow<CR>
+nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
+nnoremap <leader>pt :ter<CR>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <silent>zh :vertical resize -5<CR>
+nnoremap <silent>zj :resize +2<CR>
+nnoremap <silent>zk :resize -2<CR>
+nnoremap <silent>zl :vertical resize +5<CR>
+
+let g:netrw_banner=0
+let g:netrw_winsize=25
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+let g:ctrlp_user_command=['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_use_caching=0
+
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let g:user_emmet_leader_key=','
+
+autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
+autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
