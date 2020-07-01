@@ -1,4 +1,7 @@
 set icons
+set color256
+set info size:time
+set hidden!
 
 # interpreter for shell commands (needs to be POSIX compatible)
 #set shell sh

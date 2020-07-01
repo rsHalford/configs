@@ -9,6 +9,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/goyo.vim'
+Plug 'ptzz/lf.vim'
 call plug#end()
 
 set nocompatible
@@ -47,6 +48,7 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>z :UndotreeShow<CR>
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
+map <leader>f :LfCurrentDirectoryNewTab<CR>
 nnoremap <leader>pt :ter<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent>zh :vertical resize -5<CR>
@@ -63,6 +65,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 let g:ctrlp_user_command=['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_use_caching=0
+let g:lf_map_keys=0
 
 if executable('rg')
     let g:rg_derive_root='true'
