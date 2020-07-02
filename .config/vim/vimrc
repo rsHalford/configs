@@ -56,6 +56,7 @@ nnoremap <silent>zj :resize +2<CR>
 nnoremap <silent>zk :resize -2<CR>
 nnoremap <silent>zl :vertical resize +5<CR>
 
+let g:user_emmet_leader_key=','
 let g:netrw_banner=0
 let g:netrw_winsize=25
 let g:netrw_browse_split=4
@@ -71,7 +72,14 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-let g:user_emmet_leader_key=','
-
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+	set pastetoggle=<Esc>[201~
+	set paste
+	return ""
+endfunction

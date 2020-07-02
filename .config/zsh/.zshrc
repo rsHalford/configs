@@ -4,17 +4,23 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Vi Mode
+bindkey -v
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
 
-setopt histignorealldups sharehistory
 setopt autocd
 
-# Keep 1000 lines of history within the shell and save it to zsh/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+# Keep 1000 lines of history within the shell and save it to ~/.local/share/history/zsh_history:
 HISTFILE=~/.local/share/history/zsh_history
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
 
 # Use modern completion system
 autoload -Uz compinit

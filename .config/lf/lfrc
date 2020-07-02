@@ -4,16 +4,19 @@ set info size:time
 set hidden!
 set scrolloff 10
 set ratios 1:2
+set shell zsh
+
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/pv.sh"
 
 cmd open ${{
    case $(file --mime-type $f -b) in
-   image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
+       image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
        text/*) $EDITOR $fx;;
-   image/x-xcf|image/svg+xml) setsid -f gimp $f >/dev/null 2>&1 ;;
-   image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
-   audio/*) mpv --audio-display=no $f ;;
-   video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-   application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+       image/x-xcf|image/svg+xml) setsid -f gimp $f >/dev/null 2>&1 ;;
+#       image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
+       audio/*) mpv --audio-display=no $f ;;
+       video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+       application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
    esac
 }}
