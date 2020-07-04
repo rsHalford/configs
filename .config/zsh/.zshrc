@@ -38,6 +38,10 @@ alias ..="cd .."
 alias p="sudo pacman"
 alias v="vim"
 alias cf="cd ~/.config/"
+alias lc="cd ~/.local/"
+alias lcs="cd ~/.local/share/"
+alias lcb="cd ~/.local/bin/"
+alias ca="cd ~/.cache/"
 
 # Zsh History Substring Search
 bindkey '^[[A' history-substring-search-up
