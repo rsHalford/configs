@@ -9,13 +9,19 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export VIMINIT="source ~/.config/vim/vimrc"
+#export VIMINIT="source ~/.config/vim/vimrc"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+#export ADB_VENDOR_KEY="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export ANDROID_SDK_ROOT='/opt/android-sdk'
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+PATH=$ANDROID_SDK_ROOT/emulator:$PATH
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export READER="zathura"
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="brave"
 export VIDEO="mpv"
 export IMAGE="sxiv"
 

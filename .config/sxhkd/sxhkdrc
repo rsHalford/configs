@@ -10,7 +10,7 @@ super + shift + c
 super + shift + d
 	zathura
 super + e
-	$TERMINAL -e vim
+	$TERMINAL -e nvim
 super + shift + e
 	$TERMINAL -e neomutt
 super + f

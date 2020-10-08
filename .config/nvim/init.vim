@@ -5,15 +5,17 @@ call plug#begin('~/.local/share/vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
 Plug 'vuciv/vim-bujo'
 Plug 'junegunn/goyo.vim'
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 
-set nocompatible
+"set nocompatible
 set encoding=utf-8
 set number relativenumber
 set noerrorbells
@@ -38,7 +40,7 @@ set viminfo=""
 set undofile
 set incsearch
 set splitbelow splitright
-set termwinsize=8x0
+"set termwinsize=8x0
 set path+=**
 set wildmenu
 set wildmode=longest,list,full
@@ -59,6 +61,7 @@ nnoremap <leader>z :UndotreeShow<CR>
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
 nnoremap <leader>pt :ter<CR>
+tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pf :Files<CR>
 nnoremap <leader>pg :GFiles<CR>
@@ -89,6 +92,10 @@ let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+
+augroup myterm | au!
+    au TermOpen * if &buftype ==# 'terminal' | resize 20 | vert resize 50 | endif
+augroup end
 
 if executable('rg')
     let g:rg_derive_root='true'
