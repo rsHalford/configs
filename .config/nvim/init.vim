@@ -1,10 +1,13 @@
-syntax enable
+source $HOME/.config/nvim/configuration/settings.vim
+
+
 filetype plugin on
 
 call plug#begin('~/.local/share/vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'kevinoid/vim-jsonc',
 "Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -13,44 +16,11 @@ Plug 'mattn/emmet-vim'
 Plug 'vuciv/vim-bujo'
 Plug 'junegunn/goyo.vim'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
-"set nocompatible
-set encoding=utf-8
-set number relativenumber
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set cursorcolumn
-set cursorline
-set hidden
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set expandtab
-set autoindent
-set smartindent
-"set nowrap
-set smartcase
-set autochdir
-set noswapfile
-set nobackup
-set undodir=~/.cache/vim/undo
-set viminfo=""
-set undofile
-set incsearch
-set splitbelow splitright
-"set termwinsize=8x0
-set path+=**
-set wildmenu
-set wildmode=longest,list,full
 colorscheme gruvbox
-set background=dark
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=#1d2021
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-autocmd Filetype dart setlocal ts=2 sw=2 sts=2
 
 let mapleader=" "
 nnoremap <leader>h :wincmd h<CR>
@@ -82,6 +52,7 @@ nnoremap <leader>tt :topleft Todo<CR>
 nnoremap <leader>tg :topleft Todo g<CR>
 nmap <leader>ta <Plug>BujoAddnormal
 nmap <leader>td <Plug>BujoChecknormal
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 let g:user_emmet_leader_key=','
 let g:netrw_banner=0
@@ -116,12 +87,3 @@ inoremap <silent><expr> <C-space> coc#refresh()
 
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
-
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-function! XTermPasteBegin()
-	set pastetoggle=<Esc>[201~
-	set paste
-	return ""
-endfunction

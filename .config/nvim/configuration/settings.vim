@@ -28,7 +28,6 @@ set splitbelow splitright
 set path+=**
 set wildmenu
 set wildmode=longest,list,full
-colorscheme gruvbox
 set background=dark
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=#1d2021
