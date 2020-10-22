@@ -21,7 +21,6 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
-
 # Use modern completion system
 autoload -Uz compinit
 compinit
