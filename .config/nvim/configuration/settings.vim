@@ -19,12 +19,12 @@ set noswapfile
 set nowritebackup
 set number relativenumber
 set path+=**
-set shiftwidth=4
+set shiftwidth=2
 set shortmess+=c
 set smartcase
 set smartindent
 set splitbelow splitright
-set tabstop=4 softtabstop=4
+set tabstop=2 softtabstop=2
 set undodir=~/.cache/vim/undo
 set undofile
 set updatetime=300
@@ -33,7 +33,7 @@ set wildmenu
 set wildmode=longest,list,full
 highlight ColorColumn ctermbg=0 guibg=#1d2021
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd Filetype dart setlocal ts=2 sw=2 sts=2
+autocmd Filetype py setlocal ts=4 sw=4 sts=4
 
 " Copy/Paste into vim insert mode
 let &t_SI .= "\<Esc>[?2004h"
