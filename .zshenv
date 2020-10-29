@@ -9,13 +9,15 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-#export VIMINIT="source ~/.config/vim/vimrc"
 export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
-#export ADB_VENDOR_KEY="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-export ANDROID_SDK_ROOT='/opt/android-sdk'
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 export _JAVA_AWT_WM_NONREPARENTING=1
+export NODE_REPL_HISTORY="${XDG_DATA_HOME:-$HOME/.local/share}/node_repl_history"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export ANDROID_AVD_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android/"
+export ANDROID_EMULATOR_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android/"
+export ADB_VENDOR_KEY="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+
+export PATH=/usr/sbin:/usr/local/bin:/usr/bin:/home/richard/.local/share/npm/bin:/opt/android-sdk/tools/bin:/opt/flutter/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
 export EDITOR="nvim"
 export VISUAL="nvim"
