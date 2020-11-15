@@ -4,20 +4,20 @@ source $HOME/.config/nvim/configuration/settings.vim
 filetype plugin on
 
 call plug#begin('~/.local/share/vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
-Plug 'kevinoid/vim-jsonc',
 "Plug 'neovim/nvim-lspconfig'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mbbill/undotree'
-Plug 'mattn/emmet-vim'
-Plug 'vuciv/vim-bujo'
 Plug 'junegunn/goyo.vim'
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'kevinoid/vim-jsonc',
+Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
+Plug 'vim-airline/vim-airline'
+Plug 'vuciv/vim-bujo'
 call plug#end()
 
 colorscheme gruvbox
