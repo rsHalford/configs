@@ -30,8 +30,8 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>z :UndotreeShow<CR>
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
-nnoremap <leader>pt :ter<CR>
-tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>pt :below 10sp term://$SHELL<CR>i
+"tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pf :Files<CR>
 nnoremap <leader>pg :GFiles<CR>
@@ -65,7 +65,7 @@ let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
 augroup myterm | au!
-    au TermOpen * if &buftype ==# 'terminal' | resize 20 | vert resize 50 | endif
+    au TermOpen * if &buftype ==# 'terminal' | resize 20 | vert resize 30 | endif
 augroup end
 
 if executable('rg')
