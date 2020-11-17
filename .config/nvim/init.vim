@@ -1,5 +1,40 @@
-source $HOME/.config/nvim/configuration/settings.vim
-
+syntax enable
+"set nocompatible
+"set nowrap
+"set termwinsize=8x0
+set autochdir
+set autoindent
+set background=dark
+set cmdheight=2
+set colorcolumn=80
+set cursorcolumn
+set cursorline
+set encoding=utf-8
+set expandtab
+set hidden
+set incsearch
+set nobackup
+set noerrorbells
+set noswapfile
+set nowritebackup
+set number relativenumber
+set path+=**
+set shiftwidth=2
+set shortmess+=c
+set smartcase
+set smartindent
+set splitbelow splitright
+set tabstop=2 softtabstop=2
+set termguicolors
+set undodir=~/.cache/vim/undo
+set undofile
+set updatetime=300
+set viminfo=""
+set wildmenu
+set wildmode=longest,list,full
+highlight ColorColumn ctermbg=0 guibg=#1d2021
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd Filetype py setlocal ts=4 sw=4 sts=4
 
 filetype plugin on
 
@@ -13,7 +48,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'kevinoid/vim-jsonc',
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -27,10 +63,11 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>vc :e $MYVIMRC<CR>
 nnoremap <leader>z :UndotreeShow<CR>
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 20<CR>
-nnoremap <leader>pt :below 10sp term://$SHELL<CR>i
+nnoremap <leader>pt :below 10sp term://$SHELL<CR>
 "tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pf :Files<CR>
@@ -63,10 +100,32 @@ let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = '0'
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
 
-augroup myterm | au!
-    au TermOpen * if &buftype ==# 'terminal' | resize 20 | vert resize 30 | endif
-augroup end
+augroup terminal_settings
+    autocmd!
+
+    autocmd BufWinEnter,WinEnter term://* startinsert
+    autocmd BufLeave term://* stopinsert
+
+    autocmd TermOpen *
+        \ if &buftype ==# 'terminal' |
+        \ below resize 10 |
+        \ endif
+
+    autocmd TermClose term://*
+        \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "lf") && (expand('<afile>') !~ "coc") |
+        \   call nvim_input('<CR>')  |
+        \ endif
+augroup END
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -85,5 +144,16 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <C-space> coc#refresh()
 
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+	set pastetoggle=<Esc>[201~
+	set paste
+	return ""
+endfunction
+
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+
+autocmd BufWritePost $MYVIMRC source %
