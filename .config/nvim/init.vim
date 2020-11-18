@@ -29,6 +29,7 @@ set cursorcolumn
 set cursorline
 set encoding=utf-8
 set expandtab
+set guicursor=
 set hidden
 set incsearch
 set nobackup
@@ -53,7 +54,7 @@ set wildmode=longest,list,full
 
 
 " Editing init.vim
-nnoremap <silent> <leader>vc :e $MYVIMRC<CR>
+nnoremap <leader>cf :e $MYVIMRC<CR>
 autocmd BufWritePost $MYVIMRC source %
 
 
@@ -75,10 +76,6 @@ nnoremap <silent>zj :resize +2<CR>
 nnoremap <silent>zk :resize -2<CR>
 nnoremap <silent>zl :vertical resize +5<CR>
 nnoremap <leader>m :MaximizerToggle!<CR>
-fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
-endfun
 
 
 " Netrw
@@ -94,7 +91,7 @@ let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 
 " Open terminal below
 nnoremap <leader>pt :below 10sp term://$SHELL<CR>
-"tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 augroup terminal_settings
     autocmd!
     autocmd BufWinEnter,WinEnter term://* startinsert
@@ -151,6 +148,10 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " <Plug>VimspectorStop
 " <Plug>VimspectorPause
 " <Plug>VimspectorAddFunctionBreakpoint
+fun! GotoWindow(id)
+    call win_gotoid(a:id)
+    MaximizerToggle
+endfun
 
 
 " fzf
