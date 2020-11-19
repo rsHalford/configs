@@ -2,6 +2,7 @@
 filetype plugin on
 call plug#begin('~/.local/share/vim/plugged')
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -207,3 +208,8 @@ nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 " Open mail with goyo focussed view
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+
+" Markdown Preview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+nmap <leader>pm <Plug>MarkdownPreviewToggle
