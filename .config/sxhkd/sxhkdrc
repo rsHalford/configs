@@ -5,8 +5,8 @@ super + Return
 
 super + shift + c
 	passmenu
-#super + d
-#	groff
+super + d
+	discord
 super + shift + d
 	zathura
 super + e

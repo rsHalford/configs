@@ -33,7 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 picom &
-feh --bg-fill -recursive --randomize --no-fehbg ~/Media/Pictures/* &
+feh --bg-max -recursive --randomize --no-fehbg ~/Media/Pictures/* &
 redshift &
 sxhkd &
 slstatus &
