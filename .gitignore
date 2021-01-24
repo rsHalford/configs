@@ -25,3 +25,4 @@ Templates/
 .gitconfig
 .nvidia-settings-rc
 .python_history
+.Xauthority
