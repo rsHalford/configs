@@ -1,9 +1,3 @@
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Vi Mode
 bindkey -v
 
@@ -41,6 +35,7 @@ alias lc="cd ~/.local/"
 alias lcs="cd ~/.local/share/"
 alias lcb="cd ~/.local/bin/"
 alias ca="cd ~/.cache/"
+alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
 
 # Zsh History Substring Search
 bindkey '^[[A' history-substring-search-up
@@ -64,9 +59,4 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH-HISTORY-SUBSTRING-SEARCH: source
 source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# POWERLEVEL10K: source
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/powerlevel10k/internal/p10k.zsh ]] || source ~/powerlevel10k/internal/p10k.zsh
-alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
+eval "$(starship init zsh)"

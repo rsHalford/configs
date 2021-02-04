@@ -1,0 +1,51 @@
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[V](bold yellow)"
+
+[battery]
+discharging_symbol = "⚡"
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
+
+[cmd_duration]
+disabled = true
+
+[directory]
+style = "blue"
+read_only = " 🔒"
+fish_style_pwd_dir_length = 1
+
+[git_branch]
+always_show_remote = true
+
+
+[git_status]
+style = "bold yellow"
+ahead = "↑${count}"
+behind = "↓${count}"
+diverged = "↑${ahead_count}⇣↓${behind_count}"
+deleted = "✗"
+staged = '[+\($count\)](green)'
+[line_break]
+disabled = true
+
+[nodejs]
+symbol = "🐢"
+format = "via [$symbol]($style)"
+
+[package]
+disabled = true
+
+[python]
+symbol = "🐍"
+style = "green"
+format = 'via [${symbol}(\($virtualenv\))]($style)'
