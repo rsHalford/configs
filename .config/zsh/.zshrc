@@ -1,62 +1,83 @@
-# Vi Mode
-bindkey -v
+function set_win_title(){
+  echo -ne "\033]0; $(echo $PWD) \007"
+}
+precmd_functions+=(set_win_title)
 
-# Set up the prompt
-autoload -Uz promptinit
-promptinit
+fpath=($XDG_DATA_HOME/zsh/zsh-completions/src $fpath)
+source $XDG_DATA_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $XDG_DATA_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $XDG_DATA_HOME/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-setopt autocd
+HISTFILE=$HISTFILE/zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
 
-# Keep 1000 lines of history within the shell and save it to ~/.local/share/history/zsh_history:
-HISTFILE=~/.local/share/history/zsh_history
-HISTSIZE=10000000
-SAVEHIST=10000000
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
+autoload -U compinit && compinit
+zmodload -i zsh/complist
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Alias
-alias ls="ls --color=auto"
-alias la="ls -hgGA  --time-style=+'%e %b %y %H:%M' --color=always --group-directories-first | sed -re 's/^[^ ]* //'"
-alias cp="cp -iv"
-alias mv="mv -iv"
-#alias rm="rm -iv"
-alias ..="cd .."
-alias p="sudo pacman"
-alias v="nvim"
-alias cf="cd ~/.config/"
-alias lc="cd ~/.local/"
-alias lcs="cd ~/.local/share/"
-alias lcb="cd ~/.local/bin/"
-alias ca="cd ~/.cache/"
-alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
+zle -N history-substring-search-up
+zle -N history-substring-search-down
 
-# Zsh History Substring Search
+setopt autocd
+setopt globdots
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt share_history
+setopt correct
+
+bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
-# Zsh Syntax Highlighting
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=green,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=purple,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=magenta,bold'
+typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=magenta,underline'
+typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=yellow,underline'
 
-zle -N history-substring-search-up; zle -N history-substring-search-down
+alias p="sudo pacman"
+alias y="yay"
+alias ysu="sudo yay -Syu"
+alias v="nvim"
 
-# ZSH-AUTOSUGGESTIONS: source
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+alias cp="cp -i"
+alias mv="mv -i"
+#alias rm="rm -i"
+alias ls="exa -lagh -s=.Name --time-style=iso --git --group-directories-first --colour-scale"
+alias la="exa -T -L=3 --group-directories-first"
 
-# ZSH-SYNTAX-HIGHLIGHTING: source
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias cat="bat"
+alias grep="grep -i --color=auto --exclude-dir={.git,node_modules}"
 
-# ZSH-HISTORY-SUBSTRING-SEARCH: source
-source ~/.config/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+alias ca="cd ~/.cache/"
+alias cf="cd ~/.config/"
+alias lc="cd ~/.local/"
+alias lcb="cd ~/.local/bin/"
+alias lcs="cd ~/.local/share/"
+
+alias g='git'
+alias ga='git add'
+alias gaa='git add .'
+alias gb='git branch'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gcb='git checkout -b'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gd='git diff'
+alias gf='git fetch'
+alias glg='git log'
+alias gm='git merge'
+alias gmv='git mv'
+alias gpl='git pull'
+alias gps='git push'
+alias grb='git rebase'
+alias grm='git rm'
+alias gst='git status'
+
+alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
 
 eval "$(starship init zsh)"
