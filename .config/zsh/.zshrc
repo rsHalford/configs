@@ -51,6 +51,8 @@ alias la="exa -T -L=3 --group-directories-first"
 
 alias cat="bat"
 alias grep="grep -i --color=auto --exclude-dir={.git,node_modules}"
+alias find="fd"
+alias fd="fd -HI"
 
 alias ca="cd ~/.cache/"
 alias cf="cd ~/.config/"
