@@ -32,7 +32,6 @@ symbol = " "
 style = "blue"
 read_only = " "
 read_only_style = "yellow"
-home_symbol = "ﰣ "
 fish_style_pwd_dir_length = 1
 
 [docker]

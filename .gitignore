@@ -1,6 +1,7 @@
 .cache/
 .config/BraveSoftware/
 .config/coc/
+!.config/coc/extensions/package.json
 .config/configstore/
 .config/dconf/
 .config/discord/
