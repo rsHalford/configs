@@ -6,7 +6,7 @@ call plug#begin('~/.local/share/vim/plugged')
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'nvim-lua/completion-nvim'
 "Plug 'nvim-lua/lsp_extensions.nvim'
-"Plug 'akinsho/flutter-tools'
+"Plug 'akinsho/flutter-tools.nvim'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -72,7 +72,7 @@ set smartindent
 set splitbelow splitright
 set tabstop=2 softtabstop=2
 set termguicolors
-set undodir=~/.cache/vim/undo
+set undodir=~/.cache/nvim/undo
 set undofile
 set updatetime=50
 set viminfo=""
@@ -118,7 +118,7 @@ let g:netrw_browse_split=3
 let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide=',\(^\|\s\s\)\zs\\S\+'
 
 
 " Open terminal below
@@ -139,14 +139,6 @@ augroup terminal_settings
 augroup END
 
 
-"nonoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
-"nonoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
-"nonoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
-"nonoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
-"nonoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
-"nonoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
-"nonoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
-"nonoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics()<CR>
 " Coc Commands
 nmap <leader>vd  <Plug>(coc-definition)
 nmap <leader>vdt <Plug>(coc-type-definition)
@@ -306,23 +298,26 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 
 " Lsp Config
-"nonoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
-"nonoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
-"nonoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
-"nonoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
-"nonoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
-"nonoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
-"nonoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
-"nonoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics()<CR>
+"nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+"nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+"nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+"nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
+"nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+"nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
+"nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
+"nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 "autocmd BufEnter * lua require'completion'.on_attach()
-"lua require'lspconfig'.cssls.setup{}
 "lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+"lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
 "lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+"lua require("flutter-tools").setup{}
