@@ -30,7 +30,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 
 "General
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
 Plug 'junegunn/goyo.vim'
 
 " Theme

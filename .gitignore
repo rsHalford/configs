@@ -21,7 +21,8 @@ Documents/
 Downloads/
 .gnupg/
 .local/
-!.local/bin/linkhandler.sh
+!.local/bin/scripts/
+!.local/share/emoji
 Media/
 .pki/
 Projects/
