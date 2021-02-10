@@ -1,0 +1,3 @@
+.include /etc/pulse/default.pa
+
+set-default-sink alsa_output.usb-ACTIONS_Pebble_V3-00.analog-stereo

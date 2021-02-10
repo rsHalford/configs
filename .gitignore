@@ -1,7 +1,7 @@
 .cache/
 .config/BraveSoftware/
+.config/coc/*
 !.config/coc/extensions/package.json
-.config/coc/
 .config/configstore/
 .config/dconf/
 .config/discord/
@@ -10,7 +10,7 @@
 .config/msmtp/
 .config/mutt/
 .config/procps/
-.config/pulse/
+.config/pulse/*
 !.config/pulse/default.pa
 .config/Signal
 .config/zsh/.zcompdump
@@ -20,7 +20,7 @@ Documents/
 .dotfiles/
 Downloads/
 .gnupg/
-.local/
+.local/*
 !.local/bin/scripts/
 !.local/share/emoji
 Media/
