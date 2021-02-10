@@ -19,6 +19,8 @@ Templates/
 .config/msmtp/
 .config/mutt/
 .config/procps/
+.config/pulse/*
+!.config/pulse/default.pa
 .config/Signal
 .config/zsh/.zcompdump
 .config/notmuch-config
