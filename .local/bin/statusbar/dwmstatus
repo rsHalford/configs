@@ -1,0 +1,25 @@
+#!/bin/sh
+
+while true; do
+	weather > $HOME/.local/bin/scripts/statusbar/weather.txt
+	updates > $HOME/.local/bin/scripts/statusbar/updates.txt
+	sleep 3600s
+done &
+
+
+while true; do
+  BATTERY=$(battery)
+	CPU_TEMP=$(cpu_temp)
+	CPU_USAGE=$(cpu_usage)
+	DATE_TIME=$(date_time)
+  EMAIL=$(email)
+	GPU_TEMP=$(gpu_temp)
+	INTERNET=$(internet)
+	MEMORY=$(memory)
+	STORAGE=$(storage)
+	UPDATES=$(updates)
+	VOLUME=$(volume)
+  WEATHER=$(weather)
+	xsetroot -name "| $BATTERY | $VOLUME | $EMAIL | $UPDATES | $CPU_USAGE $CPU_TEMP | $GPU_TEMP | $MEMORY | $STORAGE | $INTERNET | $WEATHER | $DATE_TIME |"
+	sleep 1s
+done &

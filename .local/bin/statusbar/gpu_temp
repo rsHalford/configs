@@ -1,0 +1,5 @@
+#!/bin/sh
+
+temp="$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)"
+icon="🌡️️"
+printf " %s %s \\n" "$icon" "$temp°C"

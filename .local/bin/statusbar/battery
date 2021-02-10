@@ -1,0 +1,58 @@
+#!/bin/sh
+
+unknownIcon=""
+errorIcon=""
+fullIcon="🔋"
+chargingIcon=""
+icon00=""
+icon10=""
+icon20=""
+icon30=""
+icon40=""
+icon50=""
+icon60=""
+icon70=""
+icon80=""
+icon90=""
+icon100="🔋"
+
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+status=$(cat /sys/class/power_supply/BAT0/status)
+
+if [ "$status" = "Full" ]; then
+    icon="$fullIcon"
+elif [ "$status" = "Charging" ]; then
+    icon="$chargingIcon"
+elif [ "$status" = "Discharging" ]; then
+    if [ "$capacity" -le 10 ]; then
+        icon="$icon00"
+    elif [ "$capacity" -le 20 ]; then
+        icon="$icon10"
+    elif [ "$capacity" -le 30 ]; then
+        icon="$icon20"
+    elif [ "$capacity" -le 40 ]; then
+        icon="$icon30"
+    elif [ "$capacity" -le 50 ]; then
+        icon="$icon40"
+    elif [ "$capacity" -le 60 ]; then
+        icon="$icon50"
+    elif [ "$capacity" -le 70 ]; then
+        icon="$icon60"
+    elif [ "$capacity" -le 80 ]; then
+        icon="$icon70"
+    elif [ "$capacity" -le 90 ]; then
+        icon="$icon80"
+    elif [ "$capacity" -le 99 ]; then
+        icon="$icon90"
+    elif [ "$capacity" -eq 100 ]; then
+        icon="$icon100"
+    fi
+elif [ "$status" = "Unknown" ]; then
+    icon="$unknownIcon"
+else
+    icon="$errorIcon"
+fi
+
+timeRemaining=$(acpi | cut -d " " -f5- | sed -e 's/\(:[0-9]\+ \)/ /g')
+
+echo "$icon $capacity% $timeRemaining"

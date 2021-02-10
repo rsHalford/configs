@@ -34,5 +34,5 @@ fi
 
 redshift &
 sxhkd &
-slstatus &
+dwmstatus &
 exec dwm

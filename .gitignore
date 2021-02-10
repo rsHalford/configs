@@ -19,8 +19,7 @@ Templates/
 .config/msmtp/
 .config/mutt/
 .config/procps/
-.config/pulse/*
-!.config/pulse/default.pa
+.config/pulse/
 .config/Signal
 .config/zsh/.zcompdump
 .config/notmuch-config
@@ -30,6 +29,7 @@ Templates/
 !.local/bin/
 .local/bin/*
 !.local/bin/scripts/
+!.local/bin/statusbar/
 !.local/share/
 .local/share/*
 !.local/share/emoji

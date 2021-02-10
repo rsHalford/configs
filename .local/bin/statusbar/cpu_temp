@@ -1,0 +1,5 @@
+#!/bin/sh
+
+temp="$(sensors | grep Package | awk '{print $4}' | tr -d +)"
+icon="🌡️️"
+printf " %s %s \\n" "$icon" "$temp"
