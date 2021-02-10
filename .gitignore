@@ -7,6 +7,10 @@ Public/
 Templates/
 .cache/
 .config/BraveSoftware/
+.config/coc/*
+!.config/coc/extensions/
+.config/coc/extensions/*
+!.config/coc/extensions/package.json
 .config/configstore/
 .config/dconf/
 .config/discord/
@@ -20,6 +24,13 @@ Templates/
 .config/notmuch-config
 .dotfiles/
 .gnupg/
+.local/*
+!.local/bin/
+.local/bin/*
+!.local/bin/scripts/
+!.local/share/
+.local/share/*
+!.local/share/emoji
 .pki/
 .ssh/
 .gitconfig
