@@ -1,5 +1,26 @@
 #!/bin/sh
 
-vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
-icon="🔊"
-printf " %s %s \\n" "$icon" "$vol%"
+muteIcon="ﱝ"
+offIcon="婢"
+lowIcon="奄"
+mediumIcon="奔"
+highIcon="墳"
+
+volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+status="$(amixer get Master amixer get Master | awk 'NR == 7 {print $6;}')"
+
+if [ "$status" = "[off]" ]; then
+    icon="$muteIcon"
+elif [ "$status" = "[on]" ]; then
+    if [ "$volume" -eq 0 ]; then
+        icon="$offIcon"
+    elif [ "$volume" -le 30 ]; then
+        icon="$lowIcon"
+    elif [ "$volume" -le 60 ]; then
+        icon="$mediumIcon"
+    elif [ "$volume" -le 100 ]; then
+        icon="$highIcon"
+    fi
+fi
+
+printf " %s %s \\n" "$icon" "$volume%"

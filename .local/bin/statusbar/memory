@@ -1,5 +1,5 @@
 #!/bin/sh 
 
-mem="$(free -m | awk 'NR==2{printf "%sMB\n", $3 }')"
-icon="🧠"
+mem="$(free -h --si | awk 'NR==2{printf $3 }')"
+icon=""
 printf " %s %s \\n" "$icon" "$mem"

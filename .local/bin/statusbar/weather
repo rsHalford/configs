@@ -1,4 +1,4 @@
 #!/bin/sh
 
-weather=$(curl -sf wttr.in/Halifax?format=3 | awk '{print $2, $3;}')
+weather=$(curl -sf wttr.in/?format=%c%t)
 printf " %s \n" "$weather"

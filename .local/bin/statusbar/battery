@@ -1,8 +1,8 @@
 #!/bin/sh
 
-unknownIcon=""
+unknownIcon=""
 errorIcon=""
-fullIcon="🔋"
+fullIcon=""
 chargingIcon=""
 icon00=""
 icon10=""
@@ -14,7 +14,7 @@ icon60=""
 icon70=""
 icon80=""
 icon90=""
-icon100="🔋"
+icon100=""
 
 capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 status=$(cat /sys/class/power_supply/BAT0/status)
@@ -53,6 +53,4 @@ else
     icon="$errorIcon"
 fi
 
-timeRemaining=$(acpi | cut -d " " -f5- | sed -e 's/\(:[0-9]\+ \)/ /g')
-
-echo "$icon $capacity% $timeRemaining"
+printf " %s %s \\n" "$icon" "$capacity%"

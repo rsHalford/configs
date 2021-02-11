@@ -1,8 +1,8 @@
 #!/bin/sh
 
 while true; do
-	weather > $HOME/.local/bin/scripts/statusbar/weather.txt
-	updates > $HOME/.local/bin/scripts/statusbar/updates.txt
+	weather > $HOME/.local/bin/statusbar/weather.txt
+	updates > $HOME/.local/bin/statusbar/updates.txt
 	sleep 3600s
 done &
 
@@ -17,9 +17,9 @@ while true; do
 	INTERNET=$(internet)
 	MEMORY=$(memory)
 	STORAGE=$(storage)
-	UPDATES=$(updates)
+	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
 	VOLUME=$(volume)
-  WEATHER=$(weather)
+  WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
 	xsetroot -name "| $BATTERY | $VOLUME | $EMAIL | $UPDATES | $CPU_USAGE $CPU_TEMP | $GPU_TEMP | $MEMORY | $STORAGE | $INTERNET | $WEATHER | $DATE_TIME |"
 	sleep 1s
 done &
