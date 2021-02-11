@@ -8,18 +8,18 @@ done &
 
 
 while true; do
-  BATTERY=$(battery)
-	CPU_TEMP=$(cpu_temp)
-	CPU_USAGE=$(cpu_usage)
-	DATE_TIME=$(date_time)
+  #BATTERY=$(battery)
+	#VOLUME=$(volume)
   EMAIL=$(email)
-	GPU_TEMP=$(gpu_temp)
-	INTERNET=$(internet)
+	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
+	CPU_USAGE=$(cpu_usage)
+	CPU_TEMP=$(cpu_temp)
+	#GPU_TEMP=$(gpu_temp)
 	MEMORY=$(memory)
 	STORAGE=$(storage)
-	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
-	VOLUME=$(volume)
+	INTERNET=$(internet)
   WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
-	xsetroot -name "| $BATTERY | $VOLUME | $EMAIL | $UPDATES | $CPU_USAGE $CPU_TEMP | $GPU_TEMP | $MEMORY | $STORAGE | $INTERNET | $WEATHER | $DATE_TIME |"
+	DATE_TIME=$(date_time)
+	dwm -s "| $EMAIL | $UPDATES | $CPU_USAGE $CPU_TEMP | $MEMORY | $STORAGE | $INTERNET | $WEATHER | $DATE_TIME "
 	sleep 1s
 done &

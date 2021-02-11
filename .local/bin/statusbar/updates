@@ -1,5 +1,5 @@
 #!/bin/sh
 
-updates="$(pacman -Qu 2> /dev/null | wc -l)"
+updates="$(yay -Qu 2> /dev/null | wc -l)"
 icon=""
 printf " %s %s \\n"  "$icon" "$updates"
