@@ -1,0 +1,4 @@
+#!/bin/sh 
+
+tme="$(date +"^c#fbf1c7^^c#bdae93^%H:%M")"
+printf "%s" "$tme"

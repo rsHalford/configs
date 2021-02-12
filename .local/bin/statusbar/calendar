@@ -1,0 +1,4 @@
+#!/bin/sh 
+
+dte="$(date +"^c#fbf1c7^^c#bdae93^%e-%b")"
+printf "%s" "$dte"

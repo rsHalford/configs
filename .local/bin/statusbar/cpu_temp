@@ -1,5 +1,5 @@
 #!/bin/sh
 
 temp="$(sensors | sed -rn 's/.*Package id 0:\s+.([0-9]+).*/\1/p')"
-icon=""
-printf " ^c#458588^%s ^c#bdae93^ %s \\n" "$icon" "$temp°C"
+icon=""
+printf "^c#458588^%s^c#bdae93^%s" "$icon" "$temp°C"

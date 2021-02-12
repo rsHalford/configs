@@ -19,7 +19,8 @@ while true; do
   BATTERY=$(battery)
 	VOLUME=$(volume)
   WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
-	DATE_TIME=$(date_time)
- 	dwm -s "$EMAIL  $UPDATES  $CPU_USAGE  $CPU_TEMP  $MEMORY  $STORAGE  $INTERNET  $WEATHER  $DATE_TIME "
+  CALENDAR=$(calendar)
+  CLOCK=$(clock)
+ 	dwm -s "$EMAIL  $UPDATES  $CPU_USAGE  $CPU_TEMP  $MEMORY  $STORAGE  $INTERNET  $BATTERY  $VOLUME  $WEATHER  $CALENDAR  $CLOCK "
 	sleep 1s
 done &
