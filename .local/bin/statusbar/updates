@@ -1,0 +1,9 @@
+#!/bin/sh
+
+updates="$(yay -Qu 2> /dev/null | wc -l)"
+icon=" "
+if [ "$updates" -eq 0 ]; then
+    printf "^c#1d2021^%s%s \\n" "$icon" "$updates"
+else
+    printf " ^c#b8bb26^%s^c#bdae93^%s \\n" "$icon" "$updates"
+fi

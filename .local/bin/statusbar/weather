@@ -1,0 +1,4 @@
+#!/bin/sh
+
+weather=$(curl -sf wttr.in/?format=%c%t)
+printf " %s \n" "$weather"

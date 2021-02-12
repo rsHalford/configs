@@ -1,0 +1,25 @@
+#!/bin/sh
+
+while true; do
+	weather > $HOME/.local/bin/statusbar/weather.txt
+	updates > $HOME/.local/bin/statusbar/updates.txt
+	sleep 3600s
+done &
+
+
+while true; do
+  EMAIL=$(email)
+	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
+	CPU_USAGE=$(cpu_usage)
+	CPU_TEMP=$(cpu_temp)
+	#GPU_TEMP=$(gpu_temp)
+	MEMORY=$(memory)
+	STORAGE=$(storage)
+	INTERNET=$(internet)
+  BATTERY=$(battery)
+	VOLUME=$(volume)
+  WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
+	DATE_TIME=$(date_time)
+ 	dwm -s "$EMAIL  $UPDATES  $CPU_USAGE  $CPU_TEMP  $MEMORY  $STORAGE  $INTERNET  $BATTERY  $VOLUME  $WEATHER  $DATE_TIME "
+	sleep 1s
+done &
