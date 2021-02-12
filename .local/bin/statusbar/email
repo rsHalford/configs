@@ -1,5 +1,10 @@
 #!/bin/sh
 
 mail=$(du -a ~/.local/share/mail/*/INBOX/new/* 2>/dev/null | sed -n '$=')
-icon=""
-printf " %s %s \\n" "$icon" "$mail"
+icon=" "
+
+if [ "$mail" -eq 0 ]; then
+    printf "^c#1d2021^%s%s \\n" "$icon" "$mail"
+else
+    printf " ^c#fabd2f^%s^c#bdae93^%s \\n" "$icon" "$mail"
+fi

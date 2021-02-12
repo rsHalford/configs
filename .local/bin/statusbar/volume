@@ -23,4 +23,4 @@ elif [ "$status" = "[on]" ]; then
     fi
 fi
 
-printf " %s %s \\n" "$icon" "$volume%"
+printf " ^c#8ec07c^%s^c#bdae93^ %s \\n" "$icon" "$volume%"

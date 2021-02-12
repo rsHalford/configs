@@ -1,5 +1,5 @@
 #!/bin/sh 
 
 mem="$(free -h --si | awk 'NR==2{printf $3 }')"
-icon=""
-printf " %s %s \\n" "$icon" "$mem"
+icon=" "
+printf " ^c#b16286^%s^c#bdae93^%s \\n" "$icon" "$mem"

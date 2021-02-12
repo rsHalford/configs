@@ -8,8 +8,6 @@ done &
 
 
 while true; do
-  #BATTERY=$(battery)
-	#VOLUME=$(volume)
   EMAIL=$(email)
 	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
 	CPU_USAGE=$(cpu_usage)
@@ -18,8 +16,10 @@ while true; do
 	MEMORY=$(memory)
 	STORAGE=$(storage)
 	INTERNET=$(internet)
+  BATTERY=$(battery)
+	VOLUME=$(volume)
   WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
 	DATE_TIME=$(date_time)
-	dwm -s "| $EMAIL | $UPDATES | $CPU_USAGE $CPU_TEMP | $MEMORY | $STORAGE | $INTERNET | $WEATHER | $DATE_TIME "
+ 	dwm -s "$EMAIL  $UPDATES  $CPU_USAGE  $CPU_TEMP  $MEMORY  $STORAGE  $INTERNET  $WEATHER  $DATE_TIME "
 	sleep 1s
 done &

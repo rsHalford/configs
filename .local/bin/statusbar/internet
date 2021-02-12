@@ -2,7 +2,7 @@
 
 case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
 	down) wifiicon="睊" ;;
-	up) wifiicon="$(awk '/^\s*w/ { print "直", int($3 * 100 / 70) "% " }' /proc/net/wireless)" ;;
+	up) wifiicon="^c#b8bb26^直 ^c#bdae93^" ;;
 esac
 
-printf "%s%s%s\n" "$wifiicon" "$(sed "s/down//;s/up//" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*//" /sys/class/net/tun*/operstate 2>/dev/null)"
+printf "%s%s%s\n" "$wifiicon " "$(sed "s/down//;s/up//" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*/ /" /sys/class/net/tun*/operstate 2>/dev/null)"

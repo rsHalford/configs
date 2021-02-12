@@ -1,5 +1,5 @@
 #!/bin/sh
 
 sdd="$(df -H | awk 'NR==4{print $3}')"
-icon=""
-printf " %s %s \\n" "$icon" "$sdd"
+icon=" "
+printf " ^c#fabd2f^%s^c#bdae93^%s \\n" "$icon" "$sdd"

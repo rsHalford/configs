@@ -1,4 +1,4 @@
 #!/bin/sh 
 
-dte="$(date +" %e-%b  %H:%M"| sed 's/  / /g')"
+dte="$(date +"^c#fbf1c7^ ^c#bdae93^%e-%b   ^c#fbf1c7^ ^c#bdae93^%H:%M")"
 printf " %s\n" "$dte"
