@@ -34,6 +34,7 @@ fi
 
 picom &
 hsetroot -solid "#282828" &
+unclutter &
 redshift &
 sxhkd &
 dwmstatus &
