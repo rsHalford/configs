@@ -1,16 +1,16 @@
 #!/bin/sh
 
 while true; do
-  email   > $HOME/.local/bin/statusbar/email.txt
-	updates > $HOME/.local/bin/statusbar/updates.txt
-	weather > $HOME/.local/bin/statusbar/weather.txt
+  email   > $XDG_CACHE_HOME/statusbar/email.txt
+	updates > $XDG_CACHE_HOME/statusbar/updates.txt
+	weather > $XDG_CACHE_HOME/statusbar/weather.txt
 	sleep 10m
 done &
 
 
 while true; do
-  EMAIL=$(< $HOME/.local/bin/statusbar/email.txt)
-	UPDATES=$(< $HOME/.local/bin/statusbar/updates.txt)
+  EMAIL=$(< $XDG_CACHE_HOME/statusbar/email.txt)
+  UPDATES=$(< $XDG_CACHE_HOME/statusbar/updates.txt)
 	CPU_USAGE=$(cpu_usage)
 	CPU_TEMP=$(cpu_temp)
 	#GPU_TEMP=$(gpu_temp)
@@ -19,7 +19,7 @@ while true; do
 	INTERNET=$(internet)
   #BATTERY=$(battery)
 	#VOLUME=$(volume)
-  WEATHER=$(< $HOME/.local/bin/statusbar/weather.txt)
+  WEATHER=$(< $XDG_CACHE_HOME/statusbar/weather.txt)
   DATE_TIME=$(date_time)
  	dwm -s "$EMAIL  $UPDATES  $CPU_USAGE  $CPU_TEMP  $MEMORY  $STORAGE  $INTERNET  $WEATHER  $DATE_TIME "
 	sleep 5s

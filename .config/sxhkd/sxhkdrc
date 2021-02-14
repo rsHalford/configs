@@ -1,10 +1,8 @@
 # Basic binds
 super + Return
 	$TERMINAL
-super + a
-  pavucontrol
-#super + c
-
+super + c
+  dmenuemoji
 super + d
 	discord
 super + shift + d
@@ -13,20 +11,16 @@ super + e
 	$TERMINAL -e nvim
 super + shift + e
 	$TERMINAL -e neomutt
-super + f
-	$TERMINAL -e lf
 super + r
 	$TERMINAL -e newsboat
 super + shift + r
 	$TERMINAL -e tuir
 super + s
-	dmenu_run
+	dmenu_run -c -l 15 -bw 5
 super + shift + s
 	passmenu
 super + w
 	$BROWSER
-super + shift + w
-	$TERMINAL -e lynx
 
 # Et cetera..
 #super + grave
