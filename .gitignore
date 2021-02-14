@@ -15,14 +15,15 @@ Templates/
 .config/dconf/
 .config/discord/
 .config/inkscape/
-.config/nvim/.*
 .config/msmtp/
 .config/mutt/
+.config/nvim/.*
 .config/procps/
 .config/pulse/
 .config/Signal
 .config/zsh/.zcompdump
 .config/notmuch-config
+.config/pam-gnupg
 .dotfiles/
 .gnupg/
 .local/*

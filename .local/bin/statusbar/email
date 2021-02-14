@@ -1,5 +1,6 @@
 #!/bin/sh
 
+mbsync -aq
 mail=$(du -a ~/.local/share/mail/*/INBOX/new/* 2>/dev/null | sed -n '$=')
 icon=""
 printf "^c#fabd2f^%s^c#bdae93^%s" "$icon" "$mail"
