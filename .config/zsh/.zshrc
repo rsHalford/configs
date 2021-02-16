@@ -83,4 +83,12 @@ alias gst='git status'
 
 alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
 
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 eval "$(starship init zsh)"
