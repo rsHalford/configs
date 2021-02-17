@@ -16,7 +16,7 @@ super + r
 super + shift + r
 	$TERMINAL -e tuir
 super + s
-	dmenu_run -c -l 15 -bw 5
+	dmenu_run
 super + shift + s
 	passmenu
 super + w
