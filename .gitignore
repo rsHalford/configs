@@ -11,7 +11,7 @@
 .config/discord/
 .config/Fuchsia/
 .config/inkscape/
-.config/mpv/bookmarks.json
+.config/mpv/bookmarker.json
 .config/msmtp/
 .config/mutt/
 .config/newsboat/urls
@@ -56,5 +56,4 @@ Templates/
 .mbsyncrc
 .nvidia-settings-rc
 .python_history
-.urlview
 .Xauthority

@@ -1,6 +1,6 @@
 # CONFIG
 
-external-url-viewer "urlview"
+external-url-viewer "urlview dc -r 'linkhandler {}'"
 
 # General
 show-read-articles no
