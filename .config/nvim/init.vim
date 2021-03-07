@@ -1,21 +1,43 @@
 " Plugins (Vim-Plug)
 filetype plugin on
 call plug#begin('~/.local/share/vim/plugged')
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'jiangmiao/auto-pairs'
+
+" Lsp (waiting on fixes)
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'akinsho/flutter-tools.nvim'
+
+" Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'kevinoid/vim-jsonc',
-Plug 'mattn/emmet-vim'
-Plug 'mbbill/undotree'
-Plug 'gruvbox-community/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Debugging
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
+"Plug 'nvim-telescope/telescope-vimspector.nvim'
+
+" Editing
+"Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'dart-lang/dart-vim-plugin'
 Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'kevinoid/vim-jsonc',
+Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+
+"General
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'junegunn/goyo.vim'
+
+" Theme
+Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'kyazdani42/nvim-web-devicons',
 call plug#end()
 
 
@@ -26,38 +48,47 @@ set autoindent
 set background=dark
 set cmdheight=2
 set colorcolumn=80
+set completeopt=menuone,noinsert,noselect
 set cursorcolumn
 set cursorline
 set encoding=utf-8
 set expandtab
 set guicursor=
 set hidden
+set nohlsearch
 set incsearch
 set nobackup
 set noerrorbells
+set nohlsearch
 set noswapfile
 set nowritebackup
 set number relativenumber
 set path+=**
+set scrolloff=8
 set shiftwidth=2
 set shortmess+=c
-set smartcase
+set signcolumn=yes
 set smartindent
 set splitbelow splitright
 set tabstop=2 softtabstop=2
 set termguicolors
-set undodir=~/.cache/vim/undo
+set undodir=~/.cache/nvim/undo
 set undofile
-set updatetime=300
+set updatetime=50
 set viminfo=""
 set wildmenu
 set wildmode=longest,list,full
 
 
-" Editing init.vim
-nnoremap <leader>cf :e $MYVIMRC<CR>
-autocmd BufWritePost $MYVIMRC source %
-
+" Vim Theming
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = '0'
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+highlight ColorColumn ctermbg=0 guibg=#1d2021
+colorscheme gruvbox
 
 " Leader Keys
 let mapleader=" "
@@ -87,7 +118,7 @@ let g:netrw_browse_split=3
 let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide=',\(^\|\s\s\)\zs\\S\+'
 
 
 " Open terminal below
@@ -109,23 +140,24 @@ augroup END
 
 
 " Coc Commands
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <leader>ga <Plug>(coc-codeaction-selected)
-nmap <leader>gf <Plug>(coc-format-selected)
-nnoremap <leader>cr :CocRestart
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <C-space> coc#refresh()
+"nmap <leader>vd  <Plug>(coc-definition)
+"nmap <leader>vdt <Plug>(coc-type-definition)
+"nmap <leader>vi  <Plug>(coc-implementation)
+"nmap <leader>vrr <Plug>(coc-references)
+"nmap <leader>vrn <Plug>(coc-rename)
+"nmap <leader>v[  <Plug>(coc-diagnostic-prev)
+"nmap <leader>v]  <Plug>(coc-diagnostic-next)
+"nmap <leader>va  <Plug>(coc-codeaction-selected)
+"nmap <leader>vf  <Plug>(coc-format-selected)
+"nnoremap <leader>vrs :CocRestart
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <silent><expr> <C-space> coc#refresh()
+
 
 
 " Vimspector (Debugging)
@@ -156,9 +188,6 @@ endfun
 
 
 " fzf
-nnoremap <leader>pf :Files<CR>
-nnoremap <leader>pg :GFiles<CR>
-nnoremap <leader>ps :Rg<SPACE>
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 if executable('rg')
@@ -190,17 +219,6 @@ function! XTermPasteBegin()
 endfunction
 
 
-" Vim Theming
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '0'
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-highlight ColorColumn ctermbg=0 guibg=#1d2021
-
-
 " List document's URLs
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 
@@ -209,7 +227,97 @@ nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
 autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
 
+
 " Markdown Preview
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 nmap <leader>pm <Plug>MarkdownPreviewToggle
+
+
+" Telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<CR>
+
+" Git Pickers
+"Lists git commits with diff preview and on enter checkout the commit.
+"nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<CR>
+"Lists buffer's git commits with diff preview and checkouts it out on enter.
+"nnoremap <leader>gbc <cmd>lua require('telescope.builtin').git_bcommits()<CR>
+"Lists all branches with log preview and checkout action.
+"nnoremap <leader>gbr<cmd>lua require('telescope.builtin').git_branches()<CR>
+"Lists current changes per file with diff preview and add action. (Multiselection still WIP)
+"nnoremap <leader>gs <cmd>lua require('telescope.builtin').git_status()<CR>
+
+" Treesitter Picker
+"nnoremap <leader>ts <cmd>lua require('telescope.builtin').treesitter()<CR>
+
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    prompt_prefix = " ",
+    layout_strategy = "flex",
+    borderchars = { '-', '|', ' ', ' ', '-', '+', '|', ' '},
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
+    vimgrep_arguments = {
+      'rg',
+      '--color=always',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+    },
+    mappings = {
+      i = {
+        ["<CR>"] = actions.goto_file_selection_tabedit,
+        ["<C-k>"] = actions.preview_scrolling_up,
+        ["<C-j>"] = actions.preview_scrolling_down,
+      },
+      n = {
+        ["<CR>"] = actions.goto_file_selection_tabedit,
+        ["<C-k>"] = actions.preview_scrolling_up,
+        ["<C-j>"] = actions.preview_scrolling_down,
+      },
+    },
+  }
+}
+EOF
+
+
+" Treesitter
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+
+
+" Lsp Config
+nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+autocmd BufEnter * lua require'completion'.on_attach()
+lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+lua require("flutter-tools").setup{}

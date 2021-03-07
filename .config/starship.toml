@@ -1,0 +1,128 @@
+add_newline = false
+
+[aws]
+symbol = " "
+
+[battery]
+discharging_symbol = ""
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
+
+[character]
+success_symbol = "[ ](bold green)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[ ](bold yellow)"
+
+[cmd_duration]
+disabled = true
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+style = "blue"
+read_only = " "
+read_only_style = "yellow"
+fish_style_pwd_dir_length = 1
+
+[docker]
+symbol = " "
+
+[dotnet]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[erlang]
+symbol = " "
+
+[gcloud]
+symbol = " "
+
+[git_branch]
+always_show_remote = true
+symbol = " "
+
+[git_commit]
+symbol = " "
+
+[git_status]
+style = "bold yellow"
+conflicted = ""
+ahead = "${count}"
+behind = "${count}"
+diverged = "${ahead_count}⇣${behind_count}"
+untracked = ""
+stashed = ""
+modified = ""
+staged = '[\($count\)](green)'
+renamed = ""
+deleted = ""
+
+[golang]
+symbol = "ﳑ "
+
+[helm]
+symbol = "ﴱ "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[line_break]
+disabled = true
+
+[lua]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+format = "via [$symbol]($style)"
+
+[openstack]
+symbol = " "
+
+[package]
+disabled = true
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = "🐍"
+style = "green"
+format = 'via [${symbol}(\($virtualenv\))]($style)'
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "

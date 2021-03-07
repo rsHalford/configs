@@ -1,10 +1,8 @@
 # Basic binds
 super + Return
 	$TERMINAL
-#super + c
-
-super + shift + c
-	passmenu
+super + c
+  dmenuemoji
 super + d
 	discord
 super + shift + d
@@ -13,16 +11,14 @@ super + e
 	$TERMINAL -e nvim
 super + shift + e
 	$TERMINAL -e neomutt
-super + f
-	$TERMINAL -e lf
 super + r
 	$TERMINAL -e newsboat
 super + shift + r
 	$TERMINAL -e tuir
 super + s
 	dmenu_run
-#super + shift + s
-#	Web Search
+super + shift + s
+	passmenu
 super + w
 	$BROWSER
 super + shift + w
@@ -30,7 +26,6 @@ super + shift + w
 
 # Et cetera..
 #super + grave
-#	dmenuunicode
 #super + Scroll_Lock
 #	killall screenkey || screenkey
 #super + Insert

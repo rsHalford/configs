@@ -1,20 +1,20 @@
 #!/bin/sh
 
-unknownIcon="^c#83a598^"
-errorIcon="^c#fe8019^"
-fullIcon="^c#b8bb26^"
-chargingIcon="^c#b8bb26^"
-icon00="^c#fb4934^"
-icon10="^c#fb4934^"
-icon20="^c#fb4934^"
-icon30="^c#fe8019^"
-icon40="^c#fe8019^"
-icon50="^c#fabd2f^"
-icon60="^c#fabd2f^"
-icon70="^c#b8bb26^"
-icon80="^c#b8bb26^"
-icon90="^c#b8bb26^"
-icon100="^c#b8bb26^"
+unknownIcon="^c#83a598^"
+errorIcon="^c#fe8019^"
+fullIcon="^c#b8bb26^"
+chargingIcon="^c#b8bb26^"
+icon00="^c#fb4934^"
+icon10="^c#fb4934^"
+icon20="^c#fb4934^"
+icon30="^c#fe8019^"
+icon40="^c#fe8019^"
+icon50="^c#fabd2f^"
+icon60="^c#fabd2f^"
+icon70="^c#b8bb26^"
+icon80="^c#b8bb26^"
+icon90="^c#b8bb26^"
+icon100="^c#b8bb26^"
 
 capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 status=$(cat /sys/class/power_supply/BAT0/status)
@@ -53,4 +53,4 @@ else
     icon="$errorIcon"
 fi
 
-printf " %s^c#bdae93^ %s \\n" "$icon" "$capacity%"
+printf "%s^c#bdae93^%s" "$icon" "$capacity%"

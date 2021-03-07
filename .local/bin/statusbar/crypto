@@ -1,0 +1,5 @@
+#!/bin/sh
+
+coins=$(coinmon -f btc,eth,link,atom | awk 'NR>=7 {print $4, $8;}')
+icon=""
+printf "^c#fabd2f^%s^c#bdae93^%s" "$icon" "$coins"

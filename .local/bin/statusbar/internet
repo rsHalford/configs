@@ -1,8 +1,26 @@
 #!/bin/sh
 
-case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-	down) wifiicon="睊" ;;
-	up) wifiicon="^c#b8bb26^直" ;;
-esac
+wifiHigh=""
+wifiMedium=""
+wifiLow=""
+ethUp=""
 
-printf "%s%s%s\n" "$wifiicon " "$(sed "s/down//;s/up//" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*/ /" /sys/class/net/tun*/operstate 2>/dev/null)"
+wifiStatus=$(cat /sys/class/net/w*/operstate 2>/dev/null)
+wifiSignal=$(awk '/^\s*w/ { print int($3 * 100 / 70) }' /proc/net/wireless)
+ethStatus=$(cat /sys/class/net/e*/operstate 2>/dev/null)
+
+if [ "$ethStatus" = "up" ]; then
+  icon="^c#ebdbb2^$ethUp"
+elif [ "$wifiStatus" = "up" ]; then
+  if [ "$wifiSignal" -le 33 ]; then
+    icon="^c#928474^$wifiLow"
+  elif [ "$wifiSignal" -le 66 ]; then
+    icon="^c#a89984^$wifiMedium"
+  else
+    icon="^c#ebdbb2^$wifiHigh"
+  fi
+else
+  icon=""
+fi
+
+printf "%s^c#bdae93^" "$icon"
