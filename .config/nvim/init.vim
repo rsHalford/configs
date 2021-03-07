@@ -3,10 +3,10 @@ filetype plugin on
 call plug#begin('~/.local/share/vim/plugged')
 
 " Lsp (waiting on fixes)
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/completion-nvim'
-"Plug 'nvim-lua/lsp_extensions.nvim'
-"Plug 'akinsho/flutter-tools.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'akinsho/flutter-tools.nvim'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,11 +21,11 @@ Plug 'szw/vim-maximizer'
 "Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " Editing
-Plug 'neoclide/coc.nvim', {'branch':'release'}
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'neoclide/coc.nvim', {'branch':'release'}
+"Plug 'dart-lang/dart-vim-plugin'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-Plug 'kevinoid/vim-jsonc',
+"Plug 'kevinoid/vim-jsonc',
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 
@@ -140,23 +140,23 @@ augroup END
 
 
 " Coc Commands
-nmap <leader>vd  <Plug>(coc-definition)
-nmap <leader>vdt <Plug>(coc-type-definition)
-nmap <leader>vi  <Plug>(coc-implementation)
-nmap <leader>vrr <Plug>(coc-references)
-nmap <leader>vrn <Plug>(coc-rename)
-nmap <leader>v[  <Plug>(coc-diagnostic-prev)
-nmap <leader>v]  <Plug>(coc-diagnostic-next)
-nmap <leader>va  <Plug>(coc-codeaction-selected)
-nmap <leader>vf  <Plug>(coc-format-selected)
-nnoremap <leader>vrs :CocRestart
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <C-space> coc#refresh()
+"nmap <leader>vd  <Plug>(coc-definition)
+"nmap <leader>vdt <Plug>(coc-type-definition)
+"nmap <leader>vi  <Plug>(coc-implementation)
+"nmap <leader>vrr <Plug>(coc-references)
+"nmap <leader>vrn <Plug>(coc-rename)
+"nmap <leader>v[  <Plug>(coc-diagnostic-prev)
+"nmap <leader>v]  <Plug>(coc-diagnostic-next)
+"nmap <leader>va  <Plug>(coc-codeaction-selected)
+"nmap <leader>vf  <Plug>(coc-format-selected)
+"nnoremap <leader>vrs :CocRestart
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <silent><expr> <C-space> coc#refresh()
 
 
 
@@ -294,30 +294,42 @@ EOF
 
 
 " Treesitter
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+lua << EOF
+require'nvim-treesitter.configs'.setup { 
+  indent = {
+    enable = true
+  },
+  highlight = { 
+    enable = true
+  },
+  rainbow = {
+    enable = true
+  }
+}
+EOF
 
 
 " Lsp Config
-"nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
-"nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
-"nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
-"nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
-"nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
-"nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
-"nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
-"nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
-"nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-"autocmd BufEnter * lua require'completion'.on_attach()
-"lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-"lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-"lua require("flutter-tools").setup{}
+nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+autocmd BufEnter * lua require'completion'.on_attach()
+lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+lua require("flutter-tools").setup{}

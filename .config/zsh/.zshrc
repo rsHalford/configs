@@ -40,7 +40,6 @@ typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=yellow,un
 
 alias p="sudo pacman"
 alias y="yay"
-alias ysu="sudo yay -Syu"
 alias v="nvim"
 
 alias cp="cp -i"
