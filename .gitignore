@@ -1,5 +1,6 @@
 .android/
 .cache/
+.chatty/
 .config/Android\ Open\ Source\ Project/
 .config/BraveSoftware/
 .config/coc/*
@@ -18,6 +19,8 @@
 .config/nvim/.*
 .config/procps/
 .config/pulse/
+.config/reflex-curses/followed
+.config/reflex-curses/followed.old
 .config/Signal
 .config/zsh/.zcompdump
 .config/notmuch-config
@@ -31,6 +34,7 @@
 .fuchsia/
 .gnupg/
 .gradle/
+.java/
 .local/*
 !.local/bin/
 .local/bin/*

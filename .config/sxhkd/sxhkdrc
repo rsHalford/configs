@@ -14,13 +14,16 @@ super + shift + e
 	$TERMINAL -e neomutt
 
 super + r
-	$TERMINAL -e newsboat
+	$TERMINAL -e tuir
 
 super + shift + r
-	$TERMINAL -e tuir
+	$TERMINAL -e newsboat
 
 super + s
 	dmenu_run
+
+super + t
+	$TERMINAL -e reflex-curses
 
 super + shift + s
 	passmenu

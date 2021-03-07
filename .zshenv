@@ -23,6 +23,8 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export VIMPERATOR_INIT="$XDG_CONFIG_HOME/vimperator/vimperatorrc"
 export VIMPERATOR_RUNTIME="$XDG_CONFIG_HOME/vimperator"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export JAVA_FONTS="/usr/share/fonts/TTF"
+export _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export BROWSER="brave"
