@@ -1,8 +1,4 @@
 #!/bin/sh
 
-<<<<<<< HEAD
-weather=$(curl -sf wttr.in/?format=%c%t)
-=======
 weather=$(curl -sf wttr.in/Halifax?format=%c%t)
->>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 printf "%s" "$weather"

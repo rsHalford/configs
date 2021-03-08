@@ -73,11 +73,7 @@ function show_menu()
     local active = 0
     local current_ytdl_format = mp.get_property("ytdl-format")
     msg.verbose("current ytdl-format: "..current_ytdl_format)
-<<<<<<< HEAD
-    local num_options= 0
-=======
     local num_options = 0
->>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
     local options = {}
 
 
