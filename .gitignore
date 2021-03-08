@@ -30,14 +30,16 @@
 .config/pulse/
 .config/reflex-curses/followed
 .config/reflex-curses/followed.old
-.config/Signal
+.config/Signal/
 .config/vim/
 .config/vue/
 .config/zsh/.zcompdump
+.config/Xresources
 .config/notmuch-config
 .config/pam-gnupg
 .config/settings
 .config/tool_state
+.config/user-dirs.dirs
 .dart/
 .dartServer/
 .degit/
@@ -57,6 +59,7 @@
 .local/bin/*
 !.local/bin/scripts/
 !.local/bin/statusbar/
+.local/bin/statusbar/dwmstatus
 !.local/share/
 .local/share/*
 !.local/share/emoji
@@ -78,6 +81,7 @@ Templates/
 .flutter_tool_state
 .gitconfig
 .mbsyncrc
+.sc-iminfo
 .nvidia-settings-rc
 .python_history
 .Xauthority

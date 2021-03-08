@@ -36,11 +36,11 @@ results_limit = 75
 retry_limit = 3
 
 [ui]
-default_state = games
-hl_color = blue
+default_state = followed
+hl_color = green
 l_win_color = white
-r_win_color = green
-quality = best
+r_win_color = blue
+quality = 720p
 show_borders = True
 show_keys = True
 
