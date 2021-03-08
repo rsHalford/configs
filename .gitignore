@@ -1,7 +1,8 @@
 .abook/
 .android/
 .cache/
-.chatty/
+.chatty/*
+!.chatty/settings
 .config/Android\ Open\ Source\ Project/
 .config/android/
 .config/autostart/

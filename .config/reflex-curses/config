@@ -24,7 +24,7 @@ qual- = -
 
 [exec]
 browser = brave
-chat_method = browser
+chat_method = chatty
 player = mpv --force-window=yes
 streamlink = streamlink -t '{author} - {title}'
 term = st -e
@@ -36,10 +36,10 @@ results_limit = 75
 retry_limit = 3
 
 [ui]
-default_state = games
-hl_color = blue
+default_state = followed
+hl_color = green
 l_win_color = white
-r_win_color = green
+r_win_color = blue
 quality = best
 show_borders = True
 show_keys = True
@@ -49,3 +49,4 @@ address = irc.chat.twitch.tv
 network = reflex
 no_account = True
 port = 6697
+
