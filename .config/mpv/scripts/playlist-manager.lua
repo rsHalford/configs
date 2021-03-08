@@ -69,7 +69,7 @@ local settings = {
   --sort playlist when files are added to playlist
   sortplaylist_on_file_add = false,
 
-  -use alphanumerical sort
+  --use alphanumerical sort
   alphanumsort = true,
 
   --"linux | windows | auto"

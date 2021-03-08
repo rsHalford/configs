@@ -21,7 +21,7 @@ local bookmarkerName = "bookmarker.json"
 -- All the "global" variables and utilities; don't touch these
 local utils = require 'mp.utils'
 local styleOn = mp.get_property("osd-ass-cc/0")
-local styleOff = mp.get_roperty("osd-ass-cc/1")
+local styleOff = mp.get_property("osd-ass-cc/1")
 local bookmarks = {}
 local currentSlot = 0
 local currentPage = 1
