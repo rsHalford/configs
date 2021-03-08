@@ -4,9 +4,6 @@ super + Return
 super + a
 	dmenu_run
 
-super + c
-  dmenuemoji
-
 super + d
 	discord
 
