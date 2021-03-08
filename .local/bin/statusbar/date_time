@@ -1,4 +1,8 @@
 #!/bin/sh 
 
+<<<<<<< HEAD
 dte="$(date +"^c#ebdbb2^^c#bdae93^%e-%b  ^c#ebdbb2^^c#bdae93^%H:%M")"
+=======
+dte="$(date +"^c#fbf1c7^^c#bdae93^%e-%b  ^c#fbf1c7^^c#bdae93^%H:%M")"
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 printf "%s" "$dte"

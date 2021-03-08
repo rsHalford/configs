@@ -66,10 +66,18 @@ alias ga='git add'
 alias gaa='git add .'
 alias gb='git branch'
 alias gc='git commit'
+<<<<<<< HEAD
 alias gca='git commit -a'
 alias gcb='git checkout -b'
 alias gcl='git clone'
 alias gco='git checkout'
+=======
+alias gcm='git commit -m'
+alias gca='git commit -a'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 alias gd='git diff'
 alias gf='git fetch'
 alias glg='git log'

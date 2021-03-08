@@ -24,7 +24,11 @@ local mac_copy = 'pbcopy' --copy command that will be used in MAC. OR write a di
 local mac_paste = 'pbpaste' --paste command that will be used in MAC. OR write a different command
 
 local windows_copy = 'powershell' --'powershell' is for using windows powershell to copy. OR write the copy command, e.g: ' clip'
+<<<<<<< HEAD
 local windows_paste = 'powershell' --'powershell' is for using windows powershell to paste. OR wte the paste command
+=======
+local windows_paste = 'powershell' --'powershell' is for using windows powershell to paste. OR write the paste command
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 
 local offset = -0.65 --change to 0 so that pasting resumes from the exact position, or decrease the value so that it gives you a little preview before reaching the exact pasted position
 

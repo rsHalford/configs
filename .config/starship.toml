@@ -114,7 +114,11 @@ symbol = " "
 symbol = " "
 
 [python]
+<<<<<<< HEAD
 symbol = "🐍"
+=======
+symbol = " "
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 style = "green"
 format = 'via [${symbol}(\($virtualenv\))]($style)'
 

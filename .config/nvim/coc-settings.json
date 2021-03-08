@@ -11,7 +11,11 @@
     "html",
     "python"
   ],
+<<<<<<< HEAD
   "prettier.eslintIntegration": true,
+=======
+  "prettier.trailingComma": "none",
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
   "python.formatting.provider": "black"
 
   // Dart/Flutter Language Config.

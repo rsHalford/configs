@@ -105,7 +105,11 @@ font:
     style: Bold Italic
     
   # Point size
+<<<<<<< HEAD
   size: 8.0
+=======
+  size: 11.0
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

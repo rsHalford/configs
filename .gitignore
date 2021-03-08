@@ -34,10 +34,18 @@
 .config/vim/
 .config/vue/
 .config/zsh/.zcompdump
+<<<<<<< HEAD
+=======
+.config/Xresources
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 .config/notmuch-config
 .config/pam-gnupg
 .config/settings
 .config/tool_state
+<<<<<<< HEAD
+=======
+.config/user-dirs.dirs
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 .dart/
 .dartServer/
 .degit/
@@ -57,6 +65,10 @@
 .local/bin/*
 !.local/bin/scripts/
 !.local/bin/statusbar/
+<<<<<<< HEAD
+=======
+.local/bin/statusbar/dwmstatus
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 !.local/share/
 .local/share/*
 !.local/share/emoji

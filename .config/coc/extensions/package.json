@@ -1,20 +1,36 @@
 {
   "dependencies": {
     "coc-css": ">=1.2.6",
+<<<<<<< HEAD
     "coc-eslint": ">=1.3.2",
     "coc-flutter": ">=1.7.1",
     "coc-flutter-tools": ">=1.3.1",
     "coc-highlight": ">=1.2.6",
     "coc-html": ">=1.3.1",
     "coc-json": ">=1.3.2",
+=======
+    "coc-eslint": ">=1.4.5",
+    "coc-flutter": ">=1.7.1",
+    "coc-flutter-tools": ">=1.3.1",
+    "coc-highlight": ">=1.2.7",
+    "coc-html": ">=1.4.1",
+    "coc-json": ">=1.3.4",
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
     "coc-marketplace": ">=1.8.0",
     "coc-prettier": ">=1.1.20",
     "coc-python": ">=1.2.13",
     "coc-scssmodules": ">=0.2.2",
     "coc-sh": ">=0.6.0",
+<<<<<<< HEAD
     "coc-sql": ">=0.4.0",
     "coc-tsserver": ">=1.6.3",
     "coc-vetur": ">=1.2.3",
     "coc-yaml": ">=1.2.0"
+=======
+    "coc-sql": ">=0.5.0",
+    "coc-tsserver": ">=1.6.7",
+    "coc-vetur": ">=1.2.3",
+    "coc-yaml": ">=1.3.0"
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
   }
 }

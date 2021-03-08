@@ -24,7 +24,11 @@ qual- = -
 
 [exec]
 browser = brave
+<<<<<<< HEAD
 chat_method = chatty
+=======
+chat_method = browser
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 player = mpv --force-window=yes
 streamlink = streamlink -t '{author} - {title}'
 term = st -e
@@ -40,7 +44,11 @@ default_state = followed
 hl_color = green
 l_win_color = white
 r_win_color = blue
+<<<<<<< HEAD
 quality = best
+=======
+quality = 720p
+>>>>>>> d96041c1f1ef65eb07c10b1919b588a483d07191
 show_borders = True
 show_keys = True
 
