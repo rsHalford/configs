@@ -42,6 +42,7 @@ alias p="sudo pacman"
 alias y="yay"
 alias v="nvim"
 alias mpv="mpv --wid=$WINDOWID"
+alias sxiv="sxiv -e $WINDOWID"
 
 alias cp="cp -i"
 alias mv="mv -i"

@@ -73,7 +73,7 @@ function show_menu()
     local active = 0
     local current_ytdl_format = mp.get_property("ytdl-format")
     msg.verbose("current ytdl-format: "..current_ytdl_format)
-    local num_options = 0
+    local num_options= 0
     local options = {}
 
 
@@ -84,7 +84,7 @@ function show_menu()
     if next(options) == nil then
         for i,v in ipairs(opts.quality_strings) do
             num_options = num_options + 1
-           for k,v2 in pairs(v) do
+            for k,v2 in pairs(v) do
                 options[i] = {label = k, format=v2}
                 if v2 == current_ytdl_format then
                     active = i
@@ -116,7 +116,7 @@ function show_menu()
         elseif i == selected then return opts.selected_and_inactive end
 
         if     i ~= selected and i == active then return opts.unselected_and_active
-        elseif i ~= selected then return opts.unselected_and_inactive end
+        elseif i ~= selecte then return opts.unselected_and_inactive end
         return "> " --shouldn't get here.
     end
 
@@ -272,4 +272,4 @@ function reload_resume()
         end
         mp.register_event("file-loaded", seeker)
     end
-end 
+end

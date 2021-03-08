@@ -69,7 +69,7 @@ local settings = {
   --sort playlist when files are added to playlist
   sortplaylist_on_file_add = false,
 
-  --use alphanumerical sort
+  -use alphanumerical sort
   alphanumsort = true,
 
   --"linux | windows | auto"
@@ -113,7 +113,7 @@ local settings = {
 
   --font size scales by window, if false requires larger font and padding sizes
   scale_playlist_by_window=true,
-  --playlist ass style overrides inside curly brackets,\keyvalue is one field, extra \ for escape in lua
+  --playlist ass style overrides inside curly brackets, \keyvalue is one field, extra \ for escape in lu
   --example {\\fnUbuntu\\fs10\\b0\\bord1} equals: font=Ubuntu, size=10, bold=no, border=1
   --read http://docs.aegisub.org/3.2/ASS_Tags/ for reference of tags
   --undeclared tags will use default osd settings
@@ -984,4 +984,4 @@ mp.add_key_binding("p", "saveplaylist", save_playlist)
 mp.add_key_binding("SHIFT+ENTER", "showplaylist", toggle_playlist)
 
 mp.register_event("file-loaded", on_loaded)
-mp.register_event("end-file", on_closed) 
+mp.register_event("end-file", on_closed)

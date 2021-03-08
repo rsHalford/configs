@@ -30,7 +30,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 
 "General
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
 Plug 'junegunn/goyo.vim'
 
 " Theme
@@ -294,7 +294,19 @@ EOF
 
 
 " Treesitter
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+lua << EOF
+require'nvim-treesitter.configs'.setup { 
+  indent = {
+    enable = true
+  },
+  highlight = { 
+    enable = true
+  },
+  rainbow = {
+    enable = true
+  }
+}
+EOF
 
 
 " Lsp Config
@@ -307,8 +319,8 @@ nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 autocmd BufEnter * lua require'completion'.on_attach()
 lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }

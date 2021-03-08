@@ -1,6 +1,6 @@
 # CONFIG
 
-external-url-viewer "urlview"
+external-url-viewer "urlview dc -r 'linkhandler {}'"
 
 # General
 show-read-articles no
@@ -9,14 +9,14 @@ delete-read-articles-on-quit yes
 reload-time 120
 
 # Definitions
-browser "firefox %u"
+browser "brave %u"
 player "mpv %u"
 datetime-format "%Y-%m-%d %a"
 article-sort-order date-desc
 
 # Macros
-macro v set browser "mpv %u" ; open-in-browser ; set browser "firefox %u"
-macro t set browser "lynx %u" ; open-in-browser ; set browser "firefox %u"
+macro v set browser "mpv %u" ; open-in-browser ; set browser "brave %u"
+macro t set browser "lynx %u" ; open-in-browser ; set browser "brave %u"
 
 # Article Save Path
 save-path ~/Downloads/

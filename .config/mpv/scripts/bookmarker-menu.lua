@@ -21,7 +21,7 @@ local bookmarkerName = "bookmarker.json"
 -- All the "global" variables and utilities; don't touch these
 local utils = require 'mp.utils'
 local styleOn = mp.get_property("osd-ass-cc/0")
-local styleOff = mp.get_property("osd-ass-cc/1")
+local styleOff = mp.get_roperty("osd-ass-cc/1")
 local bookmarks = {}
 local currentSlot = 0
 local currentPage = 1
@@ -33,7 +33,7 @@ local oldSlot = 0
 
 -- // Controls \\ --
 
--- List of custom controls and their function
+-- List of custom controls and their funcion
 local bookmarkerControls = {
   ESC = function() abort("") end,
   DOWN = function() jumpSlot(1) end,
@@ -111,7 +111,7 @@ local typerActive = false
 function activateTyper()
   for key, func in pairs(typerControls) do
     mp.add_forced_key_binding(key, "typer"..key, func, {repeatable=true})
- end
+  end
   for i, key in ipairs(typerKeys) do
     mp.add_forced_key_binding(key, "typer"..key, function() typer(key) end, {repeatable=true})
   end
@@ -705,4 +705,4 @@ end
 
 mp.register_script_message("bookmarker-menu", handler)
 mp.register_script_message("bookmarker-quick-save", quickSave)
-mp.register_script_message("bookmarker-quick-load", quickLoad) 
+mp.register_script_message("bookmarker-quick-load", quickLoad)
