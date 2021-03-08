@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Alternate
+# man "$(apropos --long "$1" | dmenu -i -l 10 | awk '{print $2, $1}' | tr -d '()')"
+
+select=$(apropos -l '' \
+    | sort \
+    | dmenu -b -l 15 -r -i  -p "man »" \
+    | cut -d ' ' -f1,2 \
+    | tr -d ' ')
+
+if [ -n "$select" ]; then
+    $TERMINAL -e man "$select" &
+fi

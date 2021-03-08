@@ -40,7 +40,7 @@ default_state = followed
 hl_color = green
 l_win_color = white
 r_win_color = blue
-quality = 720p
+quality = best
 show_borders = True
 show_keys = True
 

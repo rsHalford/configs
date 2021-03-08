@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# The main menu for dmenu
+
+cmds="\
+ Terminal 	$TERMINAL
+🦁 Browser      	$BROWSER
+📺 Twitch	dmenustreams
+ Videos	dmenuyoutube
+ News		$TERMINAL -e newsboat
+ Calculator	dmenucalc
+ Search	dmenu_run
+😂 Emojis 	dmenuemoji
+🔒 Password	passmenu
+📖 Manual	dmenuman
+⬇ Updates	$TERMINAL yay -Syu
+ Wireless	/home/cjg/bin/dmenu_wpa_cli.sh
+ Shutdown	/home/cjg/bin/dmenu_shutdown"
+
+choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -b)" || exit 1
+
+`echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
+
+done

@@ -1,11 +1,17 @@
 super + Return
 	$TERMINAL
 
+super + a
+	dmenu_run
+
 super + c
   dmenuemoji
 
 super + d
 	discord
+
+super + shift + d
+  signal-desktop
 
 super + e
 	$TERMINAL -e nvim
@@ -20,16 +26,16 @@ super + shift + r
 	$TERMINAL -e newsboat
 
 super + s
-	dmenu_run
+  dmainu
+
+super + shift + s
+	passmenu
 
 super + t
 	$TERMINAL -e reflex-curses
 
 super + shift + t
 	chatty
-
-super + shift + s
-	passmenu
 
 super + w
 	$BROWSER
