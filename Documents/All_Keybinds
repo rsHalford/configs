@@ -32,6 +32,7 @@ shift r       = Reddit            (TUIR)
       s       = Search            (dmenu_run)
 shift s       = Passwords         (passmenu)
       t       = Twitch            (reflex-curses)
+shift t       = Twitch Chat       (chatty)
       u       = Master Layout     (dwm)
       v       =
       w       = GUI Browser       (Brave)

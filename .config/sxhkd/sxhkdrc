@@ -25,6 +25,9 @@ super + s
 super + t
 	$TERMINAL -e reflex-curses
 
+super + shift + t
+	chatty
+
 super + shift + s
 	passmenu
 
