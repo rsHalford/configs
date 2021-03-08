@@ -14,6 +14,7 @@
 .config/configstore/
 .config/dconf/
 .config/discord/
+.config/dunst/
 .config/Fuchsia/
 .config/groff/
 .config/inkscape/
