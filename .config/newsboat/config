@@ -7,6 +7,7 @@ show-read-articles no
 show-read-feeds no
 delete-read-articles-on-quit yes
 reload-time 120
+cache-file "XDG_CACHE_HOME/rss/cache.db"
 
 # Definitions
 browser "brave %u"

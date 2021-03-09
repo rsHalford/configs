@@ -1,0 +1,8 @@
+#!/bin/sh
+
+savelocation=$HOME/Media/Pictures/Screenshots/"$(date +%F_%H:%M:%S).png"
+
+maim -s $savelocation -c 1,0,1.5,0.2 -u -b 3 -m 9 &&
+xclip -selection clipboard -t image/png -i $savelocation &&
+imgurbash2 -l -a Screenshots $savelocation
+notify-send -a "Maim" "Screenshot Taken"

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+declare -a options=(
+"Amazon - https://smile.amazon.co.uk/s?k="
+"AUR - https://aur.archlinux.org/packages/?O=0&K="
+"Pacman - https://archlinux.org/packages/?sort=&q="
+"ArchWiki - https://wiki.archlinux.org/index.php?search="
+"BBCNews - https://www.bbc.co.uk/search?q="
+"CoinGecko - https://www.coingecko.com/en/coins/"
+"DuckDuckGo - https://duckduckgo.com/?q="
+"eBay - https://www.ebay.co.uk/sch/i.html?&_nkw="
+"GitHub - https://github.com/search?q="
+"GitLab - https://gitlab.com/search?search="
+"IMDB - https://www.imdb.com/find?q="
+"Imgur - https://www.imgur.com/search?q="
+"Reddit - https://www.reddit.com/search/?q="
+"SourceForge - https://sourceforge.net/directory/?q="
+"StackOverflow - https://stackoverflow.com/search?q="
+"YahooFinance - https://finance.yahoo.com/quote/"
+"Thesaurus - https://www.thesaurus.com/misspelling?term="
+"Translate - https://translate.google.com/?sl=auto&tl=en&text="
+"UrbanDictionary - https://www.urbandictionary.com/define.php?term="
+"Wikipedia - https://en.wikipedia.org/wiki/"
+"Wiktionary - https://en.wiktionary.org/wiki/"
+"Wolfram - https://www.wolframalpha.com/input/?i="
+"YouTube - https://www.youtube.com/results?search_query="
+)
+
+while [ -z "$engine" ]; do
+enginelist=$(printf '%s\n' "${options[@]}" | dmenu -p 'Choose search engine:') || exit
+engineurl=$(echo "$enginelist" | awk '{print $NF}')
+engine=$(echo "$enginelist" | awk '{print $1}')
+done
+
+while [ -z "$query" ]; do
+query=$(dmenu -p "Searching $engine:") || exit
+done
+
+$BROWSER "$engineurl""$query"

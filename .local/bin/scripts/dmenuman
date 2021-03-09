@@ -3,12 +3,38 @@
 # Alternate
 # man "$(apropos --long "$1" | dmenu -i -l 10 | awk '{print $2, $1}' | tr -d '()')"
 
-select=$(apropos -l '' \
-    | sort \
-    | dmenu -b -l 15 -r -i  -p "man »" \
-    | cut -d ' ' -f1,2 \
-    | tr -d ' ')
+#select=$(apropos -l '' \
+#    | sort \
+#    | dmenu -b -l 15 -r -i  -p "man »" \
+#    | cut -d ' ' -f1,2 \
+#    | tr -d ' ')
+#
+#if [ -n "$select" ]; then
+#    $TERMINAL -e man "$select" &
+#fi
 
-if [ -n "$select" ]; then
-    $TERMINAL -e man "$select" &
-fi
+declare -a options=(
+"Search Manpages"
+"Random Manpage"
+"Quit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -p 'Manpages:')
+
+case "$choice" in
+    'Search Manpages')
+      man -k . | awk '{$3="-"; print $0}' | \
+      dmenu -p 'Search for:' | \
+      awk '{printf $2, $1}' | tr -d '()' | xargs $TERMINAL -e man
+    ;;
+    'I\'m Feeling Lucky')
+      man -k . | awk '{print $1}' | shuf -n 1 | \
+      dmenu -p 'Random manpage:' | xargs $TERMINAL -e man
+    ;;
+    'Quit')
+      echo "Cancelled Search." && exit 1
+    ;;
+    *)
+      exit 1
+    ;;
+esac

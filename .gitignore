@@ -17,6 +17,7 @@
 .config/dunst/
 .config/Fuchsia/
 .config/groff/
+.config/imgurbash2/
 .config/inkscape/
 .config/joplin/
 .config/lf/
@@ -29,7 +30,6 @@
 .config/nvim/autoload/
 .config/procps/
 .config/pulse/
-.config/reflex-curses/followed
 .config/reflex-curses/followed.old
 .config/Signal/
 .config/vim/

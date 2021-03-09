@@ -27,7 +27,7 @@ browser = brave
 chat_method = browser
 player = mpv --force-window=yes
 streamlink = streamlink -t '{author} - {title}'
-term = st -e
+term = $TERMINAL -e
 
 [twitch]
 client_id = caozjg12y6hjop39wx996mxn585yqyk

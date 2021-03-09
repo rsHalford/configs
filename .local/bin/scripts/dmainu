@@ -3,21 +3,17 @@
 # The main menu for dmenu
 
 cmds="\
+🔍 Search	dmenusearch
 😂 Emojis 	dmenuemoji
 ⚙ Updates	$TERMINAL yay -Syu
-📹 Twitch	dmenustreams
+📹 Twitch	dmenutwitch
 📺 Videos	dmenuyoutube
 🤔 Calculator	dmenucalc
 📖 Manual	dmenuman
-🔍 Search	dmenu_run
-🖥 Terminal 	$TERMINAL
-🦁 Browser      	$BROWSER
-📰 News		$TERMINAL -e newsboat
+📸 Screenshot	screenshot_select
 🌍 Internet	$TERMINAL -e nmtui
 🔒 Password	passmenu"
 
 choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -b)" || exit 1
 
 `echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
-
-done
