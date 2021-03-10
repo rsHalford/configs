@@ -37,6 +37,9 @@ super + shift + t
 super + w
 	$BROWSER
 
+Print
+  screenshot_select
+
 XF86MonBrightnessDown
 	xbacklight -dec 10
 
