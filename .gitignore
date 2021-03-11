@@ -1,8 +1,7 @@
 .abook/
 .android/
 .cache/
-.chatty/*
-!.chatty/settings
+.chatty/
 .config/Android\ Open\ Source\ Project/
 .config/android/
 .config/autostart/
@@ -20,6 +19,7 @@
 .config/imgurbash2/
 .config/inkscape/
 .config/joplin/
+.config/Ledger\ Live/
 .config/lf/
 .config/mpv/bookmarker.json
 .config/msmtp/
