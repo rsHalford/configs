@@ -198,9 +198,11 @@ get_sel() {
                 url=${line##*$SEP}
                 if [ "$url" ] ; then
                     printf 'playing: %s\n' "$url"
-                    # Play the selection.
-                    # shellcheck disable=2086
-                    exec mpv $MPV_OPTS "$url"
+                    if [ "$(pidof mpv)" ] ; then
+                        echo '{"command": ["loadfile", "'$url'", "append-play"]}' | socat - /tmp/mpvsocket
+                    else
+                        exec mpv $MPV_OPTS --input-ipc-server=/tmp/mpvsocket "$url"
+                    fi
                 fi
                 break
         esac

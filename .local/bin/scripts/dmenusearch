@@ -20,6 +20,7 @@ declare -a options=(
 "Thesaurus - https://www.thesaurus.com/misspelling?term="
 "Translate - https://translate.google.com/?sl=auto&tl=en&text="
 "UrbanDictionary - https://www.urbandictionary.com/define.php?term="
+"Wikimedia - https://commons.wikipedia.org/wiki/index.php?search="
 "Wikipedia - https://en.wikipedia.org/wiki/"
 "Wiktionary - https://en.wiktionary.org/wiki/"
 "Wolfram - https://www.wolframalpha.com/input/?i="

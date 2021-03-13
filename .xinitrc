@@ -34,6 +34,7 @@ fi
 
 picom &
 dunst &
+subs -d &
 hsetroot -solid "#282828" &
 unclutter &
 redshift &
