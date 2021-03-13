@@ -37,3 +37,4 @@ export VISUAL="nvim"
 
 #bat changes
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export SUBS_FILE=$XDG_CONFIG_HOME/subs/subs.txt

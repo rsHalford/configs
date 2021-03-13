@@ -7,7 +7,7 @@ cmds="\
 😂 Emojis 	dmenuemoji
 ⚙ Updates	$TERMINAL yay -Syu
 📹 Twitch	dmenutwitch
-📺 Videos	dmenuyoutube
+📺 YouTube	subs
 🤔 Calculator	dmenucalc
 📖 Manual	dmenuman
 📸 Screenshot	screenshot_select
