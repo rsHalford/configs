@@ -30,7 +30,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 
 "General
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'junegunn/goyo.vim'
 
 " Theme
@@ -278,12 +278,12 @@ require('telescope').setup{
     },
     mappings = {
       i = {
-        ["<CR>"] = actions.goto_file_selection_tabedit,
+        ["<CR>"] = actions.select_tab,
         ["<C-k>"] = actions.preview_scrolling_up,
         ["<C-j>"] = actions.preview_scrolling_down,
       },
       n = {
-        ["<CR>"] = actions.goto_file_selection_tabedit,
+        ["<CR>"] = actions.select_tab,
         ["<C-k>"] = actions.preview_scrolling_up,
         ["<C-j>"] = actions.preview_scrolling_down,
       },
