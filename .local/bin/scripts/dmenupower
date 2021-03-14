@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+OUTPUT="echo"
+if [[ ${TERM} == 'dumb' ]]; then
+    OUTPUT="notify-send"
+fi
+
+declare -a options=(
+"Logout"
+"Reboot"
+"Shutdown"
+"Quit"
+)
+
+
+yesno(){
+    echo "$(echo -e "No\nYes" | dmenu -p "${1}")"
+}
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -p 'Shutdown menu:')
+
+case $choice in
+    'Logout')
+        if [[ $(yesno "Logout?") == "Yes" ]]; then
+            killall dwm || ${OUTPUT} "dwm was not running."
+        else
+            ${OUTPUT} "User chose not to logout." && exit 1
+        fi
+        ;;
+    'Reboot')
+        if [[ $(yesno "Reboot?") == "Yes" ]]; then
+            systemctl reboot
+        else
+            ${OUTPUT} "User chose not to reboot." && exit 0
+        fi
+        ;;
+    'Shutdown')
+        if [[ $(yesno "Shutdown?") == "Yes" ]]; then
+            systemctl poweroff
+        else
+            ${OUTPUT} "User chose not to shutdown." && exit 0
+        fi
+        ;;
+  'Quit')
+    ${OUTPUT} "Program terminated." && exit 0
+  ;;
+  *)
+    exit 0
+  ;;
+esac

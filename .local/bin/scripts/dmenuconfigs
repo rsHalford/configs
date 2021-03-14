@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+declare -a options=(
+"alacritty - $XDG_CONFIG_HOME/alacritty/alacritty.yml"
+"bat - $XDG_CONFIG_HOME/bat/config"
+"dunst - $XDG_CONFIG_HOME/dunst/dunstrc"
+"fontconfig - $XDG_CONFIG_HOME/fonfonts.conf"
+"gtk-3.0 - $XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+"htop - $XDG_CONFIG_HOME/htop/htoprc"
+"mimeapps - $XDG_CONFIG_HOME/mimeapps.list"
+"mpv-conf - $XDG_CONFIG_HOME/mpv/mpv.conf"
+"mpv-input - $XDG_CONFIG_HOME/mpv/input.conf"
+"neofetch - $XDG_CONFIG_HOME/neofetch/config.conf"
+"neovim - $XDG_CONFIG_HOME/nvim/init.vim"
+"newsboat-conf - $XDG_CONFIG_HOME/newsboat/config"
+"newsboat-urls - $XDG_CONFIG_HOME/newsboat/urls"
+"picom - $XDG_CONFIG_HOME/picom/picom.conf"
+"redshift - $XDG_CONFIG_HOME/redshift/redshift.conf"
+"reflex-curses-config - $XDG_CONFIG_HOME/reflex-curses/config"
+"reflex-curses-followed - $XDG_CONFIG_HOME/reflex-curses/followed"
+"ripgrep - $XDG_CONFIG_HOME/ripgrep/config"
+"starship - $XDG_CONFIG_HOME/starship.toml"
+"subs - $XDG_CONFIG_HOME/subs/subs.txt"
+"sxhkd - $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+"tuir - $XDG_CONFIG_HOME/tuir/tuir.cfg"
+"xinitrc - $HOME/.xinitrc"
+"zathura - $XDG_CONFIG_HOME/zathura/zathurarc"
+"zsh - $XDG_CONFIG_HOME/zsh/.zshrc"
+"zshenv - $HOME/.zshenv"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -p 'Edit config:')
+
+if [ "$choice" ]; then
+	cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+	$TERMINAL -e $EDITOR "$cfg"
+fi

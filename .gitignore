@@ -16,7 +16,8 @@
 .config/dunst/
 .config/Fuchsia/
 .config/groff/
-.config/imgurbash2/
+.config/imgurbash2/*
+!.config/imgurbash2/config
 .config/inkscape/
 .config/joplin/
 .config/Ledger\ Live/
@@ -25,15 +26,12 @@
 .config/msmtp/
 .config/mutt/
 .config/newsboat/cache.db
-.config/newsboat/urls
 .config/nvim/.*
 .config/nvim/autoload/
 .config/procps/
 .config/pulse/
-.config/reflex-curses/*
-!.config/reflex-curses/config
+.config/reflex-curses/followed.old
 .config/Signal/
-.config/subs/
 .config/vim/
 .config/vue/
 .config/zsh/.zcompdump

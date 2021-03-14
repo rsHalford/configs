@@ -5,14 +5,16 @@
 cmds="\
 🔍 Search	dmenusearch
 😂 Emojis 	dmenuemoji
-⚙ Updates	$TERMINAL yay -Syu
-📹 Twitch	dmenutwitch
 📺 YouTube	subs
-🤔 Calculator	dmenucalc
+📹 Twitch	dmenutwitch
+🤖 Configurations	dmenuconfigs
 📖 Manual	dmenuman
+🤔 Calculator	dmenucalc
 📸 Screenshot	screenshot_select
 🌍 Internet	$TERMINAL -e nmtui
-🔒 Password	passmenu"
+⚙ Updates	$TERMINAL yay -Syu
+🔒 Password	passmenu
+🚪 Power	dmenupower"
 
 choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -b)" || exit 1
 
