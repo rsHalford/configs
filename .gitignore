@@ -30,8 +30,10 @@
 .config/nvim/autoload/
 .config/procps/
 .config/pulse/
-.config/reflex-curses/followed.old
+.config/reflex-curses/*
+!.config/reflex-curses/config
 .config/Signal/
+.config/subs/
 .config/vim/
 .config/vue/
 .config/zsh/.zcompdump
