@@ -3,7 +3,7 @@
       return  = Terminal          (st)
 shift return  = Move to Master    (dwm)
       a       = Search            (dmenu_run)
-      b       =
+      b       = Blue Filter       (redshift)
       c       =
 shift c       =
       d       = Messenger         (Discord)

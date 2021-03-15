@@ -4,6 +4,9 @@ super + Return
 super + a
 	dmenu_run
 
+super + b
+	pkill -USR1 redshift
+
 super + d
 	discord
 

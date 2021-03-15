@@ -7,6 +7,7 @@ declare -a options=(
 "fontconfig - $XDG_CONFIG_HOME/fonfonts.conf"
 "gtk-3.0 - $XDG_CONFIG_HOME/gtk-3.0/settings.ini"
 "htop - $XDG_CONFIG_HOME/htop/htoprc"
+"keybinds - $HOME/Documents/All_Keybinds"
 "mimeapps - $XDG_CONFIG_HOME/mimeapps.list"
 "mpv-conf - $XDG_CONFIG_HOME/mpv/mpv.conf"
 "mpv-input - $XDG_CONFIG_HOME/mpv/input.conf"
