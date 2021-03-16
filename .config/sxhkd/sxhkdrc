@@ -40,6 +40,9 @@ super + shift + t
 super + w
 	$BROWSER
 
+super + shift + w
+  $TERMINAL -e lynx
+
 Print
   screenshot_select
 
