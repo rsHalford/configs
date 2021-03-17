@@ -6,6 +6,7 @@
 .config/android/
 .config/autostart/
 .config/BraveSoftware/
+.config/cht.sh/
 .config/coc/*
 !.config/coc/extensions/
 .config/coc/extensions/*

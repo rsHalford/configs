@@ -2,7 +2,7 @@
 filetype plugin on
 call plug#begin('~/.local/share/vim/plugged')
 
-" Lsp (waiting on fixes)
+" Lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
@@ -18,6 +18,7 @@ Plug 'nvim-telescope/telescope.nvim'
 " Debugging
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
+Plug 'dbeniamine/cheat.sh-vim'
 "Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " Editing
@@ -31,7 +32,6 @@ Plug 'mbbill/undotree'
 
 "General
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'junegunn/goyo.vim'
 
 " Theme
 Plug 'gruvbox-community/gruvbox'
@@ -221,11 +221,6 @@ endfunction
 
 " List document's URLs
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
-
-
-" Open mail with goyo focussed view
-autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
 
 
 " Markdown Preview

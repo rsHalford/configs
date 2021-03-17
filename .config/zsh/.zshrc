@@ -54,6 +54,7 @@ alias cat="bat"
 alias grep="grep -i --color=auto --exclude-dir={.git,node_modules}"
 alias find="fd"
 alias fd="fd -HI"
+alias fzf="fzf -i --preview 'bat --color=always --style=numbers --line-range=:68 {}'"
 
 alias ca="cd ~/.cache/"
 alias cf="cd ~/.config/"
