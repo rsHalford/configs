@@ -17,7 +17,7 @@ yesno(){
     echo "$(echo -e "No\nYes" | dmenu -p "${1}")"
 }
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -p 'Shutdown menu:')
+choice=$(printf '%s\n' "${options[@]}" | dmenu)
 
 case $choice in
     'Logout')

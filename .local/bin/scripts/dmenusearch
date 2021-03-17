@@ -28,13 +28,13 @@ declare -a options=(
 )
 
 while [ -z "$engine" ]; do
-enginelist=$(printf '%s\n' "${options[@]}" | dmenu -p 'Choose search engine:') || exit
+enginelist=$(printf '%s\n' "${options[@]}" | dmenu) || exit
 engineurl=$(echo "$enginelist" | awk '{print $NF}')
 engine=$(echo "$enginelist" | awk '{print $1}')
 done
 
 while [ -z "$query" ]; do
-query=$(dmenu -p "Searching $engine:") || exit
+query=$(dmenu) || exit
 done
 
 $BROWSER "$engineurl""$query"

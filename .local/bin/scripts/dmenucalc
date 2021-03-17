@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# Alternate
-# Equation=$(echo "" | dmenu -n -p "Enter equation" | xargs -I % calc %)
-# notify-send "Result" "$Equation"
-
 result=$(printf "%s\n" "$@" \
     | bc -l \
     | sed '/\./ s/\.\{0,1\}0\{1,\}$//' \

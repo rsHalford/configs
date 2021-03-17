@@ -30,7 +30,7 @@ declare -a options=(
 "zshenv - $HOME/.zshenv"
 )
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -p 'Edit config:')
+choice=$(printf '%s\n' "${options[@]}" | dmenu)
 
 if [ "$choice" ]; then
 	cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
