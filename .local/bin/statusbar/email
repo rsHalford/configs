@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mbsync -a
+mailsync
 mail=$(du -a $XDG_DATA_HOME/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* | wc -l 2>/dev/null)
 icon=""
 printf "^c#fabd2f^%s^c#bdae93^%s" "$icon" "$mail"

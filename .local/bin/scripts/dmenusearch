@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 declare -a options=(
 "Amazon - https://smile.amazon.co.uk/s?k="
