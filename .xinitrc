@@ -38,6 +38,7 @@ subs -d &
 hsetroot -solid "#282828" &
 unclutter &
 redshift &
+setxkbmap -option caps:escape_shifted_capslock &
 sxhkd &
 dwmstatus &
 exec dwm
