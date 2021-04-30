@@ -206,6 +206,7 @@ nnoremap <leader>z :UndotreeShow<CR>
 " File Type Formatting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype py setlocal ts=4 sw=4 sts=4
+autocmd Filetype go setlocal ts=4 sw=4 sts=4
 
 
 " Copy and Paste
