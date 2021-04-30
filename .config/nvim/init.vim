@@ -236,6 +236,7 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<CR>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<CR>
+nnoremap <leader>fc <cmd>lua require('telescope').extensions.flutter.commands()<CR>
 
 " Git Pickers
 "Lists git commits with diff preview and on enter checkout the commit.
@@ -246,9 +247,6 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<CR>
 "nnoremap <leader>gbr<cmd>lua require('telescope.builtin').git_branches()<CR>
 "Lists current changes per file with diff preview and add action. (Multiselection still WIP)
 "nnoremap <leader>gs <cmd>lua require('telescope.builtin').git_status()<CR>
-
-" Treesitter Picker
-"nnoremap <leader>ts <cmd>lua require('telescope.builtin').treesitter()<CR>
 
 lua << EOF
 local actions = require('telescope.actions')
@@ -288,9 +286,13 @@ require('telescope').setup{
 EOF
 
 
+" Treesitter Picker
+"nnoremap <leader>ts <cmd>lua require('telescope.builtin').treesitter()<CR>
+
 " Treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup { 
+  ensure_installed = { 'bash', 'css', 'dart', 'go', 'html', 'javascript', 'json', 'python', 'scss', 'toml', 'typescript', 'vue', 'yaml' },
   indent = {
     enable = true
   },
@@ -318,8 +320,11 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 autocmd BufEnter * lua require'completion'.on_attach()
+lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dartls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dartls.setup{}
+lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
@@ -327,4 +332,18 @@ lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-lua require("flutter-tools").setup{}
+
+
+" Flutter Tools
+lua << EOF
+require('telescope').load_extension('flutter')
+require("flutter-tools").setup{
+  flutter_path = '/opt/flutter/bin/flutter',
+  dev_log = {
+    open_cmd = 'tabedit',
+  },
+  widget_guides = {
+    enabled = true,
+  },
+}
+EOF
