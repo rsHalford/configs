@@ -22,11 +22,9 @@ Plug 'dbeniamine/cheat.sh-vim'
 "Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " Editing
-"Plug 'neoclide/coc.nvim', {'branch':'release'}
-"Plug 'dart-lang/dart-vim-plugin'
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'kevinoid/vim-jsonc',
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 
@@ -206,7 +204,8 @@ nnoremap <leader>z :UndotreeShow<CR>
 " File Type Formatting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype py setlocal ts=4 sw=4 sts=4
-autocmd Filetype go setlocal ts=4 sw=4 sts=4
+autocmd BufWritePre *.py execute ':Black'
+autocmd Filetype go setlocal ts=4 sw=4 sts=0 noexpandtab
 
 
 " Copy and Paste
