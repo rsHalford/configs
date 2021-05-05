@@ -61,6 +61,7 @@ alias cf="cd ~/.config/"
 alias lc="cd ~/.local/"
 alias lcb="cd ~/.local/bin/"
 alias lcs="cd ~/.local/share/"
+alias gos="cd ~/.local/share/go/src/github.com/rsHalford/"
 
 alias g='git'
 alias ga='git add'
@@ -82,6 +83,9 @@ alias gps='git push'
 alias grb='git rebase'
 alias grm='git rm'
 alias gst='git status'
+
+alias gof='gofmt -l -s -w .'
+alias gob='go build -v'
 
 alias config='/usr/bin/git --git-dir=/home/richard/.dotfiles/ --work-tree=/home/richard'
 
