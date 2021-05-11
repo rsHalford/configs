@@ -44,7 +44,7 @@ syntax enable
 set autochdir
 set autoindent
 set background=dark
-set cmdheight=2
+set cmdheight=1
 set colorcolumn=80
 set completeopt=menuone,noinsert,noselect
 set cursorcolumn
