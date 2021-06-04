@@ -3,6 +3,7 @@ follow_now_playing_lyrics = "yes"
 ignore_leading_the = "yes"
 ignore_diacritics = "yes"
 default_place_to_search_in = "database"
+execute_on_song_change = dunstify "$(mpc --format '%title%' current)" "$(mpc --format '%artist%\n%album%' current)"
 
 ## Display Modes ##
 playlist_editor_display_mode = "columns"
@@ -38,9 +39,10 @@ song_status_format = " $6%a $7>> $3%t $7>> $4%b "
 
 ## Visualiser ##
 visualizer_data_source = "/tmp/mpd.fifo"
-visualizer_output_name = "ncmpcpp_visualizer"
-visualizer_type = "spectrum"
+visualizer_output_name = "ncmpcpp visualizer"
 visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
 
 ## Navigation ##
 cyclic_scrolling = "yes"
@@ -73,6 +75,7 @@ now_playing_prefix = "> "
 centered_cursor = "yes"
 
 # Misc
-display_bitrate = "yes"
+display_bitrate = "no"
+display_volume_level = "no"
 enable_window_title = "yes"
 empty_tag_marker = ""
