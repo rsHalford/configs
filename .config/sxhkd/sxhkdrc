@@ -4,8 +4,14 @@ super + Return
 super + a
 	dmenu_run
 
+super + shift + a
+	$TERMINAL -e ncmpcpp
+
 super + b
 	pkill -USR1 redshift
+
+super + shift + b
+	blueberry
 
 super + d
 	discord
@@ -41,7 +47,7 @@ super + w
 	$BROWSER
 
 super + shift + w
-  $TERMINAL -e lynx
+	$TERMINAL -e sudo nmtui
 
 Print
   screenshot_select
@@ -60,9 +66,3 @@ XF86Audio{Raise,Lower}Volume
 
 XF86AudioMicMute
 	amixer set Capture toggle
-
-F8
-	$TERMINAL -e sudo nmtui
-  
-F10
-	blueberry
