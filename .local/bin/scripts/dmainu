@@ -12,6 +12,8 @@ cmds="\
 📖 Manual	dmenuman
 🤔 Calculator	dmenucalc
 📸 Screenshot	screenshot_select
+💽 Mount Drives	dmenumount
+💽 Unmount Drives	dmenuumount
 🌍 Internet	$TERMINAL -e nmtui
 ⚙ Updates	$TERMINAL yay -Syu
 🔒 Password	passmenu
