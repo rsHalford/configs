@@ -1,68 +1,86 @@
 super + Return
-	$TERMINAL
+  $TERMINAL
 
 super + a
-	dmenu_run
+  dmenu_run
 
 super + shift + a
-	$TERMINAL -e ncmpcpp
+  $TERMINAL -e ncmpcpp
 
 super + b
-	pkill -USR1 redshift
+  pkill -USR1 redshift
 
 super + shift + b
-	blueberry
+  blueberry
 
 super + d
-	discord
+  discord
 
 super + shift + d
   signal-desktop
 
 super + e
-	$TERMINAL -e nvim
+  $TERMINAL -e nvim
 
 super + shift + e
-	$TERMINAL -e neomutt
+  $TERMINAL -e neomutt
 
 super + r
-	$TERMINAL -e tuir
+  $TERMINAL -e tuir
 
 super + shift + r
-	$TERMINAL -e newsboat
+  $TERMINAL -e newsboat
 
 super + s
   dmainu
 
 super + shift + s
-	passmenu
+  passmenu
 
 super + t
-	$TERMINAL -e reflex-curses
+  $TERMINAL -e reflex-curses
 
 super + shift + t
-	chatty
+  chatty
 
 super + w
-	$BROWSER
+  $BROWSER
 
 super + shift + w
-	$TERMINAL -e sudo nmtui
+  $TERMINAL -e sudo nmtui
 
 Print
   screenshot_select
 
 XF86MonBrightnessDown
-	xbacklight -dec 10
+  xbacklight -dec 10
 
 XF86MonBrightnessUp
-	xbacklight -inc 10
+  xbacklight -inc 10
 
 XF86AudioMute
-	amixer sset Master toggle
+  amixer sset Master toggle
 
 XF86Audio{Raise,Lower}Volume
-	amixer sset Master 5%{+,-}
+  amixer sset Master 5%{+,-}
 
 XF86AudioMicMute
-	amixer set Capture toggle
+  amixer set Capture toggle
+
+XF86AudioPlay
+  mpc play
+
+XF86AudioStop
+  mpc pause
+
+XF86AudioNext
+  mpc next
+
+XF86AudioPrev
+  mpc prev
+
+super + Prior
+  mpc volume +5
+
+super + Next
+  mpc volume -5
