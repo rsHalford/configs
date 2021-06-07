@@ -33,6 +33,7 @@ song_columns_list_format = "(30)[magenta]{a} (30)[yellow]{t} (30)[white]{b} (10)
 ## Alternative Interface ##
 alternative_header_first_line_format = "$0$aqqu$/a{$4%t$9}|{$4%f$9} $0$atqq$/a$9"
 alternative_header_second_line_format = "{$6%a$8}{$8 - %b$9}"
+mouse_support = "no"
 
 ## Current Item ##
 current_item_prefix = "$(magenta)$r$b"
