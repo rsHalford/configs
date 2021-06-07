@@ -31,37 +31,10 @@ mountusb() { \
 	notify-send "💻 USB mounting" "$chosen mounted to $mp."
 	}
 
-mountandroid() { \
-	chosen="$(echo "$anddrives" | dmenu -p "Which Android device?")" || exit 1
-	chosen="$(echo "$chosen" | cut -d : -f 1)"
-	getmount "$HOME -maxdepth 3 -type d"
-        simple-mtpfs --device "$chosen" "$mp"
-	echo "OK" | dmenu -p "Tap Allow on your phone if it asks for permission and then press enter" || exit 1
-	simple-mtpfs --device "$chosen" "$mp"
-	notify-send "🤖 Android Mounting" "Android device mounted to $mp."
-	}
-
-asktype() { \
-	choice="$(printf "USB\\nAndroid" | dmenu -p "Mount a USB drive or Android device?")" || exit 1
-	case $choice in
-		USB) mountusb ;;
-		Android) mountandroid ;;
-	esac
-	}
-
 anddrives=$(simple-mtpfs -l 2>/dev/null)
 usbdrives="$(lsblk -rpo "name,type,size,mountpoint" | grep 'part\|rom' | awk '$4==""{printf "%s (%s)\n",$1,$3}')"
 
-if [ -z "$usbdrives" ]; then
-	[ -z "$anddrives" ] && echo "No USB drive or Android device detected" && exit
-	echo "Android device(s) detected."
-	mountandroid
-else
-	if [ -z "$anddrives" ]; then
-		echo "USB drive(s) detected."
-		mountusb
-	else
-		echo "Mountable USB drive(s) and Android device(s) detected."
-		asktype
-	fi
+if [ "$usbdrives" ]; then
+	echo "USB drive(s) detected."
+	mountusb
 fi
