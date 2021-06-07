@@ -4,9 +4,6 @@ super + Return
 super + a
   dmenu_run
 
-super + shift + a
-  $TERMINAL -e ncmpcpp
-
 super + b
   pkill -USR1 redshift
 

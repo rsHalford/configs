@@ -3,7 +3,7 @@
       return          = Terminal            (st)
 shift return          = Move to Master      (dwm)
       a               = All Applications    (dmenu_run)
-shift a               = Music Player        (ncmpcpp)
+shift a               = Music Scratchpad    (ncmpcpp)
       b               = Blue Filter         (redshift)
 shift b               = GUI Bluetooth       (blueberry)
       c               =
@@ -13,7 +13,7 @@ shift d               = Private Messenger   (Signal)
       e               = Editor              (neovim)
 shift e               = Email               (neomutt)
       f               =
-      g               = Toggle Scratchpad   (dwm)
+      g               = Terminal Scratchpad (dwm)
       h               = Reduce H Master     (dwm)
 shift h               = Rotate Master       (dwm)
       i               = Float Layout        (dwm)
