@@ -65,10 +65,10 @@ XF86AudioMicMute
   amixer set Capture toggle
 
 XF86AudioPlay
-  mpc play
+  mpc toggle
 
 XF86AudioStop
-  mpc pause
+  mpc stop
 
 XF86AudioNext
   mpc next
@@ -77,7 +77,7 @@ XF86AudioPrev
   mpc prev
 
 super + Prior
-  mpc volume +5
+  mpc volume +5 && dunstify -h string:x-canonical-private-synchronous:mpd-audio "MPD Notification" "`mpc --format '<b>%title%</b>\nby <i>%artist%</i>\nfrom <i>%album%</i>' current`" -h int:value:$(mpc-volume)
 
 super + Next
-  mpc volume -5
+  mpc volume -5 && dunstify -h string:x-canonical-private-synchronous:mpd-audio "MPD Notification" "`mpc --format '<b>%title%</b>\nby <i>%artist%</i>\nfrom <i>%album%</i>' current`" -h int:value:$(mpc-volume)
