@@ -27,7 +27,7 @@ export JAVA_FONTS="/usr/share/fonts/TTF"
 export _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-export BROWSER="brave"
+export BROWSER="qutebrowser"
 export EDITOR="nvim"
 export IMAGE="sxiv"
 export READER="zathura"
