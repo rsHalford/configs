@@ -22,7 +22,7 @@ Plug 'dbeniamine/cheat.sh-vim'
 "Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " Editing
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'psf/black'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
@@ -328,6 +328,7 @@ lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.svelte.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
