@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$(pidof mpv)" ] ; then
+  echo '{"command": ["loadfile", "'$QUTE_URL'", "append-play"]}' | socat - /tmp/mpvsocket
+else
+  exec mpv --input-ipc-server=/tmp/mpvsocket "$QUTE_URL"
+fi
