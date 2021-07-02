@@ -1,10 +1,3 @@
-# gruvbox dark hard qutebrowser theme by Florian Bruhin <me@the-compiler.org>
-#
-# Originally based on:
-#   base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-#   Base16 qutebrowser template by theova and Daniel Mulford
-#   Gruvbox dark, hard scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
-
 bg0_hard = "#1d2021"
 bg0_soft = "#32302f"
 bg0_normal = "#282828"
@@ -331,4 +324,4 @@ c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
-c.colors.webpage.bg = bg4
+c.colors.webpage.bg = bg0_hard
