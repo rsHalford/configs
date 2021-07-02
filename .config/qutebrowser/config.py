@@ -3,7 +3,6 @@ c.tabs.background = True
 c.downloads.position = "bottom"
 c.spellcheck.languages = ["en-GB"]
 
-config.bind(",ce", "config-edit")
 # config.bind(",p", "config-cycle -p content.plugins ;; reload")
 
 # config.bind(',rta', 'open {url}top/?sort=top&t=all')
@@ -13,14 +12,14 @@ config.bind(",ce", "config-edit")
 # css = '~/proj/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css'
 # config.bind(",n", f'config-cycle content.user_stylesheets {css} ""')
 
-c.url.searchengines["rfc"] = "https://tools.ietf.org/html/rfc{}"
-c.url.searchengines["pypi"] = "https://pypi.org/project/{}/"
-c.url.searchengines["qtbug"] = "https://bugreports.qt.io/browse/QTBUG-{}"
-c.url.searchengines["qb"] = "https://github.com/The-Compiler/qutebrowser/issues/{}"
-c.url.searchengines["btc"] = "https://www.blockchain.com/btc/address/{}"
-c.url.searchengines["http"] = "https://httpstatuses.com/{}"
-c.url.searchengines["duden"] = "https://www.duden.de/suchen/dudenonline/{}"
-c.url.searchengines["dictcc"] = "https://www.dict.cc/?s={}"
+# c.url.searchengines["rfc"] = "https://tools.ietf.org/html/rfc{}"
+# c.url.searchengines["pypi"] = "https://pypi.org/project/{}/"
+# c.url.searchengines["qtbug"] = "https://bugreports.qt.io/browse/QTBUG-{}"
+# c.url.searchengines["qb"] = "https://github.com/The-Compiler/qutebrowser/issues/{}"
+# c.url.searchengines["btc"] = "https://www.blockchain.com/btc/address/{}"
+# c.url.searchengines["http"] = "https://httpstatuses.com/{}"
+# c.url.searchengines["duden"] = "https://www.duden.de/suchen/dudenonline/{}"
+# c.url.searchengines["dictcc"] = "https://www.dict.cc/?s={}"
 # c.url.searchengines['maps'] = 'https://www.google.com/maps?q=%s'
 
 # c.aliases['ytdl'] = """spawn -v -m bash -c 'cd ~/vid/yt && youtube-dl "$@"' _ {url}"""
@@ -30,7 +29,7 @@ c.url.searchengines["dictcc"] = "https://www.dict.cc/?s={}"
 # c.fonts.web.family.fantasy = 'Arial'
 
 c.search.incremental = False
-c.editor.command = ["nvim", "{}"]
+c.editor.command = ["st", "-e", "nvim", "{}"]
 
 # c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapter.so']
 
@@ -38,7 +37,7 @@ c.content.javascript.enabled = True
 # config.source('perdomain.py')
 
 
-config.source("gruvbox.py")
+# config.source("gruvbox.py")
 config.load_autoconfig()
 c.aliases = {
     "w": "session-save",
@@ -51,14 +50,6 @@ c.auto_save.interval = 15000
 c.auto_save.session = True
 c.changelog_after_upgrade = "minor"
 c.colors.webpage.preferred_color_scheme = "dark"
-
-## Which algorithm to use for modifying how colors are rendered with
-## darkmode. The `lightness-cielab` value was added with QtWebEngine 5.14
-## and is treated like `lightness-hsl` with older QtWebEngine versions.
-## Valid values:
-##   - lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
-##   - lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
-##   - brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
 c.colors.webpage.darkmode.algorithm = "lightness-hsl"
 
 ## Contrast for dark mode. This only has an effect when
@@ -76,32 +67,27 @@ c.colors.webpage.darkmode.algorithm = "lightness-hsl"
 ## `colors.webpage.darkmode.threshold.background` to 205.  - "With
 ## selective inversion of everything": Combines the two variants   above.
 c.colors.webpage.darkmode.enabled = False
-
-## Desaturation factor for images in dark mode. If set to 0, images are
-## left as-is. If set to 1, images are completely grayscale. Values
-## between 0 and 1 desaturate the colors accordingly.
-## Type: Float
 c.colors.webpage.darkmode.grayscale.images = 0.0
-
-## Which images to apply dark mode to. With QtWebEngine 5.15.0, this
-## setting can cause frequent renderer process crashes due to a
-## https://codereview.qt-project.org/c/qt/qtwebengine-
-## chromium/+/304211[bug in Qt].
-## Type: String
-## Valid values:
-##   - always: Apply dark mode filter to all images.
-##   - never: Never apply dark mode filter to any images.
-##   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
 c.colors.webpage.darkmode.policy.images = "never"
-
-## Which pages to apply dark mode to. The underlying Chromium setting has
-## been removed in QtWebEngine 5.15.3, thus this setting is ignored
-## there. Instead, every element is now classified individually.
-## Type: String
-## Valid values:
-##   - always: Apply dark mode filter to all frames, regardless of content.
-##   - smart: Apply dark mode filter to frames based on background color.
 c.colors.webpage.darkmode.policy.page = "smart"
+
+# Watching Videos
+config.bind(",v", "spawn --userscript mpv-play")
+config.bind(",V", "hint links userscript mpv-play")
+config.bind(";v", "hint --rapid links userscript mpv-play")
+
+# Downloading Music
+config.bind(",m", "spawn --userscript music-dl")
+config.bind(",M", "hint links userscript music-dl")
+config.bind(";m", "hint --rapid links userscript music-dl")
+
+config.bind(",ce", "config-edit")
+
+# Login Auto-Fill
+config.bind("zl", "spawn --userscript qute-pass")
+config.bind("zul", "spawn --userscript qute-pass --username-only")
+config.bind("zpl", "spawn --userscript qute-pass --password-only")
+# config.bind("zol", "spawn --userscript qute-pass --otp-only")
 
 ## Threshold for inverting background elements with dark mode. Background
 ## elements with brightness above this threshold will be inverted, and
