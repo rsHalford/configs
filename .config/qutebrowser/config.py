@@ -50,7 +50,7 @@ c.auto_save.interval = 15000
 c.auto_save.session = True
 c.changelog_after_upgrade = "minor"
 c.colors.webpage.preferred_color_scheme = "dark"
-c.colors.webpage.darkmode.algorithm = "lightness-hsl"
+c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 
 ## Contrast for dark mode. This only has an effect when
 ## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
