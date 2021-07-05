@@ -1,38 +1,28 @@
 config.source("style.py")
 config.load_autoconfig()
 
-# Watching Videos
-config.bind(",v", "spawn --userscript mpv-play")
-config.bind(",V", "hint links userscript mpv-play")
-config.bind(";v", "hint --rapid links userscript mpv-play")
-
-# Downloading Music
+config.bind(",c", "config-edit")
 config.bind(",m", "spawn --userscript music-dl")
 config.bind(",M", "hint links userscript music-dl")
 config.bind(";m", "hint --rapid links userscript music-dl")
-
-config.bind(",ce", "config-edit")
-
-# Login Auto-Fill
-config.bind("zl", "spawn --userscript qute-pass")
-config.bind("zul", "spawn --userscript qute-pass --username-only")
-config.bind("zpl", "spawn --userscript qute-pass --password-only")
-# config.bind("zol", "spawn --userscript qute-pass --otp-only")
-
-# Sessions
+config.bind(",r", "spawn --userscript readability-js")
 config.bind(",sd", "set-cmd-text -s :session-delete")
 config.bind(",sl", "set-cmd-text -s :session-load")
 config.bind(",ss", "set-cmd-text -s :session-save")
-config.bind(",tg", "set-cmd-text -s :tab-give")
-config.bind(",tp", "set-cmd-text -s :tab-pin")
-config.bind(",ts", "set-cmd-text -s :tab-select")
-
-# Cycle UI
 config.bind(",S", "config-cycle statusbar.show in-mode always")
 config.bind(
     ",T",
     "config-cycle tabs.show switching always;; config-cycle tabs.title.format {index:>2} '{index:>2}{audio} {current_title}';; config-cycle tabs.width 40 '20%'",
 )
+config.bind(",tg", "set-cmd-text -s :tab-give")
+config.bind(",tp", "set-cmd-text -s :tab-pin")
+config.bind(",ts", "set-cmd-text -s :tab-select")
+config.bind(",v", "spawn --userscript mpv-play")
+config.bind(",V", "hint links userscript mpv-play")
+config.bind(";v", "hint --rapid links userscript mpv-play")
+config.bind("zl", "spawn --userscript qute-pass")
+config.bind("zul", "spawn --userscript qute-pass --username-only")
+config.bind("zpl", "spawn --userscript qute-pass --password-only")
 
 c.auto_save.session = True
 c.changelog_after_upgrade = "patch"
@@ -66,6 +56,7 @@ c.editor.command = ["st", "-e", "nvim", "{}"]
 c.input.insert_mode.auto_load = True
 c.keyhint.delay = 0
 c.scrolling.bar = "never"
+c.scrolling.smooth = True
 c.spellcheck.languages = ["en-GB"]
 c.statusbar.show = "in-mode"
 c.statusbar.widgets = ["keypress", "history", "url", "progress", "scroll", "tabs"]
@@ -85,7 +76,7 @@ c.url.searchengines = {
     "startpage": "https://startpage.com/sp/{}",
 }
 c.url.start_pages = ["https://start.duckduckgo.com"]
-c.window.title_format = "{perc}{audio}{current_title}{title_sep}qutebrowser"
+c.window.title_format = "{perc}{audio}{private}{current_title}{title_sep}qutebrowser"
 c.zoom.levels = [
     "25%",
     "33%",
