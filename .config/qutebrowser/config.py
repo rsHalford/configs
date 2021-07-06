@@ -53,7 +53,6 @@ c.downloads.location.suggestion = "both"
 c.downloads.position = "bottom"
 c.downloads.remove_finished = 180000
 c.editor.command = ["st", "-e", "nvim", "{}"]
-c.input.insert_mode.auto_load = True
 c.keyhint.delay = 0
 c.scrolling.bar = "never"
 c.scrolling.smooth = True
