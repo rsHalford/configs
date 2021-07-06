@@ -125,19 +125,19 @@ c.prompt.radius = 2
 # Statusbar
 
 c.colors.statusbar.caret.bg = dark_orange
-c.colors.statusbar.caret.fg = c.colors.statusbar.command.fg
+c.colors.statusbar.caret.fg = c.colors.statusbar.normal.bg
 c.colors.statusbar.caret.selection.bg = c.colors.statusbar.caret.bg
-c.colors.statusbar.caret.selection.fg = c.colors.statusbar.command.fg
+c.colors.statusbar.caret.selection.fg = c.colors.statusbar.normal.bg
 c.colors.statusbar.command.bg = bg0_hard
 c.colors.statusbar.command.fg = bright_green
 c.colors.statusbar.command.private.bg = c.colors.statusbar.command.bg
 c.colors.statusbar.command.private.fg = c.colors.statusbar.command.fg
 c.colors.statusbar.insert.bg = bright_blue
-c.colors.statusbar.insert.fg = c.colors.statusbar.command.fg
+c.colors.statusbar.insert.fg = c.colors.statusbar.normal.bg
 c.colors.statusbar.normal.bg = bg0_hard
 c.colors.statusbar.normal.fg = fg1
 c.colors.statusbar.passthrough.bg = bright_purple
-c.colors.statusbar.passthrough.fg = c.colors.statusbar.command.fg
+c.colors.statusbar.passthrough.fg = c.colors.statusbar.normal.bg
 c.colors.statusbar.private.bg = c.colors.statusbar.normal.fg
 c.colors.statusbar.private.fg = c.colors.statusbar.normal.bg
 c.colors.statusbar.progress.bg = fg1

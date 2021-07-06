@@ -69,7 +69,7 @@ c.tabs.show_switching_delay = 1500
 c.tabs.title.format = "{index:>2}"
 c.tabs.title.format_pinned = "{index:>2}"
 c.tabs.width = 40
-c.url.default_page = "about:blank"
+c.url.default_page = "https://duckduckgo.com/"
 c.url.open_base_url = True
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -83,13 +83,13 @@ c.url.searchengines = {
     "imdb": "http://www.imdb.com/find?ref_=nv_sr_fn&s=all&q={}",
     "dic": "http://www.dictionary.com/browse/{}",
     "ety": "http://www.etymonline.com/index.php?allowed_in_frame=0&search={}",
-    "urban": "http://www.urbandictionary.com/define.php?term={}",
+    "urbn": "http://www.urbandictionary.com/define.php?term={}",
     "ddgi": "https://duckduckgo.com/?q={}&iar=images",
-    "qwant": "https://www.qwant.com/?q={}",
+    "qwnt": "https://www.qwant.com/?q={}",
     "sp": "https://www.startpage.com/do/dsearch?query={}",
-    "humble": "https://www.humblebundle.com/store/search?sort=bestselling&search={}",
+    "hmbl": "https://www.humblebundle.com/store/search?sort=bestselling&search={}",
 }
-c.url.start_pages = ["about:blank"]
+c.url.start_pages = ["https://duckduckgo.com/"]
 c.window.title_format = "{perc}{audio}{private}{current_title}{title_sep}qutebrowser"
 c.zoom.levels = [
     "25%",
