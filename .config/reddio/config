@@ -1,0 +1,38 @@
+# Copy this file to ~/.config/reddio/config
+
+# Editor to use when submitting/editing and no '-t' option is given
+editor=/usr/bin/nvim
+
+# Where to find reddios shared files
+#lib_dir="$XDG_DATA_HOME"/reddio
+
+# Format - How to print listings
+
+# t1 Comments
+format='${is_comment:+$fg7${up:+$bld$fg2}${down:+$bld$fg1}${show_score:+$score}${hide_score:+-}$rst$fg7 ${stickied:+[S] }${is_submitter:+$fg4}$author${distinguished:+[$distinguished]}${is_submitter:+$fg7} $created_pretty${edited:+*} $fg3$id$rst${is_mixed:+ ($link_id)
+$fg7$link_title$rst (r/$subreddit)}$nl$text$nl$nl}'
+
+# t2 User
+format=$format'${is_user:+$name${is_friend:+[F]} joined $created_pretty $fg3$id$rst
+$comment_karma comment karma
+$link_karma submission karma$nl}'
+
+# t3 Submission (link)
+format=$format'${is_link:+$fg7${up:+$bld$fg2}${down:+$bld$fg1}${show_score:+$score}${hide_score:+-}$rst$fg7 $title$rst ($domain)
+$ul$url$rst
+${tags:+$tags }$num_comments comment$comments_plural | submitted $created_pretty${edited:+*} by ${is_comments:+$fg4}$author${distinguished:+[$distinguished]}$rst on r/$subreddit $fg3$id$rst
+${is_comments:+${text:+$fg7------------------------------$rst$nl$text$nl}}$nl}'
+
+# t4 Messages
+format=$format'${is_msg:+${fg7}${author:=r/$subreddit}${distinguished:+[$distinguished]} to $dest $created_pretty $fg3$id${parent_id:+$rst ($parent_id)}
+$fg7$subject$rst$nl$text$nl$nl}'
+
+# t5 Subreddit
+format=$format'${is_sub:+r/$name $fg3$id$rst$nl$title
+${nl}A $type subreddit with $subscribers subscribers created $created_pretty${description:+
+------------------------------$nl$description}${submit_text:+
+------------------------------$nl$submit_text}${text:+
+------------------------------$nl$text}$nl}'
+
+# More / Continue
+format=$format'${is_more:+$fg7$count more$rst$nl$nl}${is_continue:+${fg7}Thread continues$rst$nl$nl}'

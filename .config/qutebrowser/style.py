@@ -175,7 +175,7 @@ c.tabs.padding = {"top": 1, "bottom": 1, "left": 0, "right": 0}
 # Webpage
 
 c.colors.webpage.bg = bg0
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.preferred_color_scheme = "dark"
 

@@ -2,6 +2,7 @@ config.source("style.py")
 config.load_autoconfig()
 
 config.bind(",c", "config-edit")
+config.bind("gp", "set-cmd-text -s :open -p")
 config.bind(",m", "spawn --userscript music-dl")
 config.bind(",M", "hint links userscript music-dl")
 config.bind(";m", "hint --rapid links userscript music-dl")
@@ -68,7 +69,7 @@ c.tabs.show_switching_delay = 1500
 c.tabs.title.format = "{index:>2}"
 c.tabs.title.format_pinned = "{index:>2}"
 c.tabs.width = 40
-c.url.default_page = "https://duckduckgo.com/"
+c.url.default_page = "/home/richard/.config/qutebrowser/start/index.html"
 c.url.open_base_url = True
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -88,7 +89,7 @@ c.url.searchengines = {
     "sp": "https://www.startpage.com/do/dsearch?query={}",
     "hmbl": "https://www.humblebundle.com/store/search?sort=bestselling&search={}",
 }
-c.url.start_pages = ["https://duckduckgo.com/"]
+c.url.start_pages = ["/home/richard/.config/qutebrowser/start/index.html"]
 c.window.title_format = "{perc}{audio}{private}{current_title}{title_sep}qutebrowser"
 c.zoom.levels = [
     "25%",
