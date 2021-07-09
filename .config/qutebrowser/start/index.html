@@ -10,29 +10,24 @@
 
 <body>
   <div class="container">
+    <section class="main">
+      <div class="current">
+        <h1 id="currentTime"></h1>
+        <div class="current-sub">
+          <h2 id="currentDay"></h2>
+          <h2 id="currentWeather"></h2>
+        </div>
+      </div>
+      <div class="search">
+        <form action="https://duckduckgo.com/?q=" method="GET">
+          <input name="q" type="text" placeholder="Search" autofocus />
+          <button type="submit"><img src="./search-solid.svg" /></button>
+        </form>
+      </div>
+    </section>
     <!--
-    <div class="bookmarks">
-      <ul>
-        <li>News</li>
-        <li>Videos</li>
-        <li>Streams</li>
-        <li>Markets</li>
-        <li>Portfolio</li>
-        <li>RSS</li>
-      </ul>
-    </div>
-    -->
-    <div class="calendar">
-      <h1 id="currentTime"></h1>
-      <h2 id="currentDay"></h2>
-    </div>
-    <div class="search">
-      <form action="https://duckduckgo.com/?q=" method="GET">
-        <input name="q" type="text" placeholder="Search" autofocus />
-        <button type="submit"><img src="./search-solid.svg" /></button>
-      </form>
-    </div>
-    <!--
+    <section class="bookmarks">
+    </section>
     <div class="settings">
     </div>
     <div class="feeds">
@@ -49,8 +44,6 @@
     </div>
     <div class="godo">
     </div>
-    <div class="weather">
-    </div>
     <div class="daily">
     <ul>
       <li>Word</li>
@@ -63,6 +56,6 @@
   </div>
 </body>
 
-<script type="text/javascript" src="./calendar.js"></script>
+<script type="text/javascript" src="./current.js"></script>
 
 </html>

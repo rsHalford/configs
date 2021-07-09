@@ -7,6 +7,7 @@ cmds="\
 😂 Emojis 	dmenuemoji
 📺 YouTube	subs
 📹 Twitch	dmenutwitch
+🌐 Session	dmenusession
 🤖 Configurations	dmenuconfigs
 😈 Cheat Sheet	dmenucheat
 📖 Manual	dmenuman

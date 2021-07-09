@@ -27,23 +27,6 @@ body {
   background-size: cover;
 }
 
-
-.container {
-  height: 100%;
-  display: grid;
-  grid-template-rows: /*min-content*/ 0.8fr 1fr; /*min-content min-content min-content min-content min-content min-content min-content;*/
-  grid-template-areas:
-    /*"bookmarks"*/
-    "calendar"
-    "search"
-    /*"settings"
-    "feeds"
-    "quick"
-    "godo"
-    "weather"
-    "daily"*/;
-}
-
 /*
 .bookmarks {
   grid-area: bookmarks;
@@ -61,32 +44,46 @@ body {
 }
 */
 
-.calendar {
-  grid-area: calendar;
+.main {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 0.8fr 1fr;
+  grid-template-areas:
+    "current"
+    "search";
+}
+
+.current {
+  grid-area: current;
   margin: auto 0;
   color: #fff;
 }
 
-.calendar > h1 {
+.current > h1 {
   font-size: min(18vw, 135px);
   font-weight: 400;
 }
 
-.calendar > h2 {
+.current-sub > h2 {
+  display: inline-block;
   font-size: min(5vw, 37.5px);
+  font-weight: 500;
+  margin: min(2vw, 15px);
 }
 
 .search {
   grid-area: search;
-  margin: 0 24vw;
+  margin: 0 auto;
   padding: 0 min(0.64, 4.8px);
 }
 
 .search form {
+  min-width: min(95vw, 750px);
   display: grid;
   grid-template-columns: auto min-content;
   grid-template-rows: auto;
   grid-template-areas: "input button";
+  border-radius: min(1vw, 7.5px);
 }
 
 .search form > input[type="text"] {
@@ -96,12 +93,9 @@ body {
   padding: min(1.067vw, 8px) min(2.13vw, 16px);
   border: none;
   border-radius: min(0.64vw, 4.8px) 0 0 min(0.64vw, 4.8px);
-  color: #ebdbb2;
-  background-color: #1d2021;
-}
-
-.search form > input[type="text"]:focus {
-  outline: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 200ms ease;
 }
 
 .search form > button {
@@ -112,8 +106,21 @@ body {
   border: none;
   outline: none;
   border-radius: 0 min(0.64vw, 4.8px) min(0.64vw, 4.8px) 0;
-  background-color: #3c3836;
+  background-color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.search form:hover > button,
+.search form > input[type="text"]:focus + button {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.search form:hover > input[type="text"],
+.search form > input[type="text"]:focus,
+.search form > button:hover + input[type="text"] {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /*

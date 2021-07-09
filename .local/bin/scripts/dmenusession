@@ -1,0 +1,7 @@
+#!/bin/sh
+
+session=$(ls -1 $XDG_DATA_HOME/qutebrowser/sessions | sed "/_autosave.yml/d" | sed "s/.yml//" | sed "/before-qt-515/d" | dmenu)
+
+if [ "$session" != "" ]; then
+  qutebrowser ":session-load ${session}"
+fi
