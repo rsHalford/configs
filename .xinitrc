@@ -36,6 +36,7 @@ picom &
 dunst &
 subs -d &
 hsetroot -solid "#282828" &
+bing-wp &
 unclutter &
 redshift &
 setxkbmap -option caps:escape_shifted_capslock &
