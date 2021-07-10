@@ -9,12 +9,14 @@ reload-time 120
 
 # Definitions
 browser "lynx %u"
-player "mpv %u"
+player "mpv --no-video %u"
 datetime-format "%Y-%m-%d %a"
 article-sort-order date-desc
 
 # Article Save Path
-save-path ~/Downloads/newsboat/
+save-path ~/.local/share/newsboat/saved/
+# Podcast Save Path
+download-path ~/Media/Music/Podcasts/
 
 # Keys
 bind-key ; macro-prefix

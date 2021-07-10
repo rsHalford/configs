@@ -23,10 +23,10 @@ super + shift + e
   $TERMINAL -e neomutt
 
 super + r
-  $TERMINAL -e tuir
+  $TERMINAL -e newsboat
 
 super + shift + r
-  $TERMINAL -e newsboat
+  $TERMINAL -e podboat
 
 super + s
   dmainu
