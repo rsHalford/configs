@@ -1,0 +1,36 @@
+field birthday = Birthday, date
+field county = County, string
+field post_code = "Post Code", string
+field work = Work, string
+field home = Home, string
+
+view CONTACT = name, birthday, url, email
+view ADDRESS = address, city, county, post_code, country
+view PHONE = mobile, home, work
+
+set index_format="{name:22} {email:35} {phone:12|mobile|home|work}"
+set mutt_command=neomutt
+set address_style=uk
+set use_mouse=true
+set use_colors=true
+
+set color_header_fg=yellow
+set color_header_bg=default
+set color_footer_fg=yellow
+set color_footer_bg=default
+set color_list_even_fg=white
+set color_list_even_bg=default
+set color_list_odd_fg=white
+set color_list_odd_bg=default
+set color_list_header_fg=blue
+set color_list_header_bg=default
+set color_list_highlight_fg=black
+set color_list_highlight_bg=white
+set color_tab_border_fg=default
+set color_tab_border_bg=default
+set color_tab_label_fg=cyan
+set color_tab_label_bg=default
+set color_field_name_fg=magenta
+set color_field_name_bg=default
+set color_field_value_fg=yellow
+set color_field_value_bg=default
