@@ -1,3 +1,32 @@
 include "/etc/wyrdrc"
 
 set reminders_file="$XDG_DATA_HOME/remind/reminders.rem"
+set week_starts_monday="true"
+set schedule_12_hour="false"
+set selection_12_hour="false"
+set status_12_hour="false"
+set description_12_hour="false"
+#set center_cursor="true"
+set goto_big_endian="false"
+set quick_date_US="false"
+set untimed_window_width="40"
+
+color help yellow black
+color timed_default white default
+color timed_current yellow default
+color timed_reminder1 magenta default
+color timed_reminder2 blue default
+color timed_reminder3 cyan default
+color timed_reminder4 green default
+color untimed_reminder yellow default
+color timed_date magenta default
+color selection_info yellow black
+color description white default
+color status white black
+color calendar_labels white default
+color calendar_level1 white default
+color calendar_level2 magenta default
+color calendar_level3 blue default
+color calendar_today yellow default
+color left_divider black black
+color right_divider black black
