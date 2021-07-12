@@ -39,6 +39,7 @@ hsetroot -solid "#282828" &
 bing-wp &
 unclutter &
 redshift &
+remind -z -k'dunstify "⏰Reminder" "%s"' .local/share/remind/reminders.rem &
 setxkbmap -option caps:escape_shifted_capslock &
 sxhkd &
 dwmstatus &
