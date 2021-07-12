@@ -1,0 +1,3 @@
+include "/etc/wyrdrc"
+
+set reminders_file="$XDG_DATA_HOME/remind/reminders.rem"

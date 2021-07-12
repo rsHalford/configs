@@ -33,14 +33,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 picom &
-dunst &
-subs -d &
-hsetroot -solid "#282828" &
-bing-wp &
-unclutter &
 redshift &
-remind -z -k'dunstify "⏰Reminder" "%s"' .local/share/remind/reminders.rem &
-setxkbmap -option caps:escape_shifted_capslock &
-sxhkd &
 dwmstatus &
+sxhkd &
+setxkbmap -option caps:escape_shifted_capslock &
+hsetroot -solid "#282828" &
+dunst &
+dunstify "⏰ Today's Reminders" "$(remind .local/share/remind/reminders.rem)" &
+remind -z -k'dunstify "⏰ Reminder" "%s"' .local/share/remind/reminders.rem &
+unclutter &
+bing-wp &
+subs -d &
 exec dwm
