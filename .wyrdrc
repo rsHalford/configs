@@ -1,6 +1,8 @@
 include "/etc/wyrdrc"
 
 set reminders_file="$XDG_DATA_HOME/remind/reminders.rem"
+set timed_template="REM %mday% %monname% %year% AT %hour%:%min% DURATION 1:00 MSG %"
+set untimed_template="REM %mday% %monname% %year% MSG %"
 set week_starts_monday="true"
 set schedule_12_hour="false"
 set selection_12_hour="false"
