@@ -137,27 +137,6 @@ augroup terminal_settings
 augroup END
 
 
-" Coc Commands
-"nmap <leader>vd  <Plug>(coc-definition)
-"nmap <leader>vdt <Plug>(coc-type-definition)
-"nmap <leader>vi  <Plug>(coc-implementation)
-"nmap <leader>vrr <Plug>(coc-references)
-"nmap <leader>vrn <Plug>(coc-rename)
-"nmap <leader>v[  <Plug>(coc-diagnostic-prev)
-"nmap <leader>v]  <Plug>(coc-diagnostic-next)
-"nmap <leader>va  <Plug>(coc-codeaction-selected)
-"nmap <leader>vf  <Plug>(coc-format-selected)
-"nnoremap <leader>vrs :CocRestart
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"command! -nargs=0 Prettier :CocCommand prettier.formatFile
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <silent><expr> <C-space> coc#refresh()
-
-
-
 " Vimspector (Debugging)
 nnoremap <leader>db :call vimspector#Launch()<CR>
 nnoremap <leader>de :call vimspector#Reset()<CR>
@@ -203,9 +182,9 @@ nnoremap <leader>z :UndotreeShow<CR>
 
 " File Type Formatting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd Filetype py setlocal ts=4 sw=4 sts=4
+autocmd FileType py setlocal ts=4 sw=4 sts=4
 autocmd BufWritePre *.py execute ':Black'
-autocmd Filetype go setlocal ts=4 sw=4 sts=0 noexpandtab
+autocmd FileType go setlocal ts=4 sw=4 sts=0 noexpandtab
 
 
 " Copy and Paste
@@ -230,23 +209,26 @@ nmap <leader>pm <Plug>MarkdownPreviewToggle
 
 
 " Telescope
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
-nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<CR>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
-nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').file_browser({hidden="false"})<CR>
 nnoremap <leader>fc <cmd>lua require('telescope').extensions.flutter.commands()<CR>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<CR>
+nnoremap <leader>fl <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<CR>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<CR>
+nnoremap <leader>fe <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>
+nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_definitions()<CR>
+nnoremap <leader>fi <cmd>lua require('telescope.builtin').lsp_implementations()<CR>
+
 
 " Git Pickers
-"Lists git commits with diff preview and on enter checkout the commit.
-"nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<CR>
-"Lists buffer's git commits with diff preview and checkouts it out on enter.
-"nnoremap <leader>gbc <cmd>lua require('telescope.builtin').git_bcommits()<CR>
-"Lists all branches with log preview and checkout action.
-"nnoremap <leader>gbr<cmd>lua require('telescope.builtin').git_branches()<CR>
-"Lists current changes per file with diff preview and add action. (Multiselection still WIP)
-"nnoremap <leader>gs <cmd>lua require('telescope.builtin').git_status()<CR>
+nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<CR>
+nnoremap <leader>gbc <cmd>lua require('telescope.builtin').git_bcommits()<CR>
+nnoremap <leader>gbr<cmd>lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>gst <cmd>lua require('telescope.builtin').git_status()<CR>
+nnoremap <leader>gsa <cmd>lua require('telescope.builtin').git_stash()<CR>
 
 lua << EOF
 local actions = require('telescope.actions')
@@ -254,14 +236,13 @@ require('telescope').setup{
   defaults = {
     prompt_prefix = " ",
     layout_strategy = "flex",
-    borderchars = { '-', '|', ' ', ' ', '-', '+', '|', ' '},
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+    file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+    file_sorter =  require('telescope.sorters').get_fzy_sorter,
     vimgrep_arguments = {
       'rg',
-      '--color=always',
       '--no-heading',
       '--with-filename',
       '--line-number',
@@ -291,7 +272,7 @@ EOF
 
 " Treesitter
 lua << EOF
-require'nvim-treesitter.configs'.setup { 
+require('nvim-treesitter.configs').setup { 
   ensure_installed = { 'bash', 'css', 'dart', 'go', 'html', 'javascript', 'json', 'python', 'scss', 'toml', 'typescript', 'vue', 'yaml' },
   indent = {
     enable = true
@@ -319,20 +300,20 @@ nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufEnter * lua require('completion').on_attach()
 lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.cssls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dartls.setup{}
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.svelte.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').bashls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').cssls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').dartls.setup{}
+lua require('lspconfig').gopls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').html.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').jsonls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').pyright.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').svelte.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').tsserver.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').vimls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').vuels.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').yamlls.setup{ on_attach=require('completion').on_attach }
 
 
 " Flutter Tools
