@@ -39,6 +39,7 @@ c.completion.scrollbar.width = 7
 c.completion.shrink = True
 c.completion.timestamp_format = "%H:%M %d-%m-%y"
 c.confirm_quit = ["downloads"]
+c.content.autoplay = False
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
@@ -64,6 +65,7 @@ c.tabs.indicator.width = 0
 c.tabs.new_position.unrelated = "next"
 c.tabs.position = "left"
 c.tabs.last_close = "default-page"
+c.tabs.select_on_remove = "prev"
 c.tabs.show = "switching"
 c.tabs.show_switching_delay = 1500
 c.tabs.title.format = "{index:>2}"
