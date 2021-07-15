@@ -27,9 +27,20 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-repeat'
 
-"General
+" Prose
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'preservim/vim-pencil'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'dbmrq/vim-ditto'
+Plug 'preservim/vim-litecorrect'
+Plug 'kana/vim-textobj-user'
+Plug 'preservim/vim-textobj-quote'
+Plug 'preservim/vim-textobj-sentence'
+Plug 'preservim/vim-wordy'
 
 " Theme
 Plug 'gruvbox-community/gruvbox'
@@ -38,6 +49,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons',
 call plug#end()
 
+source $XDG_CONFIG_HOME/nvim/config/prose.vim
 
 " Settings
 syntax enable
@@ -68,6 +80,7 @@ set shortmess+=c
 set signcolumn=yes
 set smartindent
 set splitbelow splitright
+set spelllang=en_gb
 set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.cache/nvim/undo
@@ -200,12 +213,6 @@ endfunction
 
 " List document's URLs
 nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
-
-
-" Markdown Preview
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
-nmap <leader>pm <Plug>MarkdownPreviewToggle
 
 
 " Telescope
