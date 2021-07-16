@@ -19,8 +19,7 @@ endfunction
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 
-autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=troff
 autocmd BufRead,BufNewFile /tmp/neomutt* set filetype=mail
 
 nmap -d <Plug>DittoPrev
@@ -45,7 +44,7 @@ let user_dict = {
 
 augroup prose
   autocmd!
-  autocmd FileType markdown,text,groff,tex,mail :Goyo
+  autocmd FileType markdown,text,troff,mail :Goyo
     \ | execute 'Limelight0.7'
     \ | execute 'DittoOn'
     \ | set nocursorcolumn

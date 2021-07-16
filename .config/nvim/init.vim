@@ -4,9 +4,10 @@ call plug#begin('~/.local/share/vim/plugged')
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+"Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'akinsho/flutter-tools.nvim'
+Plug 'hrsh7th/nvim-compe'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -296,7 +297,7 @@ require('nvim-treesitter.configs').setup {
 EOF
 
 
-" Lsp Config
+" Lsp Config & Completion
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
@@ -306,23 +307,109 @@ nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-autocmd BufEnter * lua require('completion').on_attach()
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+"autocmd BufEnter * lua require('completion').on_attach()
 lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-lua require('lspconfig').bashls.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').cssls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').bashls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').cssls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').dartls.setup{}
+"lua require('lspconfig').gopls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').html.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').jsonls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').pyright.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').svelte.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').tsserver.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').vimls.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').vuels.setup{ on_attach=require('completion').on_attach }
+"lua require('lspconfig').yamlls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').bashls.setup{}
+lua require('lspconfig').cssls.setup{}
 lua require('lspconfig').dartls.setup{}
-lua require('lspconfig').gopls.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').html.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').jsonls.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').pyright.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').svelte.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').tsserver.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').vimls.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').vuels.setup{ on_attach=require('completion').on_attach }
-lua require('lspconfig').yamlls.setup{ on_attach=require('completion').on_attach }
+lua require('lspconfig').gopls.setup{}
+lua require('lspconfig').html.setup{}
+lua require('lspconfig').jsonls.setup{}
+lua require('lspconfig').pyright.setup{}
+lua require('lspconfig').svelte.setup{}
+lua require('lspconfig').tsserver.setup{}
+lua require('lspconfig').vimls.setup{}
+lua require('lspconfig').vuels.setup{}
+lua require('lspconfig').yamlls.setup{}
+
+
+" Lsp Config & Compe
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+  source = {
+    path = true;
+    buffer = true;
+    tags = true;
+    nvim_lsp = true;
+    treesitter = true;
+    spell = true;
+    calc = true;
+    emoji = true;
+  };
+}
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 
 " Flutter Tools
