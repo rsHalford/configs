@@ -29,6 +29,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 
 " Prose
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -83,6 +84,7 @@ set splitbelow splitright
 set spelllang=en_gb
 set tabstop=2 softtabstop=2
 set termguicolors
+set title
 set undodir=~/.cache/nvim/undo
 set undofile
 set updatetime=50

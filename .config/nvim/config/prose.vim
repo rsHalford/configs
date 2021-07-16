@@ -28,6 +28,12 @@ nmap =d <Plug>DittoNext
 nnoremap <C-s> [s1z=<c-o>
 inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
 
+let nroff_is_groff = 1
+let nroff_space_errors = 1
+hi def nroffDefinition cterm=italic gui=reverse
+hi def nroffDefSpecial cterm=italic,bold gui=reverse,bold
+let b:preprocs_as_sections = 1
+
 let g:goyo_width = 80
 let g:pencil#textwidth = 80
 let g:limelight_default_coefficient = 0.7
