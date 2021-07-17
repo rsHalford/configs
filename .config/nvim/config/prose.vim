@@ -22,6 +22,7 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 autocmd BufRead,BufNewFile /tmp/neomutt* set filetype=mail
 
+map <C-c> :w<CR>:!compiler %:p<CR>
 nmap -d <Plug>DittoPrev
 nmap =d <Plug>DittoNext
 nnoremap <C-s> [s1z=<c-o>
