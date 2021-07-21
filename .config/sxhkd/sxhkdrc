@@ -10,9 +10,6 @@ super + b
 super + shift + b
   blueberry
 
-super + c
-  $TERMINAL -e wyrd
-
 super + shift + c
   ledger-live-desktop
 

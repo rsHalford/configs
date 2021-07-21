@@ -13,4 +13,14 @@ case "$inputFile" in
       groff -e -ms "$inputFile" -Tpdf > "$name.pdf" && exit
     }
     groff -ms "$inputFile" -Tpdf > "$name.pdf"
+    ;;
+
+  *mom)
+    eqn="$(grep "\.EQ" -i $inputFile | head -1)"
+    name="$(echo $inputFile | sed 's/\..*//')"
+    cd "$dir"
+    [ -z "$eqn" ] || {
+      pdfmom -e "$inputFile" > "$name.pdf" && exit
+    }
+    pdfmom "$inputFile" > "$name.pdf"
 esac
