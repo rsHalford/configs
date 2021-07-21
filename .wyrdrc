@@ -12,6 +12,10 @@ set description_12_hour="false"
 set goto_big_endian="false"
 set quick_date_US="false"
 set untimed_window_width="40"
+set busy_level1="0"
+set busy_level2="1"
+set busy_level3="2"
+set busy_level4="3"
 
 color help yellow black
 color timed_default white default
