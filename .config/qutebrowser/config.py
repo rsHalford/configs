@@ -1,4 +1,5 @@
 config.source("style.py")
+config.source("search_engines.py")
 config.load_autoconfig()
 
 config.bind(",c", "config-edit")
@@ -73,24 +74,6 @@ c.tabs.title.format_pinned = "{index:>2}"
 c.tabs.width = 40
 c.url.default_page = "/home/richard/.config/qutebrowser/start/index.html"
 c.url.open_base_url = True
-c.url.searchengines = {
-    "DEFAULT": "https://duckduckgo.com/?q={}",
-    "ddg": "https://duckduckgo.com/?q={}",
-    "tw": "https://twitch.com/{}",
-    "yt": "https://youtube.com/results?search_query={}",
-    "wiki": "https://en.wikipedia.org/w/index.php?search={}",
-    "steam": "http://store.steampowered.com/search/?term={}",
-    "aur": "https://aur.archlinux.org/packages/?O=0&K={}",
-    "arch": "https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}",
-    "imdb": "http://www.imdb.com/find?ref_=nv_sr_fn&s=all&q={}",
-    "dic": "http://www.dictionary.com/browse/{}",
-    "ety": "http://www.etymonline.com/index.php?allowed_in_frame=0&search={}",
-    "urbn": "http://www.urbandictionary.com/define.php?term={}",
-    "ddgi": "https://duckduckgo.com/?q={}&iar=images",
-    "qwnt": "https://www.qwant.com/?q={}",
-    "sp": "https://www.startpage.com/do/dsearch?query={}",
-    "hmbl": "https://www.humblebundle.com/store/search?sort=bestselling&search={}",
-}
 c.url.start_pages = ["/home/richard/.config/qutebrowser/start/index.html"]
 c.window.title_format = "{perc}{audio}{private}{current_title}{title_sep}qutebrowser"
 c.zoom.levels = [
