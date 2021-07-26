@@ -62,6 +62,7 @@ augroup END
 " Markdown Preview
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
+let g:mkdp_browser = "qutebrowser"
 nmap <leader>pm <Plug>MarkdownPreviewToggle
 
 augroup mutt

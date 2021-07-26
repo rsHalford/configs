@@ -51,8 +51,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons',
 call plug#end()
 
-source $XDG_CONFIG_HOME/nvim/config/prose.vim
-
 " Settings
 syntax enable
 set autochdir
@@ -425,3 +423,5 @@ require("flutter-tools").setup{
   },
 }
 EOF
+
+source $XDG_CONFIG_HOME/nvim/config/prose.vim
