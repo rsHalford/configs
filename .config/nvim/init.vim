@@ -102,9 +102,30 @@ endif
 highlight ColorColumn ctermbg=0 guibg=#1d2021
 colorscheme gruvbox
 
+
 " Leader Keys
 let mapleader=" "
 let g:user_emmet_leader_key=','
+
+
+" Yank Line End
+nnoremap Y y$
+
+
+" Center Next
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+
+" Undo Breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ? ?<c-g>u
+inoremap ! !<c-g>u
+inoremap [ [<c-g>u
+inoremap { {<c-g>u
+inoremap ( (<c-g>u
 
 
 " Navigation
@@ -112,6 +133,17 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+
+" Moving Text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
 
 
 " Rezising Windows
