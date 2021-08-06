@@ -49,6 +49,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons',
+Plug 'ap/vim-css-color',
 call plug#end()
 
 " Settings

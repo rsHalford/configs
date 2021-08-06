@@ -22,6 +22,7 @@ zle -N history-substring-search-up
 zle -N history-substring-search-down
 
 setopt autocd
+setopt auto_pushd
 setopt globdots
 setopt hist_expire_dups_first
 setopt hist_ignore_all_dups
