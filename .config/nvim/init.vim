@@ -66,6 +66,7 @@ set expandtab
 set guicursor=
 set hidden
 set nohlsearch
+set ignorecase
 set incsearch
 set nobackup
 set noerrorbells
@@ -78,6 +79,7 @@ set scrolloff=8
 set shiftwidth=2
 set shortmess+=c
 set signcolumn=yes
+set smartcase
 set smartindent
 set splitbelow splitright
 set spelllang=en_gb
