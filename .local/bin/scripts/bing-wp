@@ -4,10 +4,9 @@ bing="http://www.bing.com"
 xmlURL="http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=en-WW"
 saveDir=$XDG_CACHE_HOME'/bing-wp/'
 mkdir -p $saveDir
+picName="bing.jpg"
 
 picURL=$bing$(echo $(curl -s $xmlURL) | grep -oP "<url>(.*)</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)
-
-picName="bing.jpg"
 
 curl -s -o $saveDir$picName $picURL
 

@@ -107,7 +107,7 @@ alias conrb='config rebase'
 alias conrm='config rm'
 alias const='config status -u'
 
-alias gof='gofmt -l -s -w .'
+alias gof='gofmt -d -s -w .'
 alias gob='go build -v'
 
 unset SSH_AGENT_PID
