@@ -6,6 +6,7 @@ cmds="\
 🔍 Search	dmenusearch
 😂 Emojis 	dmenuemoji
 📺 YouTube	subs
+📺 YouTube Search	dmenuyoutube
 📹 Twitch	dmenutwitch
 🌐 Session	dmenusession
 🤖 Configurations	dmenuconfigs
