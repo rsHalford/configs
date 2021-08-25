@@ -25,6 +25,9 @@ super + e
 super + shift + e
   $TERMINAL -e neomutt
 
+super + g
+  steam
+
 super + r
   $TERMINAL -e newsboat
 
@@ -42,6 +45,12 @@ super + t
 
 super + shift + t
   chatty
+
+super + v
+  $TERMINAL -e pulsemixer
+
+super + shift + v
+  virt-manager
 
 super + w
   $BROWSER

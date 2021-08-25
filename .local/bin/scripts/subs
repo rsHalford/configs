@@ -25,7 +25,7 @@
 : "${SUBS:=${XDG_CACHE_HOME:-~/.cache}/subs}"
 : "${SUBS_LINKS:=$SUBS/links}"
 : "${SUBS_CACHE:=$SUBS/cache}"
-: "${SUBS_SLEEP_VALUE:=1}" # raise this if you experience problems
+: "${SUBS_SLEEP_VALUE:=0.1}" # raise this if you experience problems
 : "${SUBS_DAEMON_INTERVAL:=600}"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 SEP=^^^^^ # shouldn't need to change this
