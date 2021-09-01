@@ -1,5 +1,6 @@
 config.source("style.py")
 config.source("search_engines.py")
+config.source("whitelist.py")
 config.load_autoconfig()
 
 config.bind(",c", "config-edit")
