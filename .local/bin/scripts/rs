@@ -1,0 +1,59 @@
+#!/bin/sh
+
+## Improvements
+# --dry-run argument
+# notify-send/dunst progress bar --info=progress2
+
+if df | grep -q "/mnt/data"; then
+  case $1 in
+    home)
+        SOURCE_DIR="/home/richard/"
+        BACKUP_DIR="/mnt/data/home"
+        mkdir -p "$BACKUP_DIR"
+        echo "Taking a backup of the home directory in the $BACKUP_DIR directory"
+
+        DATETIME="$(date +%F_%H:%M:%S)"
+        BACKUP_PATH="$BACKUP_DIR/$DATETIME"
+        LATEST_LINK="$BACKUP_DIR/latest"
+
+        EXCLUDE_LIST="/home/richard/.local/share/rsync/home-exclude.txt"
+
+        rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
+          "$SOURCE_DIR" \
+          --link-dest "$LATEST_LINK" \
+          --exclude-from="$EXCLUDE_LIST" \
+          "$BACKUP_PATH"
+
+        rm -rf "$LATEST_LINK"
+        ln -s "$BACKUP_PATH" "$LATEST_LINK"
+    ;;
+
+    root)
+        SOURCE_DIR="/"
+        BACKUP_DIR="/mnt/data/root"
+        mkdir -p "$BACKUP_DIR"
+        echo "Taking a backup of the root directory in the $BACKUP_DIR directory"
+
+        DATETIME="$(date +%F_%H:%M:%S)"
+        BACKUP_PATH="$BACKUP_DIR/$DATETIME"
+        LATEST_LINK="$BACKUP_DIR/latest"
+
+        EXCLUDE_LIST="/home/richard/.local/share/rsync/root-exclude.txt"
+
+        rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
+          "$SOURCE_DIR" \
+          --link-dest "$LATEST_LINK" \
+          --exclude-from="$EXCLUDE_LIST" \
+          "$BACKUP_PATH"
+
+        rm -rf "$LATEST_LINK"
+        ln -s "$BACKUP_PATH" "$LATEST_LINK"
+    ;;
+
+    *)
+      echo "Must provide an argument of home or root"
+    ;;
+  esac
+else
+  echo "Need to mount a the backup drive to /mnt/data"
+fi
