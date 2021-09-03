@@ -32,7 +32,7 @@ mountusb() { \
 	}
 
 anddrives=$(simple-mtpfs -l 2>/dev/null)
-usbdrives="$(lsblk -rpo "name,type,size,mountpoint" | grep 'part\|rom' | awk '$4==""{printf "%s (%s)\n",$1,$3}')"
+usbdrives="$(lsblk -nrpo "name,type,size,label,mountpoint" | grep 'part\|rom' | sed 's/ /:/g' | cut -d':' -f1,3,4,5 | awk -F':' '$NF==""{printf "%s (%s) %s\n",$1,$2,$3}')"
 
 if [ "$usbdrives" ]; then
 	echo "USB drive(s) detected."
