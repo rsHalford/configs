@@ -7,47 +7,51 @@
 if df | grep -q "/mnt/data"; then
   case $1 in
     home)
-        SOURCE_DIR="/home/richard/"
+        SOURCE_DIR="$HOME"
         BACKUP_DIR="/mnt/data/home"
-        mkdir -p "$BACKUP_DIR"
+        sudo mkdir -p "$BACKUP_DIR"
         echo "Taking a backup of the home directory in the $BACKUP_DIR directory"
 
         DATETIME="$(date +%F_%H:%M:%S)"
         BACKUP_PATH="$BACKUP_DIR/$DATETIME"
         LATEST_LINK="$BACKUP_DIR/latest"
 
-        EXCLUDE_LIST="/home/richard/.local/share/rsync/home-exclude.txt"
+        EXCLUDE_LIST="$XDG_DATA_HOME/rsync/home-exclude.txt"
 
-        rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
+        sudo rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
           "$SOURCE_DIR" \
           --link-dest "$LATEST_LINK" \
           --exclude-from="$EXCLUDE_LIST" \
           "$BACKUP_PATH"
+        
+        sudo rm -rf "$LATEST_LINK"
+        sudo ln -s "$BACKUP_PATH" "$LATEST_LINK"
 
-        rm -rf "$LATEST_LINK"
-        ln -s "$BACKUP_PATH" "$LATEST_LINK"
+        dunstify "rsync" "Completed backup of $SOURCE_DIR"
     ;;
 
     root)
         SOURCE_DIR="/"
         BACKUP_DIR="/mnt/data/root"
-        mkdir -p "$BACKUP_DIR"
+        sudo mkdir -p "$BACKUP_DIR"
         echo "Taking a backup of the root directory in the $BACKUP_DIR directory"
 
         DATETIME="$(date +%F_%H:%M:%S)"
         BACKUP_PATH="$BACKUP_DIR/$DATETIME"
         LATEST_LINK="$BACKUP_DIR/latest"
 
-        EXCLUDE_LIST="/home/richard/.local/share/rsync/root-exclude.txt"
+        EXCLUDE_LIST="$XDG_DATA_HOME/rsync/root-exclude.txt"
 
-        rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
+        sudo rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
           "$SOURCE_DIR" \
           --link-dest "$LATEST_LINK" \
           --exclude-from="$EXCLUDE_LIST" \
           "$BACKUP_PATH"
 
-        rm -rf "$LATEST_LINK"
-        ln -s "$BACKUP_PATH" "$LATEST_LINK"
+        sudo rm -rf "$LATEST_LINK"
+        sudo ln -s "$BACKUP_PATH" "$LATEST_LINK"
+
+        dunstify "rsync" "Completed backup of $SOURCE_DIR"
     ;;
 
     *)
