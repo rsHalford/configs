@@ -2,25 +2,24 @@
 
 # The main menu for dmenu
 
-cmds="\
-🔍 Search	dmenusearch
-😂 Emojis 	dmenuemoji
-📺 YouTube	subs
-📺 YouTube Search	dmenuyoutube
-📹 Twitch	dmenutwitch
-🌐 Session	dmenusession
-🤖 Configurations	dmenuconfigs
-😈 Cheat Sheet	dmenucheat
-📖 Manual	dmenuman
-🤔 Calculator	dmenucalc
-📸 Screenshot	screenshot_select
-💽 Mount Drives	dmenumount
-💽 Unmount Drives	dmenuumount
-🌍 Internet	$TERMINAL -e nmtui
-⚙ Updates	$TERMINAL yay -Syu
-🔒 Password	passmenu
-🚪 Power	dmenupower"
+options="\
+🔍 Search:dmenusearch
+😂 Emojis:dmenuemoji
+📺 YouTube:subs
+📺 YouTube Search:dmenuyoutube
+📹 Twitch:dmenutwitch
+🌐 Session:dmenusession
+🤖 Configurations:dmenuconfigs
+😈 Cheat Sheet:dmenucheat
+📖 Manual:dmenuman
+🤔 Calculator:dmenucalc
+📸 Screenshot:screenshot_select
+💽 Mount Drives:dmenumount
+💽 Unmount Drives:dmenuumount
+🌍 Internet:$TERMINAL -e nmtui
+⚙ Updates:$TERMINAL yay -Syu
+🔒 Password:passmenu
+🚪 Power:dmenupower"
 
-choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -b)" || exit 1
-
-`echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
+choice="$(echo "$options" | cut -d':' -f1 | dmenu)" || exit 1
+$(echo "$options" | grep "$choice:" | cut -d':' -f2)
