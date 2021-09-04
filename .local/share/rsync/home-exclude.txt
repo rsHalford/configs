@@ -1,0 +1,2 @@
+/home/richard/.cache/*
+/home/richard/.local/share/qutebrowser/webengine/IndexedDB/*
