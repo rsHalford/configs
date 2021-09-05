@@ -1,50 +1,43 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-OUTPUT="echo"
-if [[ ${TERM} == 'dumb' ]]; then
-    OUTPUT="notify-send"
-fi
+options="\
+Logout
+Reboot
+Shutdown
+Quit"
 
-declare -a options=(
-"Logout"
-"Reboot"
-"Shutdown"
-"Quit"
-)
-
+choice=$(printf '%s\n' "$options" | dmenu)
 
 yesno(){
-    echo "$(echo -e "No\nYes" | dmenu -p "${1}")"
+    printf '%s\n' "$(printf '%s\n' "No" "Yes" | dmenu -p "${1}")"
 }
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu)
-
 case $choice in
-    'Logout')
-        if [[ $(yesno "Logout?") == "Yes" ]]; then
-            killall dwm || ${OUTPUT} "dwm was not running."
-        else
-            ${OUTPUT} "User chose not to logout." && exit 1
-        fi
-        ;;
-    'Reboot')
-        if [[ $(yesno "Reboot?") == "Yes" ]]; then
-            systemctl reboot
-        else
-            ${OUTPUT} "User chose not to reboot." && exit 0
-        fi
-        ;;
-    'Shutdown')
-        if [[ $(yesno "Shutdown?") == "Yes" ]]; then
-            systemctl poweroff
-        else
-            ${OUTPUT} "User chose not to shutdown." && exit 0
-        fi
-        ;;
-  'Quit')
-    ${OUTPUT} "Program terminated." && exit 0
-  ;;
+  'Logout')
+    if $(yesno "Logout?") == "Yes"; then
+      killall dwm || notify-send "dwm was not running"
+    else
+      notify-send "$USER chose not to logout" && exit 1
+    fi
+    ;;
+
+  'Reboot')
+    if $(yesno "Reboot?") == "Yes"; then
+      systemctl reboot
+    else
+      notify-send "$USER chose not to reboot" && exit 0
+    fi
+    ;;
+
+  'Shutdown')
+    if $(yesno "Shutdown?") == "Yes"; then
+      systemctl poweroff
+    else
+      notify-send "$USER chose not to shutdown" && exit 0
+    fi
+    ;;
+
   *)
     exit 0
-  ;;
+    ;;
 esac

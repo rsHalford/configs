@@ -1,13 +1,13 @@
 #!/bin/sh
 
-inputFile="$(echo $1 | sed 's!~!\/home/richard!')"
+inputFile="$(printf '%s\n' $1 | sed 's!~!\/home/richard!')"
 [ -z "inputFile"  ] && exit
 dir="$(dirname $inputFile)"
 
 case "$inputFile" in
   *ms)
-    eqn="$(grep "\.EQ" -i $inputFile | head -1)"
-    name="$(echo $inputFile | sed 's/\..*//')"
+    eqn="$(grep "\.EQ" -i "$inputFile" | head -1)"
+    name="$(printf '%s\n' "$inputFile" | sed 's/\..*//')"
     cd "$dir"
     [ -z "$eqn" ] || {
       groff -e -ms "$inputFile" -Tpdf > "$name.pdf" && exit
@@ -16,11 +16,12 @@ case "$inputFile" in
     ;;
 
   *mom)
-    eqn="$(grep "\.EQ" -i $inputFile | head -1)"
-    name="$(echo $inputFile | sed 's/\..*//')"
+    eqn="$(grep "\.EQ" -i "$inputFile" | head -1)"
+    name="$(printf '%s\n' "$inputFile" | sed 's/\..*//')"
     cd "$dir"
     [ -z "$eqn" ] || {
       pdfmom -e "$inputFile" > "$name.pdf" && exit
     }
     pdfmom "$inputFile" > "$name.pdf"
+    ;;
 esac

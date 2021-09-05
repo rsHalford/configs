@@ -4,8 +4,8 @@ query=$(dmenu | tr ' ' '+')
 
 if [ "$query" ]; then
 	query=$(curl -s "cht.sh/""$query""?TQ")
-  echo "$query" | xclip -sel primary
-  dunstify "cht.sh" "$query"
+  printf '%s\n' "$query" | xclip -selection clipboard
+  notify-send "cht.sh" "$query"
 else
-	dunstify "cht.sh" "No query, closing."
+	notify-send "cht.sh" "No query, closing."
 fi

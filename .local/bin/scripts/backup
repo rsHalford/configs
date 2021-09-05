@@ -10,7 +10,7 @@ if df | grep -q "/mnt/data"; then
         SOURCE_DIR="$HOME"
         BACKUP_DIR="/mnt/data/home"
         sudo mkdir -p "$BACKUP_DIR"
-        echo "Taking a backup of the home directory in $BACKUP_DIR"
+        printf '%s\n' "Taking a backup of the home directory in $BACKUP_DIR"
 
         DATETIME="$(date +%F_%H:%M:%S)"
         BACKUP_PATH="$BACKUP_DIR/$DATETIME"
@@ -28,14 +28,14 @@ if df | grep -q "/mnt/data"; then
         sudo rm -rf "$LATEST_LINK"
         sudo ln -s "$BACKUP_PATH" "$LATEST_LINK"
 
-        dunstify "rsync" "Completed backup of $SOURCE_DIR"
+        notify-send "rsync" "Completed backup of $SOURCE_DIR"
     ;;
 
     root)
         SOURCE_DIR="/"
         BACKUP_DIR="/mnt/data/root"
         sudo mkdir -p "$BACKUP_DIR"
-        echo "Taking a backup of the root directory in $BACKUP_DIR"
+        printf '%s\n' "Taking a backup of the root directory in $BACKUP_DIR"
 
         DATETIME="$(date +%F_%H:%M:%S)"
         BACKUP_PATH="$BACKUP_DIR/$DATETIME"
@@ -53,13 +53,13 @@ if df | grep -q "/mnt/data"; then
         sudo rm -rf "$LATEST_LINK"
         sudo ln -s "$BACKUP_PATH" "$LATEST_LINK"
 
-        dunstify "rsync" "Completed backup of $SOURCE_DIR"
+        notify-send "rsync" "Completed backup of $SOURCE_DIR"
     ;;
 
     *)
-      echo "Must provide an argument of home or root"
+      printf '%s\n' "Must provide an argument of home or root"
     ;;
   esac
 else
-  echo "Need to mount a the backup drive to /mnt/data"
+  printf '%s\n' "Need to mount a the backup drive to /mnt/data"
 fi

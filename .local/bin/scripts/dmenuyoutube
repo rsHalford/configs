@@ -4,10 +4,10 @@ query=$(dmenu | tr ' ' '+')
 
 if [ "$query" ]; then
 	query=$(curl -s "https://www.youtube.com/results?search_query=""$query""&sp=EgIQAQ%253D%253D")
-	vid=$(echo "$query" | grep -oP '(/watch\?v=.{11})|(?<=title":{"runs":\[{"text":").+?(?="}\])' | \
+	vid=$(printf '%s\n' "$query" | grep -oP '(/watch\?v=.{11})|(?<=title":{"runs":\[{"text":").+?(?="}\])' | \
     paste - - | dmenu -l 10 | cut -f2 || notify-send "Something went wrong...")
   if [ "$(pidof mpv)" ] ; then
-	  [ "$vid" ] && echo '{"command": ["loadfile", "'https://youtube.com''$vid'", "append-play"]}' | socat - /tmp/mpvsocket
+	  [ "$vid" ] && printf '%s\n' '{"command": ["loadfile", "'https://youtube.com''$vid'", "append-play"]}' | socat - /tmp/mpvsocket
   else
     exec mpv --input-ipc-server=/tmp/mpvsocket "https://youtube.com""$vid"
   fi

@@ -1,38 +1,54 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-declare -a options=(
-"alacritty - $XDG_CONFIG_HOME/alacritty/alacritty.yml"
-"bat - $XDG_CONFIG_HOME/bat/config"
-"dunst - $XDG_CONFIG_HOME/dunst/dunstrc"
-"fontconfig - $XDG_CONFIG_HOME/fonfonts.conf"
-"gtk-3.0 - $XDG_CONFIG_HOME/gtk-3.0/settings.ini"
-"htop - $XDG_CONFIG_HOME/htop/htoprc"
-"keybinds - $HOME/Documents/All_Keybinds"
-"mimeapps - $XDG_CONFIG_HOME/mimeapps.list"
-"mpv-conf - $XDG_CONFIG_HOME/mpv/mpv.conf"
-"mpv-input - $XDG_CONFIG_HOME/mpv/input.conf"
-"neofetch - $XDG_CONFIG_HOME/neofetch/config.conf"
-"neovim - $XDG_CONFIG_HOME/nvim/init.vim"
-"newsboat-conf - $XDG_CONFIG_HOME/newsboat/config"
-"newsboat-urls - $XDG_CONFIG_HOME/newsboat/urls"
-"picom - $XDG_CONFIG_HOME/picom/picom.conf"
-"redshift - $XDG_CONFIG_HOME/redshift/redshift.conf"
-"reflex-curses-config - $XDG_CONFIG_HOME/reflex-curses/config"
-"reflex-curses-followed - $XDG_CONFIG_HOME/reflex-curses/followed"
-"ripgrep - $XDG_CONFIG_HOME/ripgrep/config"
-"starship - $XDG_CONFIG_HOME/starship.toml"
-"subs - $XDG_CONFIG_HOME/subs/subs.txt"
-"sxhkd - $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
-"tuir - $XDG_CONFIG_HOME/tuir/tuir.cfg"
-"xinit - $HOME/.xinitrc"
-"zathura - $XDG_CONFIG_HOME/zathura/zathurarc"
-"zsh - $XDG_CONFIG_HOME/zsh/.zshrc"
-"zshenv - $HOME/.zshenv"
-)
+options="\
+abook:$XDG_CONFIG_HOME/abook/abookrc
+alacritty:$XDG_CONFIG_HOME/alacritty/alacritty.yml
+bat:$XDG_CONFIG_HOME/bat/config
+dunst:$XDG_CONFIG_HOME/dunst/dunstrc
+fontconfig:$XDG_CONFIG_HOME/fontconfig/fonts.conf
+godo:$XDG_CONFIG_HOME/godo/config.yaml
+gtk-3.0:$XDG_CONFIG_HOME/gtk-3.0/settings.ini
+htop:$XDG_CONFIG_HOME/htop/htoprc
+mpd:$XDG_CONFIG_HOME/mpd/mpd.conf
+mpv conf:$XDG_CONFIG_HOME/mpv/mpv.conf
+mpv input:$XDG_CONFIG_HOME/mpv/input.conf
+mailcap:$XDG_CONFIG_HOME/mutt/mailcap
+mutt:$XDG_CONFIG_HOME/mutt/muttrc
+ncmpcpp bindings:$XDG_CONFIG_HOME/ncmpcpp/bindings
+ncmpcpp config:$XDG_CONFIG_HOME/ncmpcpp/config
+neofetch:$XDG_CONFIG_HOME/neofetch/config.conf
+newsboat conf:$XDG_CONFIG_HOME/newsboat/config
+newsboat urls:$XDG_CONFIG_HOME/newsboat/urls
+nvim init:$XDG_CONFIG_HOME/nvim/init.vim
+nvim prose:$XDG_CONFIG_HOME/nvim/config/prose.vim
+picom:$XDG_CONFIG_HOME/picom/picom.conf
+qutebrowser config:$XDG_CONFIG_HOME/qutebrowser/config.py
+qutebrowser search:$XDG_CONFIG_HOME/qutebrowser/search_engines.py
+qutebrowser style:$XDG_CONFIG_HOME/qutebrowser/style.py
+qutebrowser whitelist:$XDG_CONFIG_HOME/qutebrowser/whitelist.py
+reddio:$XDG_CONFIG_HOME/reddio/config
+redshift:$XDG_CONFIG_HOME/redshift/redshift.conf
+reflex-curses:$XDG_CONFIG_HOME/reflex-curses/config
+subs:$XDG_CONFIG_HOME/subs/subs.txt
+sxhkd:$XDG_CONFIG_HOME/sxhkd/sxhkdrc
+keybinds:$XDG_CONFIG_HOME/sxhkd/All_Keybinds
+tuir:$XDG_CONFIG_HOME/tuir/tuir.cfg
+zathura:$XDG_CONFIG_HOME/zathura/zathurarc
+zsh:$XDG_CONFIG_HOME/zsh/.zshrc
+Xresources:$XDG_CONFIG_HOME/Xresources
+mimeapps:$XDG_CONFIG_HOME/mimeapps.list
+starship:$XDG_CONFIG_HOME/starship.toml
+gitignore:$HOME/.gitignore
+wyrd:$HOME/.wyrdrc
+xinit:$HOME/.xinitrc
+zshenv:$HOME/.zshenv
+dmenu:/usr/src/dmenu/config.h
+dwm:/usr/src/dwm/config.h
+simple terminal:/usr/src/st/config.h"
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu)
 
-if [ "$choice" ]; then
-	cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
-	$TERMINAL -e $EDITOR "$cfg"
-fi
+choice=$(printf '%s\n' "$options" | cut -d':' -f1 | dmenu) || exit 1
+
+config=$(printf '%s\n' "$options" | grep "$choice:" | cut -d':' -f2)
+
+$TERMINAL -e $EDITOR $config

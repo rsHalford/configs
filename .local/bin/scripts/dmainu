@@ -17,9 +17,10 @@ options="\
 💽 Mount Drives:dmenumount
 💽 Unmount Drives:dmenuumount
 🌍 Internet:$TERMINAL -e nmtui
-⚙ Updates:$TERMINAL yay -Syu
+⚙ Updates:$TERMINAL -e yay -Syu
 🔒 Password:passmenu
 🚪 Power:dmenupower"
 
-choice="$(echo "$options" | cut -d':' -f1 | dmenu)" || exit 1
-$(echo "$options" | grep "$choice:" | cut -d':' -f2)
+choice="$(printf '%s\n' "$options" | cut -d':' -f1 | dmenu)" || exit 1
+
+$(printf '%s\n' "$options" | grep "$choice:" | cut -d':' -f2)

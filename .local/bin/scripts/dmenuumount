@@ -6,16 +6,17 @@
 
 unmountusb() {
 	[ -z "$drives" ] && exit
-	chosen="$(echo "$drives" | dmenu -p "Unmount which drive?")" || exit 1
-	chosen="$(echo "$chosen" | awk '{print $1}')"
+	chosen="$(printf '%s\n' "$drives" | dmenu -p "Unmount which drive?")" || exit 1
+	chosen="$(printf '%s\n' "$chosen" | awk '{print $1}')"
 	[ -z "$chosen" ] && exit
 	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
-	}
+}
 
-drives=$(lsblk -nrpo "name,type,size,mountpoint,label" | sed 's/ /:/g' | awk -F':' '$4!~/\/boot|\/efi|\/home$|SWAP/&&length($4)>1{printf "%s (%s) %s\n",$4,$3,$5}')
+drives=$(lsblk -nrpo "name,type,size,mountpoint,label" | sed 's/ /:/g' | \
+  awk -F':' '$4!~/\/boot|\/efi|\/home$|SWAP/&&length($4)>1{printf "%s (%s) %s\n",$4,$3,$5}')
 
 if ! grep simple-mtpfs /etc/mtab; then
-	[ -z "$drives" ] && echo "No drives to unmount." &&  exit
-	echo "Unmountable USB drive detected."
+	[ -z "$drives" ] && printf '%s\n' "No drives to unmount." &&  exit
+	printf '%s\n' "Unmountable USB drive detected."
 	unmountusb
 fi

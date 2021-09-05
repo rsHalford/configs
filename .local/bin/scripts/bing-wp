@@ -6,7 +6,7 @@ saveDir=$XDG_CACHE_HOME'/bing-wp/'
 mkdir -p $saveDir
 picName="bing.jpg"
 
-picURL=$bing$(echo $(curl -s $xmlURL) | grep -oP "<url>(.*)</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)
+picURL=$bing$(printf '%s\n' "$(curl -s $xmlURL)" | grep -oP "<url>(.*)</url>" | cut -d ">" -f2 | cut -d "<" -f1)
 
 curl -s -o $saveDir$picName $picURL
 

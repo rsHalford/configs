@@ -1,8 +1,8 @@
 #!/bin/sh
 
-CHOICE=$(reflex-curses -f | dmenu)
-TWITCH_URL="https://twitch.tv/$CHOICE"
+choice=$(reflex-curses -f | dmenu)
+url="https://twitch.tv/$choice"
 
-if [[ -n "$CHOICE" ]]; then
-	$TERMINAL -e streamlink $TWITCH_URL
+if [ -n "$CHOICE" ]; then
+	$TERMINAL -e streamlink $url
 fi

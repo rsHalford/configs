@@ -1,4 +1,4 @@
 #!/bin/sh
 
 select=$(apropos -l '' | sort | awk '{print $1, $2}' | dmenu | awk '{print $1}')
-$TERMINAL -e man "$select"
+$TERMINAL -e man $select
