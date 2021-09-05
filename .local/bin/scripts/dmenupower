@@ -8,33 +8,17 @@ Quit"
 
 choice=$(printf '%s\n' "$options" | dmenu)
 
-yesno(){
-    printf '%s\n' "$(printf '%s\n' "No" "Yes" | dmenu -p "${1}")"
-}
-
 case $choice in
-  'Logout')
-    if $(yesno "Logout?") == "Yes"; then
-      killall dwm || notify-send "dwm was not running"
-    else
-      notify-send "$USER chose not to logout" && exit 1
-    fi
+  Logout)
+    killall dwm || notify-send "dwm was not running"
     ;;
 
-  'Reboot')
-    if $(yesno "Reboot?") == "Yes"; then
-      systemctl reboot
-    else
-      notify-send "$USER chose not to reboot" && exit 0
-    fi
+  Reboot)
+    systemctl reboot
     ;;
 
-  'Shutdown')
-    if $(yesno "Shutdown?") == "Yes"; then
-      systemctl poweroff
-    else
-      notify-send "$USER chose not to shutdown" && exit 0
-    fi
+  Shutdown)
+    systemctl poweroff
     ;;
 
   *)
