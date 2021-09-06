@@ -11,7 +11,7 @@ super + shift + b
   blueberry
 
 super + shift + c
-  ledger-live-desktop
+  clipmenu
 
 super + d
   discord
@@ -54,6 +54,9 @@ super + w
 
 super + shift + w
   $TERMINAL -e sudo nmtui
+
+super + shift + x
+  ledger-live-desktop
 
 Print
   screenshot_select
