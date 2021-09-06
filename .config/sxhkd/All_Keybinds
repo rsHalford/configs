@@ -2,7 +2,7 @@
 # Super;              = Win/Mod4Key
       return          = Terminal            (st)
 shift return          = Move to Master      (dwm)
-      a               = All Applications    (dmenu_run)
+      a               = All Applications    (dmenu_run_i)
 shift a               = Music Scratchpad    (ncmpcpp)
       b               = Blue Filter         (redshift)
 shift b               = GUI Bluetooth       (blueberry)

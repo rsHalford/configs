@@ -2,7 +2,7 @@ super + Return
   $TERMINAL
 
 super + a
-  dmenu_run
+  dmenu_run_i
 
 super + b
   pkill -USR1 redshift
