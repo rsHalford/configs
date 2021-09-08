@@ -11,7 +11,11 @@
 
 case "$1" in
   *mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/clip*|*youtu.be*|*twitch.tv/*)
-    setsid -f mpv --wid=$WINDOWID -quiet "$1" >/dev/null 2>&1
+    if [ "$(pidof mpv)" ] ; then
+        printf '%s\n' '{"command": ["loadfile", "'$1'", "append-play"]}' | socat - /tmp/mpvsocket
+    else
+        exec mpv --input-ipc-server=/tmp/mpvsocket "$1"
+    fi
     ;;
 
   *png|*jpg|*jpe|*jpeg|*gif)
