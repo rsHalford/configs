@@ -23,7 +23,7 @@ qual+ = =
 qual- = -
 
 [exec]
-browser = brave
+browser = $BROWSER
 chat_method = browser
 player = mpv --force-window=yes
 streamlink = streamlink -t '{author} - {title}'
