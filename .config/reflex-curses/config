@@ -23,11 +23,11 @@ qual+ = =
 qual- = -
 
 [exec]
-browser = $BROWSER
-chat_method = browser
+browser = qutebrowser
+chat_method = weechat
 player = mpv --force-window=yes
 streamlink = streamlink -t '{author} - {title}'
-term = $TERMINAL -e
+term = st -e
 
 [twitch]
 client_id = caozjg12y6hjop39wx996mxn585yqyk
@@ -46,7 +46,7 @@ show_keys = True
 
 [irc]
 address = irc.chat.twitch.tv
-network = reflex
-no_account = True
+network = twitch
+no_account = False
 port = 6697
 

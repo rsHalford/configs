@@ -44,7 +44,7 @@ super + t
   $TERMINAL -e reflex-curses
 
 super + shift + t
-  chatty
+  qbittorrent
 
 super + shift + v
   virt-manager
