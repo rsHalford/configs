@@ -1,3 +1,11 @@
-
 [Default Applications]
-application/pdf=org.pwmt.zathura.desktop
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+x-scheme-handler/mailto=mail.desktop;
+text/plain=editor.desktop;
+text/x-shellscript=editor.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+application/postscript=org.pwmt.zathura.desktop;
+x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
+application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
