@@ -340,23 +340,7 @@ nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-"autocmd BufEnter * lua require('completion').on_attach()
 lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-"lua require('lspconfig').bashls.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').cssls.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').dartls.setup{}
-"lua require('lspconfig').gopls.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').html.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').jsonls.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').pyright.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').svelte.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').tsserver.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').vimls.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').vuels.setup{ on_attach=require('completion').on_attach }
-"lua require('lspconfig').yamlls.setup{ on_attach=require('completion').on_attach }
 lua require('lspconfig').bashls.setup{}
 lua require('lspconfig').cssls.setup{}
 lua require('lspconfig').dartls.setup{}
