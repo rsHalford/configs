@@ -9,3 +9,5 @@ application/pdf=org.pwmt.zathura.desktop;
 application/postscript=org.pwmt.zathura.desktop;
 x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
+x-scheme-handler/sgnl=signal-desktop.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
