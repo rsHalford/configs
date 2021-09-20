@@ -9,6 +9,7 @@ export ANDROID_AVD_HOME="$XDG_DATA_HOME/android/"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/emulator"
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android/"
+export CALIBRE_USE_DARK_PALETTE=1
 #export CHROME_EXECUTABLE="/usr/bin/brave"
 export GOPATH="$XDG_DATA_HOME/go"
 export GNUPGHOME="$HOME/.gnupg"
