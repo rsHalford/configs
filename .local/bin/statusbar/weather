@@ -1,4 +1,11 @@
 #!/bin/sh
 
 weather=$(curl -sf wttr.in/Halifax?format=%c%t)
-printf "%s" "$weather"
+case $weather in
+  Unknown*)
+    printf "%s" "🤷"
+  ;;
+  *)
+    printf "%s" "$weather"
+  ;;
+esac
