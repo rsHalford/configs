@@ -102,7 +102,7 @@ local settings = {
   --prefer to display titles for following files: "all", "url", "none". Sorting still uses filename.
   prefer_titles = "url",
 
-  --call youtube-dl to resolve the titles of urls in the playlist
+  --call yt-dlp to resolve the titles of urls in the playlist
   resolve_titles = true,
 
   --osd timeout on inactivity, with high value on this open_toggles is good to be true
@@ -890,7 +890,7 @@ mp.observe_property('playlist-count', "number", function()
   resolve_titles()
 end)
 
---resolves url titles by calling youtube-dl
+--resolves url titles by calling yt-dlp
 function resolve_titles()
   if not settings.resolve_titles then return end
   local length = mp.get_property_number('playlist-count', 0)
@@ -909,7 +909,7 @@ function resolve_titles()
     then
       requested_urls[filename] = true
 
-      local args = { 'youtube-dl', '--no-playlist', '--flat-playlist', '-sJ', filename }
+      local args = { 'yt-dlp', '--no-playlist', '--flat-playlist', '-sJ', filename }
       local req = mp.command_native_async(
         {
           name = "subprocess",
