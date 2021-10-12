@@ -347,7 +347,7 @@ lua require('lspconfig').dartls.setup{}
 lua require('lspconfig').gopls.setup{}
 lua require('lspconfig').html.setup{}
 lua require('lspconfig').jsonls.setup{}
-lua require('lspconfig').pyright.setup{}
+lua require('lspconfig').jedi_language_server.setup{}
 lua require('lspconfig').svelte.setup{}
 lua require('lspconfig').tsserver.setup{}
 lua require('lspconfig').vimls.setup{}
