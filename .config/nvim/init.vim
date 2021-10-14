@@ -236,6 +236,10 @@ autocmd BufWritePre *.py execute ':Black'
 autocmd FileType go setlocal ts=4 sw=4 sts=0 noexpandtab
 
 
+" Python Venv
+let g:python3_host_prog='/usr/bin/python3'
+
+
 " Copy and Paste
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
@@ -347,7 +351,7 @@ lua require('lspconfig').dartls.setup{}
 lua require('lspconfig').gopls.setup{}
 lua require('lspconfig').html.setup{}
 lua require('lspconfig').jsonls.setup{}
-lua require('lspconfig').jedi_language_server.setup{}
+lua require('lspconfig').pyright.setup{}
 lua require('lspconfig').svelte.setup{}
 lua require('lspconfig').tsserver.setup{}
 lua require('lspconfig').vimls.setup{}
