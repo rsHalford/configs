@@ -58,7 +58,7 @@ set autochdir
 set autoindent
 set background=dark
 set cmdheight=1
-set colorcolumn=80
+set colorcolumn=88
 set completeopt=menuone,noinsert,noselect
 set cursorcolumn
 set cursorline
@@ -357,6 +357,44 @@ lua require('lspconfig').tsserver.setup{}
 lua require('lspconfig').vimls.setup{}
 lua require('lspconfig').vuels.setup{}
 lua require('lspconfig').yamlls.setup{}
+
+
+" efm-langserver cofiguration
+lua << EOF
+local black = {
+    formatCommand = 'black -',
+    formatStdin = true,
+}
+local isort = {
+    formatCommand = 'isort --profile black -',
+    formatStdin = true,
+}
+local flake8 = {
+    lintCommand = 'flake8 --max-doc-length 72 --max-line-length 88 --extend-ignore=E203 --stdin-display-name ${INPUT} -',
+    lintStdin = true,
+    lintFormats = { '%f:%l:%c: %m' },
+    lintSource = 'flake8',
+}
+local mypy = {
+    lintCommand = 'mypy --show-column-numbers --disallow-any-generics --disallow-untyped-def --ignore-missing-imports',
+    lintFormats = {
+        '%f:%l:%c: %trror: %m',
+        '%f:%l:%c: %tarning: %m',
+        '%f:%l:%c: %tote: %m',
+    },
+    lintSource = 'mypy',
+}
+
+require'lspconfig'.efm.setup{
+  init_options = {documentFormatting = true},
+  settings = {
+    rootMarkers = { '.git/' },
+    languages = {
+      python = { black, isort, flake8, mypy },
+    },
+  },
+}
+EOF
 
 
 " Lsp Config & Compe
