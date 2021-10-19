@@ -384,12 +384,17 @@ local mypy = {
     },
     lintSource = 'mypy',
 }
+local golangciLint = {
+  lintCommand = "golangci-lint run",
+  lintSource = "golangci-lint",
+}
 
 require'lspconfig'.efm.setup{
   init_options = {documentFormatting = true},
   settings = {
     rootMarkers = { '.git/' },
     languages = {
+      go = {golangciLint},
       python = { black, isort, flake8, mypy },
     },
   },
