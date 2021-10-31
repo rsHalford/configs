@@ -4,18 +4,21 @@ call plug#begin('~/.local/share/vim/plugged')
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'akinsho/flutter-tools.nvim'
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'glepnir/lspsaga.nvim'
+
+" Cmp
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-Plug 'saadparwaiz1/cmp_luasnip'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -23,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'simrat39/symbols-outline.nvim'
 
 " Debugging
 Plug 'puremourning/vimspector'
@@ -33,13 +37,16 @@ Plug 'dbeniamine/cheat.sh-vim'
 " Editing
 Plug 'psf/black'
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'mattn/emmet-vim'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mbbill/undotree'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+
+" Git
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'tpope/vim-fugitive'
 
 " Prose
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -55,7 +62,9 @@ Plug 'preservim/vim-wordy'
 
 " Theme
 Plug 'gruvbox-community/gruvbox'
-Plug 'vim-airline/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
+"Plug 'vim-airline/vim-airline'
+"Plug 'famiu/feline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons',
 Plug 'ap/vim-css-color',
@@ -346,16 +355,21 @@ EOF
 
 
 " Lsp Config & Completion
-nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
-nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>v[ :lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <leader>v] :lua vim.lsp.diagnostic.goto_next()<CR>
 lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+" LspSaga
+nnoremap <silent><leader>vf <cmd>lua require('lspsaga.provider').lsp_finder()<CR>
+nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+nnoremap <silent><leader>vh <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+nnoremap <silent><C-d> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+nnoremap <silent><C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent><leader>vr <cmd>lua require('lspsaga.rename').rename()<CR>
+nnoremap <silent><leader>vd <cmd>lua require('lspsaga.provider').preview_definition()<CR>
+nnoremap <silent><leader>ve <cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>
+nnoremap <silent><leader>[ <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>
+nnoremap <silent><leader>] <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>
+nnoremap <silent><leader>so :SymbolsOutline<CR>
 
 
 
@@ -368,6 +382,7 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local saga = require("lspsaga")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
@@ -406,6 +421,7 @@ cmp.setup({
   },
   sources = cmp.config.sources{
     { name = 'nvim_lsp', priority = 100 },
+    { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
@@ -425,6 +441,15 @@ for _, lsp in ipairs(servers) do
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
+saga.init_lsp_saga()
+
+require('lualine').setup{
+  options = {theme = 'gruvbox_dark'},
+  extensions = {'fugitive'},
+}
+require('nvim-autopairs').setup{}
+require('gitsigns').setup()
+require('nvim-tree').setup{}
 EOF
 
 
