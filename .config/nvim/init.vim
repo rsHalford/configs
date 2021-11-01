@@ -5,7 +5,7 @@ call plug#begin('~/.local/share/vim/plugged')
 " Lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'akinsho/flutter-tools.nvim'
-Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim'
 
 " Cmp
 Plug 'hrsh7th/cmp-buffer'
@@ -21,25 +21,22 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " Navigation
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'simrat39/symbols-outline.nvim'
 
 " Debugging
-Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
 Plug 'szw/vim-maximizer'
 Plug 'dbeniamine/cheat.sh-vim'
-"Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " Editing
 Plug 'psf/black'
 Plug 'tpope/vim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug 'mattn/emmet-vim'
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -60,8 +57,9 @@ Plug 'preservim/vim-textobj-quote'
 Plug 'preservim/vim-textobj-sentence'
 Plug 'preservim/vim-wordy'
 
-" Theme
+" UI
 Plug 'gruvbox-community/gruvbox'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-lualine/lualine.nvim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'famiu/feline.nvim'
@@ -206,45 +204,6 @@ augroup terminal_settings
 augroup END
 
 
-" Vimspector (Debugging)
-nnoremap <leader>db :call vimspector#Launch()<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dh <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-" <Plug>VimspectorStop
-" <Plug>VimspectorPause
-" <Plug>VimspectorAddFunctionBreakpoint
-fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
-endfun
-
-
-" fzf
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPTS='--reverse'
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-
 " Undotree
 nnoremap <leader>z :UndotreeShow<CR>
 
@@ -331,7 +290,16 @@ require('telescope').setup{
     },
   }
 }
+require('telescope').load_extension('fzf')
 EOF
+
+
+" DAP
+nnoremap <silent><leader>dc <cmd>lua require('dap').continue()<CR>
+nnoremap <silent><leader>db <cmd>lua require('dap').toggle_breakpoint()<CR>
+nnoremap <silent><leader>di <cmd>lua require('dap').step_into()<CR>
+nnoremap <silent><leader>do <cmd>lua require('dap').step_over()<CR>
+nnoremap <silent><leader>dr <cmd>lua require('dap').repl.open()<CR>
 
 
 " Treesitter Picker
@@ -354,9 +322,6 @@ require('nvim-treesitter.configs').setup {
 EOF
 
 
-" Lsp Config & Completion
-lua vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
 " LspSaga
 nnoremap <silent><leader>vf <cmd>lua require('lspsaga.provider').lsp_finder()<CR>
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
@@ -369,8 +334,14 @@ nnoremap <silent><leader>vd <cmd>lua require('lspsaga.provider').preview_definit
 nnoremap <silent><leader>ve <cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>
 nnoremap <silent><leader>[ <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>
 nnoremap <silent><leader>] <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>
+
+
+" Symbols
 nnoremap <silent><leader>so :SymbolsOutline<CR>
 
+
+" File Browser
+nnoremap <silent><leader>b :NvimTreeToggle<CR>
 
 
 " Lsp Config & Cmp
