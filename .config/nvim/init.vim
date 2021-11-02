@@ -64,6 +64,7 @@ Plug 'nvim-lualine/lualine.nvim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'famiu/feline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'akinsho/toggleterm.nvim'
 Plug 'kyazdani42/nvim-web-devicons',
 Plug 'ap/vim-css-color',
 call plug#end()
@@ -74,7 +75,7 @@ set autochdir
 set autoindent
 set background=dark
 set cmdheight=1
-set colorcolumn=88
+set colorcolumn=80
 set completeopt=menu,menuone,noselect
 set cursorcolumn
 set cursorline
@@ -95,7 +96,7 @@ set path+=**
 set scrolloff=8
 set shiftwidth=2
 set shortmess+=c
-set signcolumn=yes
+set signcolumn=no
 set smartcase
 set smartindent
 set splitbelow splitright
@@ -113,13 +114,22 @@ set wildmode=longest,list,full
 
 " Vim Theming
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = '0'
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-highlight ColorColumn guibg=#1d2021
+let g:gruvbox_invert_selection = '0'
 colorscheme gruvbox
+highlight ColorColumn guibg=#282828
+highlight CursorColumn guibg=#282828
+highlight CursorLine guibg=#282828
+highlight CursorLineNR guibg=#282828
+highlight GitSignsAddNr guibg=None guifg=#b8bb26
+highlight GitSignsChangeNr guibg=None guifg=#8ec07c
+highlight GitSignsDeleteNr guibg=None guifg=#fb4934
+highlight EndOfBuffer guifg=#1d2021
+highlight VertSplit guifg=#282828
+highlight VertSplit guibg=#282828
 highlight Comment gui=italic
 let g:airline_symbols_ascii = 1
 
@@ -184,24 +194,6 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide=',\(^\|\s\s\)\zs\\S\+'
-
-
-" Open terminal below
-nnoremap <leader>pt :below 10sp term://$SHELL<CR>
-tnoremap <Esc> <C-\><C-n>
-augroup terminal_settings
-    autocmd!
-    autocmd BufWinEnter,WinEnter term://* startinsert
-    autocmd BufLeave term://* stopinsert
-    autocmd TermOpen *
-        \ if &buftype ==# 'terminal' |
-        \ below resize 10 |
-        \ endif
-    autocmd TermClose term://*
-        \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "lf") && (expand('<afile>') !~ "coc") |
-        \   call nvim_input('<CR>')  |
-        \ endif
-augroup END
 
 
 " Undotree
@@ -342,7 +334,16 @@ nnoremap <silent><leader>o :SymbolsOutline<CR>
 nnoremap <silent><leader>b :NvimTreeToggle<CR>
 
 
-" nvim-tree
+" Terminal
+nnoremap <silent><leader>tt :ToggleTerm<CR>
+nnoremap <silent><leader>tc :ToggleCloseAll<CR>
+nnoremap <silent><leader>th :ToggleTerm direction=horizontal<CR>
+nnoremap <silent><leader>tv :ToggleTerm direction=vertical<CR>
+nnoremap <silent><leader>tf :ToggleTerm direction=float<CR>
+nnoremap <silent><leader>tw :ToggleTerm direction=tab<CR>
+
+
+" Nvim-Tree
 let g:nvim_tree_gitignore = 1
 let g:nvim_tree_show_icons = {
 	\ 'git': 0,
@@ -426,11 +427,46 @@ vim.g.symbols_outline = {
   lsp_blacklist = { "dartls" },
 }
 require('lualine').setup{
-  options = {theme = 'gruvbox_dark'},
-  extensions = {'fugitive'},
+  options = {
+    theme = 'gruvbox_dark',
+    section_separators = "",
+    component_separators = "",
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'diagnostics', sources={'nvim_lsp'}},
+    lualine_c = {'filename'},
+    lualine_x = {'diff', 'branch'},
+    lualine_y = {'filetype'},
+    lualine_z = {'progress'},
+  },
+  extensions = {
+    'fugitive',
+    'fzf',
+    'nvim-tree',
+    'toggleterm',
+  },
 }
 require('nvim-autopairs').setup{}
-require('gitsigns').setup()
+require('gitsigns').setup({
+  numhl = true,
+  signcolumn = false,
+})
+require('toggleterm').setup{
+  size = function(term)
+    if term.direction == "horizontal" then
+      return vim.o.lines * 0.2
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<leader>tt]],
+  -- shading_factor = 2,
+  persist_size = false,
+  float_opts = {
+    border = 'curved',
+  }
+}
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local list = {
   { key = "o",                            cb = tree_cb("edit") },
