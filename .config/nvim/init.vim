@@ -237,7 +237,7 @@ nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 " Telescope
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').file_browser({hidden="false"})<CR>
 nnoremap <leader>fc <cmd>lua require('telescope').extensions.flutter.commands()<CR>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
+nnoremap <leader>fz <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<CR>
@@ -252,7 +252,7 @@ nnoremap <leader>fi <cmd>lua require('telescope.builtin').lsp_implementations()<
 " Git Pickers
 nnoremap <leader>gc <cmd>lua require('telescope.builtin').git_commits()<CR>
 nnoremap <leader>gbc <cmd>lua require('telescope.builtin').git_bcommits()<CR>
-nnoremap <leader>gbr<cmd>lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>gbr <cmd>lua require('telescope.builtin').git_branches()<CR>
 nnoremap <leader>gst <cmd>lua require('telescope.builtin').git_status()<CR>
 nnoremap <leader>gsa <cmd>lua require('telescope.builtin').git_stash()<CR>
 
@@ -266,7 +266,7 @@ require('telescope').setup{
     file_previewer = require('telescope.previewers').vim_buffer_cat.new,
     grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-    file_sorter =  require('telescope.sorters').get_fzy_sorter,
+    file_sorter = require('telescope.sorters').get_fuzzy_file,
     vimgrep_arguments = {
       'rg',
       '--no-heading',
@@ -302,9 +302,6 @@ nnoremap <silent><leader>do <cmd>lua require('dap').step_over()<CR>
 nnoremap <silent><leader>dr <cmd>lua require('dap').repl.open()<CR>
 
 
-" Treesitter Picker
-"nnoremap <leader>ts <cmd>lua require('telescope.builtin').treesitter()<CR>
-
 " Treesitter
 lua << EOF
 require('nvim-treesitter.configs').setup { 
@@ -337,11 +334,22 @@ nnoremap <silent><leader>] <cmd>lua require('lspsaga.diagnostic').lsp_jump_diagn
 
 
 " Symbols
-nnoremap <silent><leader>so :SymbolsOutline<CR>
+autocmd Filetype dart nnoremap <silent><leader>o :FlutterOutlineToggle<CR>
+nnoremap <silent><leader>o :SymbolsOutline<CR>
 
 
 " File Browser
 nnoremap <silent><leader>b :NvimTreeToggle<CR>
+
+
+" nvim-tree
+let g:nvim_tree_gitignore = 1
+let g:nvim_tree_show_icons = {
+	\ 'git': 0,
+	\ 'folders': 1,
+	\ 'files': 1,
+  \ 'folder_arrows': 1,
+	\}
 
 
 " Lsp Config & Cmp
@@ -353,14 +361,13 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local saga = require("lspsaga")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
   end,
   },
   mapping = {
@@ -412,15 +419,74 @@ for _, lsp in ipairs(servers) do
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
-saga.init_lsp_saga()
-
+require("lspsaga").init_lsp_saga()
+vim.g.symbols_outline = {
+  auto_preview = false,
+  preview_bg_highlight = "#1d2021",
+  lsp_blacklist = { "dartls" },
+}
 require('lualine').setup{
   options = {theme = 'gruvbox_dark'},
   extensions = {'fugitive'},
 }
 require('nvim-autopairs').setup{}
 require('gitsigns').setup()
-require('nvim-tree').setup{}
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
+local list = {
+  { key = "o",                            cb = tree_cb("edit") },
+  { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
+  { key = "<C-v>",                        cb = tree_cb("vsplit") },
+  { key = "<C-x>",                        cb = tree_cb("split") },
+  { key = { "<CR>", "<C-t>" },            cb = tree_cb("tabnew") },
+  { key = "<",                            cb = tree_cb("prev_sibling") },
+  { key = ">",                            cb = tree_cb("next_sibling") },
+  { key = "P",                            cb = tree_cb("parent_node") },
+  { key = "<BS>",                         cb = tree_cb("close_node") },
+  { key = "<S-CR>",                       cb = tree_cb("close_node") },
+  { key = "<Tab>",                        cb = tree_cb("preview") },
+  { key = "K",                            cb = tree_cb("first_sibling") },
+  { key = "J",                            cb = tree_cb("last_sibling") },
+  { key = "I",                            cb = tree_cb("toggle_ignored") },
+  { key = "H",                            cb = tree_cb("toggle_dotfiles") },
+  { key = "R",                            cb = tree_cb("refresh") },
+  { key = "a",                            cb = tree_cb("create") },
+  { key = "d",                            cb = tree_cb("remove") },
+  { key = "r",                            cb = tree_cb("rename") },
+  { key = "<C-r>",                        cb = tree_cb("full_rename") },
+  { key = "x",                            cb = tree_cb("cut") },
+  { key = "c",                            cb = tree_cb("copy") },
+  { key = "p",                            cb = tree_cb("paste") },
+  { key = "y",                            cb = tree_cb("copy_name") },
+  { key = "Y",                            cb = tree_cb("copy_path") },
+  { key = "gy",                           cb = tree_cb("copy_absolute_path") },
+  { key = "[c",                           cb = tree_cb("prev_git_item") },
+  { key = "]c",                           cb = tree_cb("next_git_item") },
+  { key = "-",                            cb = tree_cb("dir_up") },
+  { key = "s",                            cb = tree_cb("system_open") },
+  { key = "q",                            cb = tree_cb("close") },
+  { key = "g?",                           cb = tree_cb("toggle_help") },
+}
+require('nvim-tree').setup{
+  disable_netrw = false,
+  open_on_setup = true,
+  ignore_ft_on_setup = { "vim" },
+  auto_close = true,
+  open_on_tab = true,
+  hijack_cursor = true,
+  diagnostics = {
+    enable = true,
+  },
+  view = {
+    width = 20,
+    height = 8,
+    side = "left",
+    auto_resize = true,
+    mappings = {
+      custom_only = true,
+      list = list
+    },
+  },
+}
 EOF
 
 

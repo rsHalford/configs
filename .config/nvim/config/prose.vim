@@ -27,6 +27,7 @@ nmap -d <Plug>DittoPrev
 nmap =d <Plug>DittoNext
 nnoremap <C-s> [s1z=<c-o>
 inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+nnoremap <leader>ss <cmd>lua require('telescope.builtin').spell_suggest()<CR>
 
 let nroff_is_groff = 1
 let nroff_space_errors = 1
