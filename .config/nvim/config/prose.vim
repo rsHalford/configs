@@ -1,24 +1,3 @@
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-
-function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
-
 autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 autocmd BufRead,BufNewFile /tmp/neomutt* set filetype=mail
 
@@ -35,9 +14,7 @@ hi def nroffDefinition cterm=italic gui=reverse
 hi def nroffDefSpecial cterm=italic,bold gui=reverse,bold
 let b:preprocs_as_sections = 1
 
-let g:goyo_width = 80
-let g:pencil#textwidth = 80
-let g:limelight_default_coefficient = 0.7
+let g:pencil#textwidth = 70
 let user_dict = {
   \ 'maybe': ['mabye'],
   \ 'medieval': ['medival', 'mediaeval', 'medevil'],
@@ -46,11 +23,8 @@ let user_dict = {
 
 augroup prose
   autocmd!
-  autocmd FileType groff,mail,markdown,text :Goyo
-    \ | execute 'Limelight0.7'
+  autocmd FileType groff,mail,markdown,text :ZenMode
     \ | execute 'DittoOn'
-    \ | set nocursorcolumn
-    \ | set nocursorline
     \ | set spell
     \ | call pencil#init({'wrap': 'soft'})
     \ | call litecorrect#init(user_dict)
@@ -65,10 +39,3 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 let g:mkdp_browser = "qutebrowser"
 nmap <leader>pm <Plug>MarkdownPreviewToggle
-
-augroup mutt
-  autocmd!
-  autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
-  autocmd BufRead,BufNewFile /tmp/neomutt* map ZZ :Goyo\|x!<CR>
-  autocmd BufRead,BufNewFile /tmp/neomutt* map ZQ :Goyo\|q!<CR>
-augroup END

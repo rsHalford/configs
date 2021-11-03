@@ -34,12 +34,13 @@ Plug 'dbeniamine/cheat.sh-vim'
 
 " Editing
 Plug 'psf/black'
+Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-surround'
 Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
 
 " Git
 Plug 'lewis6991/gitsigns.nvim'
@@ -48,8 +49,8 @@ Plug 'tpope/vim-fugitive'
 " Prose
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'preservim/vim-pencil'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
 Plug 'dbmrq/vim-ditto'
 Plug 'preservim/vim-litecorrect'
 Plug 'kana/vim-textobj-user'
@@ -59,14 +60,14 @@ Plug 'preservim/vim-wordy'
 
 " UI
 Plug 'gruvbox-community/gruvbox'
+Plug 'goolord/alpha-nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-lualine/lualine.nvim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'famiu/feline.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim'
-Plug 'kyazdani42/nvim-web-devicons',
-Plug 'ap/vim-css-color',
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 " Settings
@@ -107,7 +108,6 @@ set title
 set undodir=~/.cache/nvim/undo
 set undofile
 set updatetime=50
-set viminfo=""
 set wildmenu
 set wildmode=longest,list,full
 
@@ -227,7 +227,7 @@ nnoremap <leader>u :w<Home>silent <End> !urlview<CR>
 
 
 " Telescope
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').file_browser({hidden="false"})<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').file_browser()<CR>
 nnoremap <leader>fc <cmd>lua require('telescope').extensions.flutter.commands()<CR>
 nnoremap <leader>fz <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<CR>
@@ -235,6 +235,7 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<CR>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<CR>
+nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<CR>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<CR>
 nnoremap <leader>fe <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>
 nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_definitions()<CR>
@@ -258,7 +259,6 @@ require('telescope').setup{
     file_previewer = require('telescope.previewers').vim_buffer_cat.new,
     grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-    file_sorter = require('telescope.sorters').get_fuzzy_file,
     vimgrep_arguments = {
       'rg',
       '--no-heading',
@@ -270,14 +270,69 @@ require('telescope').setup{
     },
     mappings = {
       i = {
-        ["<CR>"] = actions.select_tab,
         ["<C-k>"] = actions.preview_scrolling_up,
         ["<C-j>"] = actions.preview_scrolling_down,
       },
       n = {
-        ["<CR>"] = actions.select_tab,
         ["<C-k>"] = actions.preview_scrolling_up,
         ["<C-j>"] = actions.preview_scrolling_down,
+      },
+    },
+  },
+  pickers = {
+    file_browser = {
+      hidden = true,
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_tab,
+        },
+        n = {
+          ["<CR>"] = actions.select_tab,
+        },
+      },
+    },
+    git_files = {
+      hidden = true,
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_tab,
+        },
+        n = {
+          ["<CR>"] = actions.select_tab,
+        },
+      },
+    },
+    grep_string = {
+      hidden = true,
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_tab,
+        },
+        n = {
+          ["<CR>"] = actions.select_tab,
+        },
+      },
+    },
+    live_grep = {
+      hidden = true,
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_tab,
+        },
+        n = {
+          ["<CR>"] = actions.select_tab,
+        },
+      },
+    },
+    oldfiles = {
+      hidden = true,
+      mappings = {
+        i = {
+          ["<CR>"] = actions.select_tab,
+        },
+        n = {
+          ["<CR>"] = actions.select_tab,
+        },
       },
     },
   }
@@ -305,8 +360,13 @@ require('nvim-treesitter.configs').setup {
     enable = true
   },
   rainbow = {
-    enable = true
-  }
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  },
+  autotag = {
+    enable = true,
+  },
 }
 EOF
 
@@ -336,7 +396,7 @@ nnoremap <silent><leader>b :NvimTreeToggle<CR>
 
 " Terminal
 nnoremap <silent><leader>tt :ToggleTerm<CR>
-nnoremap <silent><leader>tc :ToggleCloseAll<CR>
+nnoremap <silent><leader>tc :ToggleTermCloseAll<CR>
 nnoremap <silent><leader>th :ToggleTerm direction=horizontal<CR>
 nnoremap <silent><leader>tv :ToggleTerm direction=vertical<CR>
 nnoremap <silent><leader>tf :ToggleTerm direction=float<CR>
@@ -452,6 +512,44 @@ require('gitsigns').setup({
   numhl = true,
   signcolumn = false,
 })
+require('colorizer').setup(nil, {css = true})
+require('Comment').setup({
+  ignore = '^$',
+  mappings = {
+    extended = true,
+  },
+})
+-- zen-mode
+-- FIX: fix augroup prose (traailing white space Error 448)
+require('zen-mode').setup{
+  window = {
+    backdrop = 1,
+    width = 70,
+    height = 0.8,
+    options = {
+      number = false,
+      relativenumber = false,
+      cursorline = false,
+      cursorcolumn = false,
+    },
+  },
+  on_open = function(_)
+    vim.cmd 'cabbrev <buffer> q let b:quitting = 1 <bar> q'
+    vim.cmd 'cabbrev <buffer> wq let b:quitting = 1 <bar> wq'
+  end,
+  on_close = function()
+    if vim.b.quitting == 1 then
+      vim.b.quitting = 0
+      vim.cmd 'q'
+    end
+  end,
+}
+require('twilight').setup{
+  dimming = {
+    alpha = 0.3,
+  },
+  context = 0,
+}
 require('toggleterm').setup{
   size = function(term)
     if term.direction == "horizontal" then
@@ -523,6 +621,35 @@ require('nvim-tree').setup{
     },
   },
 }
+
+local alpha = require('alpha')
+local dashboard = require('alpha.themes.dashboard')
+local fortune = require('alpha.fortune')
+dashboard.section.header.val = {
+  "████████████████ ██████████████ ██████  ██████",
+  "██░░░░░░░░░░░░██ ██░░░░░░░░░░██ ██░░██  ██░░██",
+  "██░░████████░░██ ██░░██████████ ██░░██  ██░░██",
+  "██░░██    ██░░██ ██░░██         ██░░██  ██░░██",
+  "██░░████████░░██ ██░░██████████ ██░░██████░░██",
+  "██░░░░░░░░░░░░██ ██░░░░░░░░░░██ ██░░░░░░░░░░██",
+  "██░░██████░░████ ██████████░░██ ██░░██████░░██",
+  "██░░██  ██░░██           ██░░██ ██░░██  ██░░██",
+  "██░░██  ██░░████ ██████████░░██ ██░░██  ██░░██",
+  "██░░██  ██░░░░██ ██░░░░░░░░░░██ ██░░██  ██░░██",
+  "██████  ████████ ██████████████ ██████  ██████",
+}
+dashboard.section.buttons.val = {
+  dashboard.button( "n", "  > New file" , ":tabe <BAR> startinsert <CR>"),
+  dashboard.button( "f", "  > Find file", ":Telescope file_browser<CR>"),
+  dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
+  dashboard.button( "s", "  > Settings" , ":tabe $MYVIMRC<CR>"),
+  dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+}
+dashboard.section.footer.val = fortune()
+alpha.setup(dashboard.opts)
+vim.cmd([[
+  autocmd FileType alpha setlocal nofoldenable
+]])
 EOF
 
 
