@@ -1,67 +1,164 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+local packer = require 'packer'
 
-return require("packer").startup(function(use)
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+return packer.startup(function(use)
 	use "wbthomason/packer.nvim"
 
-  --  Lsp
+  -- Search
+  use {
+    {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim',
+        'telescope-fzf-native.nvim',
+      },
+      wants = {
+        'popup.nvim',
+        'plenary.nvim',
+        'telescope-fzf-native.nvim',
+      },
+      config = [[require('config.telescope')]],
+      cmd = 'Telescope',
+      module = 'telescope',
+    },
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make',
+    },
+  }
+
+  -- Undo tree
+  use {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    config = [[vim.g.undotree_SetFocusWhenToggle = 1]],
+  }
+
+  -- Git
+  use {
+    {
+      'tpope/vim-fugitive',
+      cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' },
+    },
+    {
+      'lewis6991/gitsigns.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = [[require('config.gitsigns')]],
+    }
+  }
+
+  -- Icons
+  use 'kyazdani42/nvim-web-devicons'
+
+  -- Completion and Linting
   use 'neovim/nvim-lspconfig'
-  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
-  use 'tami5/lspsaga.nvim'
+
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = [[require('config.flutter')]],
+  }
+
+  use {
+    'tami5/lspsaga.nvim',
+    config = [[require('config.lspsaga')]],
+  }
+
+  -- Highlights
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = [[require('config.treesitter')]],
+    run = ':TSUpdate',
+  }
+
+  use { 'p00f/nvim-ts-rainbow' }
+
+  use { 'windwp/nvim-ts-autotag' }
 
   -- Completion
   use {
     'hrsh7th/nvim-cmp',
     requires = {
       'L3MON4D3/LuaSnip',
-      { 'hrsh7th/cmp-buffer', after= 'nvim-cmp' },
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       'hrsh7th/cmp-nvim-lsp',
-      { 'hrsh7th/cmp-emoji', after= 'nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lua', after= 'nvim-cmp' },
-      { 'hrsh7th/cmp-path', after= 'nvim-cmp' },
-      { 'saadparwaiz1/cmp_luasnip', after= 'nvim-cmp' },
+      { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
     event = 'InsertEnter *',
   }
 
-  -- Snippets
   use 'rafamadriz/friendly-snippets'
 
-  -- Navigation
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  use 'simrat39/symbols-outline.nvim'
-
   -- Debugging
-  use 'mfussenegger/nvim-dap'
-  use 'szw/vim-maximizer'
-  use 'dbeniamine/cheat.sh-vim'
+  -- use {
+  --   'mfussenegger/nvim-dap',
+  --   setup = [[require('config.dap_setup')]],
+  --   config = [[require('config.dap')]],
+  --   module = 'dap',
+  -- }
+
+  -- Highlight colors
+  use {
+    'norcalli/nvim-colorizer.lua',
+    ft = { 'css', 'javascript', 'vim', 'html', 'vue', 'svelte' },
+    config = [[require('colorizer').setup {nil, {css = true}}]],
+  }
+
+  -- Colour scheme
+  use 'gruvbox-community/gruvbox'
+
+  -- Markdown
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
+    ft = 'markdown',
+    -- cmd = 'MarkdownPreview'
+  }
+
+  -- use 'dbeniamine/cheat.sh-vim'
 
   -- Editing
   use 'psf/black'
-  use 'numToStr/Comment.nvim'
+
+  use {
+    'numToStr/Comment.nvim',
+    config = [[require('config.comment')]],
+  }
+
   use 'tpope/vim-surround'
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
+
+  use {
+    'windwp/nvim-autopairs',
+    config = [[require('nvim-autopairs').setup{}]],
+  }
+
   use 'mattn/emmet-vim'
-  use 'mbbill/undotree'
   use 'tpope/vim-repeat'
 
-  -- Git
-  use 'lewis6991/gitsigns.nvim'
-  use 'tpope/vim-fugitive'
+
+  use {
+    'folke/zen-mode.nvim',
+    config = [[require('config.zen-mode')]],
+  }
+
+  use {
+    'folke/twilight.nvim',
+    config = [[require('config.twilight')]],
+  }
 
   -- Prose
-  use 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   use 'preservim/vim-pencil'
-  use 'folke/zen-mode.nvim'
-  use 'folke/twilight.nvim'
   use 'dbmrq/vim-ditto'
   use 'preservim/vim-litecorrect'
   use 'kana/vim-textobj-user'
@@ -69,18 +166,30 @@ return require("packer").startup(function(use)
   use 'preservim/vim-textobj-sentence'
   use 'preservim/vim-wordy'
 
-  -- UI
-  use 'gruvbox-community/gruvbox'
-  use 'goolord/alpha-nvim'
-  use 'kyazdani42/nvim-tree.lua'
-  use 'nvim-lualine/lualine.nvim'
-  use 'akinsho/toggleterm.nvim'
-  use 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  use 'p00f/nvim-ts-rainbow'
-  use 'norcalli/nvim-colorizer.lua'
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'goolord/alpha-nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = [[require('config.alpha')]],
+  }
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = [[require('config.nvim-tree')]],
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+      opt = true,
+    },
+    config = [[require('config.lualine')]],
+  }
+
+  use {
+    'akinsho/toggleterm.nvim',
+    config = [[require('config.toggleterm')]],
+  }
+
 end)
