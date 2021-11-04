@@ -468,6 +468,35 @@ cmp.setup({
   },
 })
 
+-- Setup Lua-Language-Server
+local sumneko_binary = "/usr/bin/lua-language-server"
+local sumneko_main = "/usr/lib/lua-language-server/main.lua"
+require("lspconfig").sumneko_lua.setup{
+  cmd = {sumneko_binary, "-E", sumneko_main},
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+          -- Setup your lua path
+          path = vim.split(package.path, ';')
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'}
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        }
+      }
+    }
+  }
+}
+
+
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -476,7 +505,7 @@ local servers = {'bashls', 'cssls', 'dartls', 'gopls', 'html', 'jsonls', 'pyrigh
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup{
     capabilities = capabilities
-  }
+}
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -613,7 +642,7 @@ require('nvim-tree').setup{
   view = {
     width = 20,
     height = 8,
-    side = "left",
+    side = "right",
     auto_resize = true,
     mappings = {
       custom_only = true,
@@ -682,6 +711,10 @@ local golangciLint = {
   lintCommand = "golangci-lint run",
   lintSource = "golangci-lint",
 }
+local stylua = {
+  formatCommand = "stylua -",
+  formatStdin = true,
+}
 
 require'lspconfig'.efm.setup{
   init_options = {documentFormatting = true},
@@ -690,6 +723,7 @@ require'lspconfig'.efm.setup{
     languages = {
       go = {golangciLint},
       python = { black, isort, flake8, mypy },
+      lua = { stylua },
     },
   },
 }

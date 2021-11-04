@@ -1,7 +1,7 @@
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
-export PATH="$HOME/.local/bin":"$HOME/.local/bin/scripts":"$HOME/.local/bin/statusbar":"/opt/flutter/bin":"$XDG_DATA_HOME/go/bin"
+export PATH="$HOME/.local/bin":"$HOME/.local/bin/scripts":"$HOME/.local/bin/statusbar":"/opt/flutter/bin":"$XDG_DATA_HOME/go/bin":"$XDG_DATA_HOME/cargo/bin"
 
 export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ADB_VENDOR_KEY="$ANDROID_PREFS_ROOT"
@@ -11,6 +11,7 @@ export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android/"
 export CALIBRE_USE_DARK_PALETTE=1
 #export CHROME_EXECUTABLE="/usr/bin/brave"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
 export GNUPGHOME="$HOME/.gnupg"
 export HISTFILE="$XDG_CACHE_HOME/history"
