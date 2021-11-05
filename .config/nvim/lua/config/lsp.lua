@@ -8,6 +8,7 @@ local servers = {
   'gopls',
   'html',
   'jsonls',
+  'null-ls',
   'pyright',
   'svelte',
   'tsserver',
@@ -22,15 +23,56 @@ for _, lsp in ipairs(servers) do
 }
 end
 
--- efm-langserver diagnostics
-local black = { formatCommand = 'black -', formatStdin = true }
-local isort = { formatCommand = 'isort --profile black -', formatStdin = true }
-local flake8 = {
-    lintCommand = 'flake8 --max-doc-length 72 --max-line-length 88 --extend-ignore=E203 --stdin-display-name ${INPUT} -',
-    lintStdin = true,
-    lintFormats = { '%f:%l:%c: %m' },
-    lintSource = 'flake8',
+-- null-ls
+local null_ls = require 'null-ls'
+local b = null_ls.builtins
+
+null_ls.config {
+  sources = {
+    b.code_actions.gitsigns,
+    -- b.code_actions.refactoring,
+    b.diagnostics.shellcheck,
+    b.diagnostics.flake8.with {
+      args = {
+        "--max-doc-length=72",
+        "--max-line-length=88",
+        "--extend-ignore=E203",
+        "--stdin-display-name",
+        "${INPUT}",
+        "-",
+      },
+    },
+    -- b.diagnostics.mypy.with {
+    --   args = {
+    --     "--show-column-numbers",
+    --     "--disallow-any-generics",
+    --     "--disallow-untyped-def",
+    --     "--ignore-missing-imports",
+    --   },
+    -- },
+    b.formatting.black,
+    b.formatting.isort,
+    -- b.formatting.prettier,
+    b.formatting.stylua,
+    -- b.formatting.trim_newlines.with {
+    --   filetypes = { "lua", }
+    -- },
+    -- b.formatting.trim_whitespace.with {
+    --   filetypes = { "lua", }
+    -- },
+  },
 }
+
+
+-- efm-langserver diagnostics
+-- local black = { formatCommand = 'black -', formatStdin = true }
+-- local isort = { formatCommand = 'isort --profile black -', formatStdin = true }
+-- local flake8 = {
+--     lintCommand = 'flake8 --max-doc-length 72 --max-line-length 88 --extend-ignore=E203 --stdin-display-name ${INPUT} -',
+--     lintStdin = true,
+--     lintFormats = { '%f:%l:%c: %m' },
+--     lintSource = 'flake8',
+-- }
 local mypy = {
     lintCommand = 'mypy --show-column-numbers --disallow-any-generics --disallow-untyped-def --ignore-missing-imports',
     lintFormats = {
@@ -41,16 +83,15 @@ local mypy = {
     lintSource = 'mypy',
 }
 local golangciLint = { lintCommand = "golangci-lint run", lintSource = "golangci-lint" }
-local stylua = { formatCommand = "stylua -", formatStdin = true }
+-- local stylua = { formatCommand = "stylua -", formatStdin = true }
 
 lspconfig.efm.setup{
   init_options = { documentFormatting = true },
   settings = {
-    rootMarkers = { '.git/' },
+    rootMarkers = { '.git/', },
     languages = {
       go = { golangciLint },
-      python = { black, isort, flake8, mypy },
-      lua = { stylua },
+      python = { mypy },
     },
   },
 }

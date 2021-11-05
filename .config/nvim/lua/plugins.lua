@@ -64,6 +64,14 @@ return packer.startup(function(use)
   }
 
   use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim'
+    }
+  }
+
+  use {
     'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = [[require('config.flutter')]],
@@ -129,7 +137,7 @@ return packer.startup(function(use)
     -- cmd = 'MarkdownPreview'
   }
 
-  -- use 'dbeniamine/cheat.sh-vim'
+  use 'dbeniamine/cheat.sh-vim'
 
   -- Editing
   use 'psf/black'
