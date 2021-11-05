@@ -74,8 +74,11 @@ lspconfig.sumneko_lua.setup {
         library = {
           [vim.fn.expand('$VIMRUNTIME/lua')] = true,
           [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        }
-      }
-    }
-  }
+        },
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 }

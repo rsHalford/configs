@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use {
     {
       'tpope/vim-fugitive',
-      cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' },
+      -- cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' },
     },
     {
       'lewis6991/gitsigns.nvim',
@@ -58,7 +58,10 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
 
   -- Completion and Linting
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    config = [[require('config.lsp')]],
+  }
 
   use {
     'akinsho/flutter-tools.nvim',
