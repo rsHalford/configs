@@ -25,13 +25,12 @@ return packer.startup(function(use)
         'telescope-fzf-native.nvim',
       },
       config = [[require('config.telescope')]],
-      cmd = 'Telescope',
-      module = 'telescope',
     },
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make',
     },
+    { 'tknightz/telescope-termfinder.nvim' },
   }
 
   -- Undo tree
@@ -52,6 +51,11 @@ return packer.startup(function(use)
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
     },
+  }
+
+  use {
+    'ThePrimeagen/harpoon',
+    config = [[require('config.harpoon')]],
   }
 
   -- Icons
@@ -154,7 +158,7 @@ return packer.startup(function(use)
 
   use {
     'windwp/nvim-autopairs',
-    config = [[require('nvim-autopairs').setup{}]],
+    config = [[require('config.autopairs')]],
   }
 
   use 'mattn/emmet-vim'

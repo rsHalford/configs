@@ -4,7 +4,7 @@ local keymap = api.nvim_set_keymap
 
 -- Leader Keys
 g.mapleader = [[ ]]
-g.user_emmet_leader_key = [[,]]
+g.user_emmet_leader_key = [[<C-,>]]
 
 -- Yank Line End
 keymap('n', 'Y', 'y$', { noremap = true })

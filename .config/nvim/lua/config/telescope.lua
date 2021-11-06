@@ -16,6 +16,7 @@ keymap('n', '<leader>fo', [[<cmd>Telescope oldfiles<CR>]], { noremap = true })
 keymap('n', '<leader>fr', [[<cmd>Telescope registers<CR>]], { noremap = true })
 keymap('n', '<leader>fs', [[<cmd>Telescope grep_string<CR>]], { noremap = true })
 keymap('n', '<leader>fz', [[<cmd>Telescope current_buffer_fuzzy_find<CR>]], { noremap = true })
+keymap('n', '<leader>ft', [[<cmd>Telescope termfinder find<CR>]], { noremap = true })
 
 -- Flutter
 keymap('n', '<leader>fc', [[<cmd>lua require('telescope').extensions.flutter.commands()<CR>]], { noremap = true })
@@ -117,3 +118,4 @@ telescope.setup {
 -- Extensions
 telescope.load_extension 'fzf'
 telescope.load_extension 'flutter'
+telescope.load_extension 'termfinder'
