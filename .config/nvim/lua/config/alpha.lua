@@ -1,31 +1,130 @@
 local alpha = require 'alpha'
-local dashboard = require 'alpha.themes.dashboard'
-local fortune = require 'alpha.fortune'
 
-dashboard.section.header.val = {
-  '              ██████  ██████',
-  '              ██░░██  ██░░██',
-  '              ██░░██  ██░░██',
-  '              ██░░██  ██░░██',
-  '████████████████░░██████░░██',
-  '██░░░░░░░░░░░░░░░░░░░░░░░░██',
-  '██░░██████░░████░░██████░░██',
-  '██░░██  ██░░░░░░░░██  ██░░██',
-  '██░░██  ████████░░██  ██░░██',
-  '██░░██  ██░░░░░░░░██  ██░░██',
-  '██████  ████████████  ██████',
+local header = {
+  type = 'text',
+  val = {
+    '              ██████  ██████',
+    '              ██░░██  ██░░██',
+    '              ██░░██  ██░░██',
+    '              ██░░██  ██░░██',
+    '████████████████░░██████░░██',
+    '██░░░░░░░░░░░░░░░░░░░░░░░░██',
+    '██░░██████░░████░░██████░░██',
+    '██░░██  ██░░░░░░░░██  ██░░██',
+    '██░░██  ████████░░██  ██░░██',
+    '██░░██  ██░░░░░░░░██  ██░░██',
+    '██████  ████████████  ██████',
+  },
+  opts = {
+    position = 'center',
+    hl = 'Type',
+  },
 }
 
-dashboard.section.buttons.val = {
-  dashboard.button('n', '  > New file', ':tabe <BAR> startinsert <CR>'),
-  dashboard.button('f', '  > Find file', ':Telescope file_browser<CR>'),
-  dashboard.button('r', '  > Recent', ':Telescope oldfiles<CR>'),
-  dashboard.button('s', '  > Settings', ':tabe $MYVIMRC<CR>'),
-  dashboard.button('q', '  > Quit NVIM', ':qa<CR>'),
+local handle = io.popen 'fd -d 2 . $HOME"/.local/share/nvim/site/pack/packer" | grep pack | wc -l | tr -d "\n" '
+local plugins = handle:read '*a'
+handle:close()
+
+local thingy = io.popen 'echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"'
+local date = thingy:read '*a'
+thingy:close()
+plugins = plugins:gsub('^%s*(.-)%s*$', '%1')
+
+local heading = {
+  type = 'text',
+  val = '┌─   Today is ' .. date .. ' ─┐',
+  opts = {
+    position = 'center',
+    hl = 'Identifier',
+  },
 }
 
-dashboard.section.footer.val = fortune()
+local plugin_count = {
+  type = 'text',
+  val = '└─   ' .. plugins .. ' plugins in total ─┘',
+  opts = {
+    position = 'center',
+    hl = 'Identifier',
+  },
+}
 
-alpha.setup(dashboard.opts)
+local function button(sc, txt, keybind)
+  local sc_ = sc:gsub('%s', ''):gsub('SPC', '<leader>')
 
-vim.cmd [[autocmd FileType alpha setlocal nofoldenable]]
+  local opts = {
+    position = 'center',
+    text = txt,
+    shortcut = sc,
+    cursor = 5,
+    width = 24,
+    align_shortcut = 'right',
+    hl = 'Todo',
+    hl_shortcut = 'Special',
+  }
+  if keybind then
+    opts.keymap = { 'n', sc_, keybind, { noremap = true, silent = true } }
+  end
+
+  return {
+    type = 'button',
+    val = txt,
+    on_press = function()
+      local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
+      vim.api.nvim_feedkeys(key, 'normal', false)
+    end,
+    opts = opts,
+  }
+end
+
+local buttons = {
+  type = 'group',
+  val = {
+    button('f', '  Explore', ':Telescope file_browser<CR>'),
+    button('n', '  New file', ':tabe <BAR> startinsert <CR>'),
+    button('r', '  Recent', ':Telescope oldfiles<CR>'),
+    button('s', '  Settings', ':tabe $MYVIMRC<CR>'),
+    button('q', '  Quit', ':qa<CR>'),
+  },
+  opts = {
+    spacing = 1,
+  },
+}
+
+local fortune = require 'alpha.fortune'()
+-- fortune = fortune:gsub("^%s+", ""):gsub("%s+$", "")
+local footer = {
+  type = 'text',
+  val = fortune,
+  opts = {
+    position = 'center',
+    hl = 'Comment',
+    hl_shortcut = 'Comment',
+  },
+}
+
+local section = {
+  header = header,
+  buttons = buttons,
+  plugin_count = plugin_count,
+  heading = heading,
+  footer = footer,
+}
+
+local opts = {
+  layout = {
+    { type = 'padding', val = 8 },
+    section.header,
+    { type = 'padding', val = 4 },
+    section.heading,
+    section.plugin_count,
+    { type = 'padding', val = 3 },
+    section.buttons,
+    { type = 'padding', val = 2 },
+    section.footer,
+  },
+  opts = {
+    margin = 0,
+  },
+}
+
+alpha.setup(opts)
