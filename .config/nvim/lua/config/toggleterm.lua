@@ -8,19 +8,19 @@ keymap('n', '<leader>tv', [[<cmd>ToggleTerm direction=vertical<CR>]], { noremap 
 keymap('n', '<leader>tf', [[<cmd>ToggleTerm direction=float<CR>]], { noremap = true, silent = true })
 keymap('n', '<leader>tw', [[<cmd>ToggleTerm direction=tab<CR>]], { noremap = true, silent = true })
 
-toggle.setup{
+toggle.setup {
   size = function(term)
-    if term.direction == "horizontal" then
+    if term.direction == 'horizontal' then
       return vim.o.lines * 0.5
-    elseif term.direction == "vertical" then
+    elseif term.direction == 'vertical' then
       return vim.o.columns * 0.4
     end
   end,
   open_mapping = [[<leader>tt]],
   -- shading_factor = 2,
   persist_size = false,
+  direction = 'tab',
   float_opts = {
     border = 'curved',
-  }
+  },
 }
-

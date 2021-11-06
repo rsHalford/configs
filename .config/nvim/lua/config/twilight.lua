@@ -1,6 +1,6 @@
 local twilight = require 'twilight'
 
-twilight.setup{
+twilight.setup {
   dimming = {
     alpha = 0.3,
   },

@@ -7,17 +7,17 @@ require 'keymaps'
 
 -- TODO: find a home for the below commands and convert to lua.
 -- Python Venv
-g.python3_host_prog='/usr/bin/python3'
+g.python3_host_prog = '/usr/bin/python3'
 
-cmd([[
+cmd [[
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType py setlocal ts=4 sw=4 sts=4
 autocmd BufWritePre *.py execute ':Black'
 autocmd FileType go setlocal ts=4 sw=4 sts=0 noexpandtab
-]])
+]]
 
 -- Copy & Paste
-cmd([[
+cmd [[
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
@@ -26,18 +26,18 @@ function! XTermPasteBegin()
 	set paste
 	return ""
 endfunction
-]])
+]]
 
 -- Gruvbox
 g.gruvbox_contrast_dark = 'hard'
-cmd([[
+cmd [[
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-]])
+]]
 g.gruvbox_invert_selection = '0'
-cmd([[
+cmd [[
 colorscheme gruvbox
 highlight ColorColumn guibg=#282828
 highlight CursorColumn guibg=#282828
@@ -50,4 +50,4 @@ highlight EndOfBuffer guifg=#1d2021
 highlight VertSplit guifg=#282828
 highlight VertSplit guibg=#282828
 highlight Comment gui=italic
-]])
+]]

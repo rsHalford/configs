@@ -24,4 +24,3 @@ zen.setup {
     end
   end,
 }
-

@@ -4,7 +4,7 @@ local keymap = api.nvim_set_keymap
 
 -- Leader Keys
 g.mapleader = [[ ]]
-g.user_emmet_leader_key= [[,]]
+g.user_emmet_leader_key = [[,]]
 
 -- Yank Line End
 keymap('n', 'Y', 'y$', { noremap = true })
@@ -53,10 +53,10 @@ keymap('n', '<leader>u', ':w<Home>silent <End> !urlview<CR>', { noremap = true }
 
 -- Netrw
 keymap('n', '<leader>pv', ':wincmd v<BAR> :Ex <BAR> :vertical resize 20<CR>', { noremap = true })
-g.netrw_banner=0
-g.netrw_winsize=25
-g.netrw_browse_split=3
-g.netrw_altv=1
-g.netrw_liststyle=3
-g.netrw_list_hide='netrw_gitignore#Hide()'
-g.netrw_list_hide=[[,(^|ss)zs\S+]]
+g.netrw_banner = 0
+g.netrw_winsize = 25
+g.netrw_browse_split = 3
+g.netrw_altv = 1
+g.netrw_liststyle = 3
+g.netrw_list_hide = 'netrw_gitignore#Hide()'
+g.netrw_list_hide = [[,(^|ss)zs\S+]]

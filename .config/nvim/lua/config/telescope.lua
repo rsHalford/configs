@@ -27,11 +27,11 @@ keymap('n', '<leader>gbr', [[<cmd>Telescope git_branches<CR>]], { noremap = true
 keymap('n', '<leader>gst', [[<cmd>Telescope git_status<CR>]], { noremap = true })
 keymap('n', '<leader>gsa', [[<cmd>Telescope git_stash<CR>]], { noremap = true })
 
-telescope.setup{
+telescope.setup {
   defaults = {
-    prompt_prefix = " ",
-    layout_strategy = "flex",
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+    prompt_prefix = ' ',
+    layout_strategy = 'flex',
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     file_previewer = previewers.vim_buffer_cat.new,
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
@@ -46,12 +46,12 @@ telescope.setup{
     },
     mappings = {
       i = {
-        ["<C-k>"] = actions.preview_scrolling_up,
-        ["<C-j>"] = actions.preview_scrolling_down,
+        ['<C-k>'] = actions.preview_scrolling_up,
+        ['<C-j>'] = actions.preview_scrolling_down,
       },
       n = {
-        ["<C-k>"] = actions.preview_scrolling_up,
-        ["<C-j>"] = actions.preview_scrolling_down,
+        ['<C-k>'] = actions.preview_scrolling_up,
+        ['<C-j>'] = actions.preview_scrolling_down,
       },
     },
   },
@@ -60,10 +60,10 @@ telescope.setup{
       hidden = true,
       mappings = {
         i = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
         n = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
       },
     },
@@ -71,10 +71,10 @@ telescope.setup{
       hidden = true,
       mappings = {
         i = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
         n = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
       },
     },
@@ -82,10 +82,10 @@ telescope.setup{
       hidden = true,
       mappings = {
         i = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
         n = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
       },
     },
@@ -93,10 +93,10 @@ telescope.setup{
       hidden = true,
       mappings = {
         i = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
         n = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
       },
     },
@@ -104,16 +104,16 @@ telescope.setup{
       hidden = true,
       mappings = {
         i = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
         n = {
-          ["<CR>"] = actions.select_tab,
+          ['<CR>'] = actions.select_tab,
         },
       },
     },
-  }
+  },
 }
 
 -- Extensions
-telescope.load_extension('fzf')
-telescope.load_extension('flutter')
+telescope.load_extension 'fzf'
+telescope.load_extension 'flutter'

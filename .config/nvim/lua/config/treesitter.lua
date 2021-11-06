@@ -1,12 +1,12 @@
 local ts_config = require 'nvim-treesitter.configs'
 
 ts_config.setup {
-  ensure_installed = "maintained",
+  ensure_installed = 'maintained',
   indent = {
-    enable = true
+    enable = true,
   },
   highlight = {
-    enable = true
+    enable = true,
   },
   rainbow = {
     enable = true,

@@ -1,14 +1,14 @@
 local packer = require 'packer'
 
-vim.cmd([[
+vim.cmd [[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
-]])
+]]
 
 return packer.startup(function(use)
-	use "wbthomason/packer.nvim"
+  use 'wbthomason/packer.nvim'
 
   -- Search
   use {
@@ -51,7 +51,7 @@ return packer.startup(function(use)
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
-    }
+    },
   }
 
   -- Icons
@@ -65,10 +65,11 @@ return packer.startup(function(use)
 
   use {
     'jose-elias-alvarez/null-ls.nvim',
+    config = [[require('config.lsp')]],
     requires = {
       'neovim/nvim-lspconfig',
-      'nvim-lua/plenary.nvim'
-    }
+      'nvim-lua/plenary.nvim',
+    },
   }
 
   use {
@@ -132,7 +133,9 @@ return packer.startup(function(use)
   -- Markdown
   use {
     'iamcco/markdown-preview.nvim',
-    run = function() vim.fn['mkdp#util#install']() end,
+    run = function()
+      vim.fn['mkdp#util#install']()
+    end,
     ft = 'markdown',
     -- cmd = 'MarkdownPreview'
   }
@@ -156,7 +159,6 @@ return packer.startup(function(use)
 
   use 'mattn/emmet-vim'
   use 'tpope/vim-repeat'
-
 
   use {
     'folke/zen-mode.nvim',
@@ -202,5 +204,4 @@ return packer.startup(function(use)
     'akinsho/toggleterm.nvim',
     config = [[require('config.toggleterm')]],
   }
-
 end)
