@@ -44,7 +44,6 @@ return packer.startup(function(use)
   use {
     {
       'tpope/vim-fugitive',
-      -- cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' },
     },
     {
       'lewis6991/gitsigns.nvim',
@@ -154,13 +153,12 @@ return packer.startup(function(use)
     config = [[require('config.comment')]],
   }
 
-  use 'tpope/vim-surround'
-
   use {
     'windwp/nvim-autopairs',
     config = [[require('config.autopairs')]],
   }
 
+  use 'tpope/vim-surround'
   use 'mattn/emmet-vim'
   use 'tpope/vim-repeat'
 

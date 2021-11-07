@@ -15,8 +15,3 @@ keymap('n', '<leader>[', [[<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagn
 keymap('n', '<leader>]', [[<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>]], opts)
 
 saga.init_lsp_saga()
-vim.g.symbols_outline = {
-  auto_preview = false,
-  preview_bg_highlight = '#1d2021',
-  lsp_blacklist = { 'dartls' },
-}
