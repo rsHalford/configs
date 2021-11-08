@@ -40,4 +40,4 @@ engine="$(printf '%s\n' "$options" | cut -d';' -f1 | dmenu)" || exit 1
 engineURL="$(printf '%s\n' "$options" | grep "$engine;" | cut -d';' -f2)"
 query=$(dmenu | tr ' ' '+') || exit 1
 
-$BROWSER $engineURL$query
+$BROWSER "$engineURL""$query"

@@ -51,4 +51,4 @@ choice=$(printf '%s\n' "$options" | cut -d':' -f1 | dmenu) || exit 1
 
 config=$(printf '%s\n' "$options" | grep "$choice:" | cut -d':' -f2)
 
-$TERMINAL -e $EDITOR $config
+$TERMINAL -e "$EDITOR" "$config"

@@ -1,6 +1,6 @@
 #!/bin/sh
 
 newsboat -x reload
-news=$(echo "$(newsboat -x print-unread | awk '{printf $1}')")
+news="$(newsboat -x print-unread | awk '{printf $1}')"
 icon=""
-printf "^c#d65d0e^%s^c#bdae93^%s" "$icon" "$news"
+printf "^c#d65d0e^%s^c#bdae93^%s\n" "$icon" "$news"

@@ -23,4 +23,4 @@ options="\
 
 choice="$(printf '%s\n' "$options" | cut -d':' -f1 | dmenu)" || exit 1
 
-$(printf '%s\n' "$options" | grep "$choice:" | cut -d':' -f2)
+eval "$(printf '%s\n' "$options" | grep "$choice:" | cut -d':' -f2)"

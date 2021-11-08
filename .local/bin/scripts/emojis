@@ -6,4 +6,4 @@ curl -s "https://unicode.org/Public/emoji/13.1/emoji-test.txt" | \
   sed -n '/1F600/,/EOF/p' | \
   grep '; fully-qualified' | \
   sed -e 's/[^#]* # //' -e 's/ E[0-9]*.[0-9]//' | \
-  cat > $saveLocation
+  cat > "$saveLocation"

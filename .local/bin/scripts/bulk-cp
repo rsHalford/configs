@@ -1,4 +1,4 @@
 #!/bin/sh
 
-find ./*$1* -printf "%p $2%f\n" | \
+find ./*"$1"* -printf "%p $2%f\n" | \
   xargs -n 2 cp

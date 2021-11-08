@@ -4,5 +4,5 @@ choice=$(reflex-curses -f | dmenu)
 url="https://twitch.tv/$choice"
 
 if [ -n "$choice" ]; then
-	$TERMINAL -e streamlink $url
+	$TERMINAL -e streamlink "$url"
 fi

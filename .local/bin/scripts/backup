@@ -17,7 +17,7 @@ if df | grep -q "/mnt/data"; then
         LATEST_LINK="$BACKUP_DIR/latest"
 
         EXCLUDE_LIST="$XDG_DATA_HOME/rsync/home-exclude.txt"
-        touch $EXCLUDE_LIST
+        touch "$EXCLUDE_LIST"
 
         sudo rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
           "$SOURCE_DIR" \
@@ -42,7 +42,7 @@ if df | grep -q "/mnt/data"; then
         LATEST_LINK="$BACKUP_DIR/latest"
 
         EXCLUDE_LIST="$XDG_DATA_HOME/rsync/root-exclude.txt"
-        touch $EXCLUDE_LIST
+        touch "$EXCLUDE_LIST"
 
         sudo rsync -aAX --delete --info=progress2 --no-inc-recursive --human-readable \
           "$SOURCE_DIR" \

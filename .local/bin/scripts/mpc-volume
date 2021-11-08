@@ -1,4 +1,4 @@
 #!/bin/sh
 
 volume=$(mpc volume | awk '{print $2}')
-printf '%s\n' $volume
+printf "%s\n" "$volume"

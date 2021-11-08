@@ -6,7 +6,7 @@ yt-dlp --audio-quality 0 \
 --ignore-errors \
 --extract-audio \
 --audio-format mp3 \
---output "~/Media/Music/%(title)s.%(ext)s" \
+--output "$HOME/Media/Music/%(title)s.%(ext)s" \
 --add-metadata \
 --embed-thumbnail \
 --parse-metadata "title:%(artist)s - %(title)s" \
