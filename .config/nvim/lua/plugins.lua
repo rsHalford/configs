@@ -44,6 +44,7 @@ return packer.startup(function(use)
   use {
     {
       'tpope/vim-fugitive',
+      config = [[require('config.fugitive')]],
     },
     {
       'lewis6991/gitsigns.nvim',

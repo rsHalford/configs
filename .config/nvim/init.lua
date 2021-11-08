@@ -9,12 +9,16 @@ require 'keymaps'
 -- Python Venv
 g.python3_host_prog = '/usr/bin/python3'
 
+-- Formatting
 cmd [[
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType py setlocal ts=4 sw=4 sts=4
 autocmd BufWritePre *.py execute ':Black'
 autocmd FileType go setlocal ts=4 sw=4 sts=0 noexpandtab
 ]]
+
+--  Highlight on Yank
+cmd [[ autocmd TextYankPost * silent! lua vim.highlight.on_yank() ]]
 
 -- Copy & Paste
 cmd [[

@@ -80,9 +80,9 @@ local buttons = {
   type = 'group',
   val = {
     button('f', '  Explore', ':Telescope file_browser<CR>'),
-    button('n', '  New file', ':tabe <BAR> startinsert <CR>'),
+    button('n', '  New file', ':e <BAR> startinsert <CR>'),
     button('r', '  Recent', ':Telescope oldfiles<CR>'),
-    button('s', '  Settings', ':tabe $MYVIMRC<CR>'),
+    button('s', '  Settings', ':e $MYVIMRC<CR>'),
     button('q', '  Quit', ':qa<CR>'),
   },
   opts = {
