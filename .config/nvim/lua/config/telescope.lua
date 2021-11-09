@@ -4,29 +4,35 @@ local actions = require 'telescope.actions'
 local keymap = vim.api.nvim_set_keymap
 
 -- Navigate buffers and repos
-keymap('n', '<leader>fb', [[<cmd>Telescope file_browser<CR>]], { noremap = true })
-keymap('n', '<leader>fd', [[<cmd>Telescope lsp_definitions<CR>]], { noremap = true })
-keymap('n', '<leader>fe', [[<cmd>Telescope lsp_workspace_diagnostics<CR>]], { noremap = true })
-keymap('n', '<leader>fh', [[<cmd>Telescope help_tags<CR>]], { noremap = true })
-keymap('n', '<leader>fi', [[<cmd>Telescope lsp_implementations<CR>]], { noremap = true })
-keymap('n', '<leader>fk', [[<cmd>Telescope keymaps<CR>]], { noremap = true })
-keymap('n', '<leader>fl', [[<cmd>Telescope live_grep<CR>]], { noremap = true })
-keymap('n', '<leader>fo', [[<cmd>Telescope oldfiles<CR>]], { noremap = true })
-keymap('n', '<leader>fr', [[<cmd>Telescope registers<CR>]], { noremap = true })
-keymap('n', '<leader>fs', [[<cmd>Telescope grep_string<CR>]], { noremap = true })
-keymap('n', '<leader>fz', [[<cmd>Telescope current_buffer_fuzzy_find<CR>]], { noremap = true })
+keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]], {
+  noremap = true,
+})
+keymap('n', '<leader>fd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], { noremap = true })
+keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>]], {
+  noremap = true,
+})
+keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true })
+keymap('n', '<leader>fi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], { noremap = true })
+keymap('n', '<leader>fk', [[<cmd>lua require('telescope.builtin').keymaps()<CR>]], { noremap = true })
+keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true })
+keymap('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true })
+keymap('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').registers()<CR>]], { noremap = true })
+keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true })
+keymap('n', '<leader>fz', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], {
+  noremap = true,
+})
 keymap('n', '<leader>ft', [[<cmd>Telescope termfinder find<CR>]], { noremap = true })
 
 -- Flutter
 keymap('n', '<leader>fc', [[<cmd>lua require('telescope').extensions.flutter.commands()<CR>]], { noremap = true })
 
 -- Git Pickers
-keymap('n', '<leader>gc', [[<cmd>Telescope git_commits<CR>]], { noremap = true })
-keymap('n', '<leader>gbc', [[<cmd>Telescope git_bcommits<CR>]], { noremap = true })
-keymap('n', '<leader>gbr', [[<cmd>Telescope git_branches<CR>]], { noremap = true })
-keymap('n', '<leader>gf', [[<cmd>Telescope git_files<CR>]], { noremap = true })
-keymap('n', '<leader>gst', [[<cmd>Telescope git_status<CR>]], { noremap = true })
-keymap('n', '<leader>gsa', [[<cmd>Telescope git_stash<CR>]], { noremap = true })
+keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]], { noremap = true })
+keymap('n', '<leader>gbc', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]], { noremap = true })
+keymap('n', '<leader>gbr', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]], { noremap = true })
+keymap('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]], { noremap = true })
+keymap('n', '<leader>gst', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], { noremap = true })
+keymap('n', '<leader>gsa', [[<cmd>lua require('telescope.builtin').git_stash()<CR>]], { noremap = true })
 
 telescope.setup {
   defaults = {
