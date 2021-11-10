@@ -29,4 +29,4 @@ opt.termguicolors = true
 opt.title = true
 opt.undofile = true
 opt.updatetime = 50
-opt.wildmode = { 'longest', 'list', 'full' }
+opt.wildmode = { 'longest', 'full' }
