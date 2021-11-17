@@ -26,6 +26,9 @@ keymap('n', '<leader>ft', [[<cmd>Telescope termfinder find<CR>]], { noremap = tr
 -- Flutter
 keymap('n', '<leader>fc', [[<cmd>lua require('telescope').extensions.flutter.commands()<CR>]], { noremap = true })
 
+-- Spell Suggest
+keymap('n', '<leader>s', [[<cmd>lua require('telescope.builtin').spell_suggest()<CR>]], { noremap = true })
+
 -- Git Pickers
 keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<CR>]], { noremap = true })
 keymap('n', '<leader>gbc', [[<cmd>lua require('telescope.builtin').git_bcommits()<CR>]], { noremap = true })

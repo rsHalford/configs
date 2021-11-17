@@ -45,11 +45,22 @@ keymap('i', '<C-k>', '<esc>:m .-2<CR>==', { noremap = true })
 -- keymap('n', '<leader>j', ':m .+1<CR>==', { noremap = true })
 -- keymap('n', '<leader>k', ':m .-2<CR>==', { noremap = true })
 
+-- Ditto
+keymap('n', '-d', '<Plug>DittoPrev', {})
+keymap('n', '=d', '<Plug>DittoNext', {})
+keymap('n', '+d', '<Plug>DittoGood', {})
+keymap('n', '_d', '<Plug>DittoBad', {})
+keymap('n', ']d', '<Plug>DittoMore', {})
+keymap('n', '[d', '<Plug>DittoLess', {})
+
 -- Rezising Windows
 keymap('n', 'zh', ':vertical resize -5<CR>', { noremap = true, silent = true })
 keymap('n', 'zj', ':resize +2<CR>', { noremap = true, silent = true })
 keymap('n', 'zk', ':resize -2<CR>', { noremap = true, silent = true })
 keymap('n', 'zl', ':vertical resize +5<CR>', { noremap = true, silent = true })
+
+-- Markdown Preview
+keymap('n', '<leader>m', '<Plug>MarkdownPreviewToggle', {})
 
 -- Undotree
 keymap('n', '<leader>z', ':UndotreeToggle<CR>', { noremap = true })

@@ -4,18 +4,11 @@ local cmd = vim.cmd
 require 'plugins'
 require 'options'
 require 'keymaps'
+require 'filetypes'
 
 -- TODO: find a home for the below commands and convert to lua.
 -- Python Venv
 g.python3_host_prog = '/usr/bin/python3'
-
--- Formatting
-cmd [[
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd FileType py setlocal ts=4 sw=4 sts=4
-autocmd BufWritePre *.py execute ':Black'
-autocmd FileType go setlocal ts=4 sw=4 sts=0 noexpandtab
-]]
 
 --  Highlight on Yank
 cmd [[ autocmd TextYankPost * silent! lua vim.highlight.on_yank() ]]

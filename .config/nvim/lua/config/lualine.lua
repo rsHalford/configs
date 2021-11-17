@@ -8,7 +8,7 @@ lualine.setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'diagnostics', sources = { 'nvim_lsp' } },
+    lualine_b = { { 'diagnostics', sources = { 'nvim_lsp' } } },
     lualine_c = { 'filename' },
     lualine_x = { 'diff', 'branch' },
     lualine_y = { 'filetype' },
