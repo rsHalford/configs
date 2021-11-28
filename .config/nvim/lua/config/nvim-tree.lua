@@ -3,7 +3,6 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap('n', '<leader>b', [[<cmd>NvimTreeToggle<CR>]], { noremap = true, silent = true })
 
-g.nvim_tree_gitignore = 1
 g.nvim_tree_quit_on_open = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_group_empty = 1
@@ -54,5 +53,8 @@ ntree.setup {
     height = 8,
     side = 'right',
     auto_resize = true,
+  },
+  git = {
+    ignore = true,
   },
 }
