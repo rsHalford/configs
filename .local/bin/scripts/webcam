@@ -1,0 +1,19 @@
+#!/bin/sh
+
+v4l2-ctl -d /dev/video0 --set-ctrl=brightness=128 # min=0 max=255 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=contrast=128 # min=0 max=255 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=saturation=128 # min=0 max=255 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_temperature_auto=0
+v4l2-ctl -d /dev/video0 --set-ctrl=gain=0 # min=0 max=255 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=power_line_frequency=2 # min=0 max=2
+v4l2-ctl -d /dev/video0 --set-ctrl=white_balance_temperature=5000 # min=2000 max=7500 step=10
+v4l2-ctl -d /dev/video0 --set-ctrl=sharpness=128 # min=0 max=255 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=backlight_compensation=0 # min=0 max=1 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=exposure_auto=3 # min=0 max=3
+# v4l2-ctl -d /dev/video0 --set-ctrl=exposure_absolute=156 # min=3 max=2047 step=1
+# v4l2-ctl -d /dev/video0 --set-ctrl=exposure_auto_priority=0
+v4l2-ctl -d /dev/video0 --set-ctrl=zoom_absolute=130 # min=100 max=400 step=1
+v4l2-ctl -d /dev/video0 --set-ctrl=pan_absolute=0 # min=-36000 max=36000 step=3600
+v4l2-ctl -d /dev/video0 --set-ctrl=tilt_absolute=0 # min=-36000 max=36000 step=3600
+v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=1
+# v4l2-ctl -d /dev/video0 --set-ctrl=focus_absolute=0 # min=0 max=600 step=1
