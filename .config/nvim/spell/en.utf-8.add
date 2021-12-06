@@ -40,3 +40,5 @@ GoDo
 todos
 YAML
 JSON
+gopls
+linters
