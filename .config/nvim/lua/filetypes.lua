@@ -26,7 +26,7 @@ let g:pencil#textwidth = 70
 
 augroup prose
   autocmd!
-  autocmd FileType groff,mail,markdown,text :ZenMode
+  autocmd FileType groff,mail,markdown,text ":ZenMode
     \ | execute 'DittoOn'
     \ | set spell
     \ | call pencil#init({'wrap': 'soft'})
