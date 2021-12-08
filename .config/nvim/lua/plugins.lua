@@ -128,7 +128,7 @@ return packer.startup(function(use)
   use {
     'norcalli/nvim-colorizer.lua',
     ft = { 'css', 'javascript', 'vim', 'html', 'vue', 'svelte' },
-    config = [[require('colorizer').setup {nil, {css = true}}]],
+    config = [[require('config.colorizer')]],
   }
 
   -- Colour scheme
