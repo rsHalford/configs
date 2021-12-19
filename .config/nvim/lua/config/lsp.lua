@@ -1,8 +1,16 @@
+local lspconfig = require 'lspconfig'
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(lsp_capabilities)
+
+local on_attach = function()
+  vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
+end
+
 -- null-ls
 local null_ls = require 'null-ls'
 local b = null_ls.builtins
 
-null_ls.config {
+null_ls.setup {
   sources = {
     b.code_actions.gitsigns,
     -- b.code_actions.refactoring,
@@ -38,14 +46,8 @@ null_ls.config {
     --   filetypes = { "lua", }
     -- },
   },
+  on_attach = on_attach,
 }
-
-local lspconfig = require 'lspconfig'
-local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require('cmp_nvim_lsp').update_capabilities(lsp_capabilities)
-local on_attach = function()
-  vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
-end
 
 local servers = {
   'bashls',
