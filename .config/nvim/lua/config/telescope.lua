@@ -4,7 +4,7 @@ local actions = require 'telescope.actions'
 local keymap = vim.api.nvim_set_keymap
 
 -- Navigate buffers and repos
-keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]], {
+keymap('n', '<leader>fb', [[<cmd>lua require('telescope').extensions.file_browser.file_browser({hidden=true})<CR>]], {
   noremap = true,
 })
 keymap('n', '<leader>fd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], { noremap = true })
@@ -70,4 +70,5 @@ telescope.setup {
 -- Extensions
 telescope.load_extension 'fzf'
 telescope.load_extension 'flutter'
+telescope.load_extension 'file_browser'
 telescope.load_extension 'termfinder'

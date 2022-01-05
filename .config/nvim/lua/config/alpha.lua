@@ -79,7 +79,11 @@ end
 local buttons = {
   type = 'group',
   val = {
-    button('f', '  Explore', [[<cmd>lua require('telescope.builtin').file_browser({hidden=true})<CR>]]),
+    button(
+      'f',
+      '  Explore',
+      [[<cmd>lua require('telescope').extensions.file_browser.file_browser({hidden=true})<CR>]]
+    ),
     button('n', '  New file', [[<cmd>ene <BAR> startinsert <CR>]]),
     button('r', '  Recent', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]]),
     button('s', '  Settings', [[<cmd>e $MYVIMRC<CR>]]),
