@@ -55,7 +55,6 @@ local servers = {
   'gopls',
   'html',
   'jsonls',
-  'null-ls',
   'pyright',
   'svelte',
   'tsserver',

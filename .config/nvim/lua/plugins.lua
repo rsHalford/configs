@@ -72,7 +72,6 @@ return packer.startup(function(use)
     'jose-elias-alvarez/null-ls.nvim',
     config = [[require('config.lsp')]],
     requires = {
-      'neovim/nvim-lspconfig',
       'nvim-lua/plenary.nvim',
     },
   }
