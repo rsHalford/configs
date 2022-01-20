@@ -37,6 +37,20 @@ keymap('n', '<leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR
 keymap('n', '<leader>gst', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], { noremap = true })
 keymap('n', '<leader>gsa', [[<cmd>lua require('telescope.builtin').git_stash()<CR>]], { noremap = true })
 
+-- Git Worktree
+keymap(
+  'n',
+  '<leader>w',
+  [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]],
+  { noremap = true }
+)
+keymap(
+  'n',
+  '<leader>aw',
+  [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]],
+  { noremap = true }
+)
+
 telescope.setup {
   defaults = {
     prompt_prefix = ' ',
@@ -71,4 +85,5 @@ telescope.setup {
 telescope.load_extension 'fzf'
 telescope.load_extension 'flutter'
 telescope.load_extension 'file_browser'
+telescope.load_extension 'git_worktree'
 telescope.load_extension 'termfinder'

@@ -31,6 +31,7 @@ return packer.startup(function(use)
       run = 'make',
     },
     { 'nvim-telescope/telescope-file-browser.nvim' },
+    { 'ThePrimeagen/git-worktree.nvim' },
     { 'tknightz/telescope-termfinder.nvim' },
   }
 
