@@ -34,10 +34,26 @@ Wikipedia;https://en.wikipedia.org/w/index.php?search=
 Wiktionary;https://en.wiktionary.org/wiki/
 Wolfram;https://www.wolframalpha.com/input/?i=
 Yahoo Finance;https://finance.yahoo.com/quote/
-YouTube;https://www.youtube.com/results?search_query="
+YouTube"
 
 engine="$(printf '%s\n' "$options" | cut -d';' -f1 | dmenu)" || exit 1
-engineURL="$(printf '%s\n' "$options" | grep "$engine;" | cut -d';' -f2)"
 query=$(dmenu | tr ' ' '+') || exit 1
 
-$BROWSER "$engineURL""$query"
+if [ "$engine" = "YouTube" ]; then
+  query=$(curl -s "https://www.youtube.com/results?search_query=""$query") || exit 1
+  results=$(printf '%s\n' "$query" | grep -oP '(/watch\?v=.{11})|(?<=title":{"runs":\[{"text":").+?(?="}\])' | \
+    awk '!a[$0]++' | \
+    paste - - | \
+    head -n -6) || exit 1
+  title=$(printf '%s\n' "$results" | cut -f1 | dmenu -l 10) || exit 1
+  video=$(printf '%s\n' "$results" | grep "$title" | cut -f2) || exit 1
+  if [ "$(pidof mpv)" ]; then
+    printf '%s\n' '{"command": ["loadfile", "'https://youtube.com''$video'", "append-play"]}' | socat - /tmp/mpvsocket
+  else
+    exec mpv --input-ipc-server=/tmp/mpvsocket "https://youtube.com""$video"
+  fi
+else
+  url="$(printf '%s\n' "$options" | grep "$engine;" | cut -d';' -f2)"
+fi
+
+$BROWSER "$url""$query"
