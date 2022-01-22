@@ -42,3 +42,4 @@ YAML
 JSON
 gopls
 linters
+refactor
