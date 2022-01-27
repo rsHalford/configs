@@ -46,6 +46,7 @@ alias mpv="mpv --wid=$WINDOWID"
 alias abook="abook --config $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/abook/addressbook"
 alias remind="remind -b1 -m -@0 -gaaaa"
 
+alias mkdir="mkdir -pv"
 alias cp="cp -i"
 alias mv="mv -i"
 #alias rm="rm -i"
@@ -76,7 +77,7 @@ alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gd='git diff'
 alias gf='git fetch'
-alias glg='git log'
+alias glg='git log --stat'
 alias gm='git merge'
 alias gmv='git mv'
 alias gpl='git pull'
@@ -98,7 +99,7 @@ alias conco='config checkout'
 alias concb='config checkout -b'
 alias cond='config diff'
 alias conf='config fetch'
-alias conlg='config log'
+alias conlg='config log --stat'
 alias conm='config merge'
 alias conmv='config mv'
 alias conpl='config pull'
