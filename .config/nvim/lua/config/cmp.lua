@@ -51,6 +51,7 @@ cmp.setup {
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'buffer' },
+    { name = 'orgmode' },
     { name = 'path' },
     { name = 'emoji', option = { insert = true } },
   },

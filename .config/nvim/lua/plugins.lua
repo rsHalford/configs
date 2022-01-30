@@ -145,6 +145,13 @@ return packer.startup(function(use)
     -- cmd = 'MarkdownPreview'
   }
 
+  -- Orgmode
+  use {
+    'nvim-orgmode/orgmode',
+    ft = { 'org' },
+    config = [[require('config.orgmode')]],
+  }
+
   use 'dbeniamine/cheat.sh-vim'
 
   -- Editing
