@@ -13,6 +13,9 @@ case "$inputFile" in
       groff -e -ms "$inputFile" -Tpdf > "$name.pdf" && exit
     }
     groff -ms "$inputFile" -Tpdf > "$name.pdf"
+    if [ "$(pgrep -c "$READER")" -eq 0 ]; then
+      $READER "$name.pdf" &
+    fi
     ;;
 
   *mom)
@@ -23,5 +26,8 @@ case "$inputFile" in
       pdfmom -e "$inputFile" > "$name.pdf" && exit
     }
     pdfmom "$inputFile" > "$name.pdf"
+    if [ "$(pgrep -c "$READER")" -eq 0 ]; then
+      $READER "$name.pdf" &
+    fi
     ;;
 esac
