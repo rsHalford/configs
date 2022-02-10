@@ -29,10 +29,10 @@ super + g
   steam
 
 super + r
-  $TERMINAL -e newsboat
+  retroarch
 
 super + shift + r
-  $TERMINAL -e podboat
+  $TERMINAL -e newsboat
 
 super + s
   dmainu
