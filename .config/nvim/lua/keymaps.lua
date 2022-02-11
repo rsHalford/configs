@@ -69,7 +69,7 @@ keymap('n', '<leader>z', ':UndotreeToggle<CR>', { noremap = true })
 keymap('n', '<leader>x', ':!chmod +x %<CR>', { noremap = true, silent = true })
 
 -- Compile Execute
-keymap('n', '<C-c>', ':w<CR>:!compiler %:p<CR>', { noremap = true, silent = true })
+keymap('n', '<C-c>', ':w<CR>:!compiler %:p<CR><CR>', { noremap = true, silent = true })
 
 -- List document's URLs
 keymap('n', '<leader>u', ':w<Home>silent <End> !urlview<CR>', { noremap = true })
