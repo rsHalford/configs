@@ -34,7 +34,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 export BROWSER="qutebrowser"
 export EDITOR="nvim"
-export IMAGE="sxiv"
+export IMAGE="nsxiv"
 export READER="zathura"
 export TERMINAL="st"
 export VIDEO="mpv"
