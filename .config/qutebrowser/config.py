@@ -12,6 +12,7 @@ config.bind(",r", "spawn --userscript readability-js")
 config.bind(",sd", "set-cmd-text -s :session-delete")
 config.bind(",sl", "set-cmd-text -s :session-load")
 config.bind(",ss", "set-cmd-text -s :session-save")
+config.bind(",sp", "set-cmd-text -s :session-save -o -p")
 config.bind(",S", "config-cycle statusbar.show in-mode always")
 config.bind(
     ",T",
@@ -27,6 +28,14 @@ config.bind("zl", "spawn --userscript qute-pass")
 config.bind("zul", "spawn --userscript qute-pass --username-only")
 config.bind("zpl", "spawn --userscript qute-pass --password-only")
 
+c.aliases = {
+    "q": "close",
+    "qa": "quit",
+    "w": "session-save",
+    "wp": "set-cmd-text :session-save -o -p private",
+    "wq": "quit --save",
+    "wqa": "quit --save",
+}
 c.auto_save.session = True
 c.changelog_after_upgrade = "patch"
 c.completion.height = "33%"
@@ -60,6 +69,7 @@ c.editor.command = ["st", "-e", "nvim", "{}"]
 c.keyhint.delay = 0
 c.scrolling.bar = "never"
 c.scrolling.smooth = True
+c.session.default_name = "default"
 c.spellcheck.languages = ["en-GB"]
 c.statusbar.show = "in-mode"
 c.statusbar.widgets = ["keypress", "history", "url", "progress", "scroll", "tabs"]
