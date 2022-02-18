@@ -1,6 +1,6 @@
 #!/bin/sh
 
-session=$(ls -1 "$XDG_DATA_HOME/qutebrowser/sessions" | \
-  sed -e "/_autosave.yml/d" -e "s/.yml//" -e "/before-qt-515/d" | dmenu)
+session=$(find "$XDG_DATA_HOME/qutebrowser/sessions" -not -name ".*" -type f -printf "%f\n" | \
+  sed -e "/_autosave.yml/d" -e "s/.yml//" | dmenu) || exit 
 
 qutebrowser ":session-load $session"
