@@ -62,10 +62,10 @@ Print
   screenshot_select
 
 XF86MonBrightnessDown
-  xbacklight -dec 10
+  sudo xbacklight -dec 10
 
 XF86MonBrightnessUp
-  xbacklight -inc 10
+  sudo xbacklight -inc 10
 
 XF86AudioMute
   amixer sset Master toggle
