@@ -1,6 +1,11 @@
 #!/bin/sh
 
-mailsync >/dev/null 2>&1
-mail=$(du -a "$XDG_DATA_HOME"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* | wc -l 2>/dev/null)
+yubikey=$(cat /sys/bus/usb/devices/*/product | grep -i "yubikey")
 icon=""
+mail=$(du -a "$XDG_DATA_HOME"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/* | wc -l 2>/dev/null)
+
+if [ -n "$yubikey" ]; then
+  mailsync >/dev/null 2>&1
+fi
+
 printf "^c#fabd2f^%s^c#bdae93^%s" "$icon" "$mail"
