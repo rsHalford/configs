@@ -41,7 +41,7 @@ super + shift + s
   passmenu
 
 super + t
-  $TERMINAL -e reflex-curses
+  telegram-desktop
 
 super + shift + t
   qbittorrent
