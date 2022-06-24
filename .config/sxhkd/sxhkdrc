@@ -14,10 +14,10 @@ super + shift + c
   clipmenu
 
 super + d
-  discord
+  element-desktop
 
 super + shift + d
-  signal-desktop
+  discord
 
 super + e
   $TERMINAL -e nvim
