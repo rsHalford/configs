@@ -3,6 +3,8 @@ config.source("search_engines.py")
 config.source("whitelist.py")
 config.load_autoconfig()
 
+config.bind("<Ctrl-J>", "completion-item-focus next", mode="command")
+config.bind("<Ctrl-K>", "completion-item-focus prev", mode="command")
 config.bind(",c", "config-edit")
 config.bind("gp", "set-cmd-text -s :open -p")
 config.bind(",m", "spawn --userscript music-dl")
