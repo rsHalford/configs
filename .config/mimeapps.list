@@ -2,7 +2,7 @@
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;
-x-scheme-handler/mailto=mail.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-48QVO1.desktop
 text/plain=editor.desktop;
 text/x-shellscript=editor.desktop;
 application/pdf=org.pwmt.zathura.desktop;
@@ -12,6 +12,10 @@ application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
 x-scheme-handler/sgnl=signal-desktop.desktop
 x-scheme-handler/signalcaptcha=signal.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-PO2GJ1.desktop
+message/rfc822=userapp-Thunderbird-48QVO1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-48QVO1.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-PO2GJ1.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-48QVO1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-48QVO1.desktop;

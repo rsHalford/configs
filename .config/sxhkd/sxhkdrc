@@ -23,7 +23,7 @@ super + e
   $TERMINAL -e nvim
 
 super + shift + e
-  $TERMINAL -e neomutt
+  thunderbird
 
 super + g
   steam
