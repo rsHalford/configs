@@ -42,6 +42,8 @@ typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=yellow,un
 alias p="sudo pacman"
 alias y="yay"
 alias v="nvim"
+alias h="helix"
+alias hx="helix"
 alias mpv="mpv --wid=$WINDOWID"
 alias abook="abook --config $XDG_CONFIG_HOME/abook/abookrc --datafile $XDG_DATA_HOME/abook/addressbook"
 alias remind="remind -b1 -m -@0 -gaaaa"

@@ -33,12 +33,12 @@ export _JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndF
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export BROWSER="qutebrowser"
-export EDITOR="nvim"
+export EDITOR="helix"
 export IMAGE="nsxiv"
 export READER="zathura"
 export TERMINAL="st"
 export VIDEO="mpv"
-export VISUAL="nvim"
+export VISUAL="helix"
 
 #bat changes
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

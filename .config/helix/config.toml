@@ -1,0 +1,47 @@
+theme = "gruvbox_dark"
+
+[editor]
+auto-completion = true
+auto-format = true
+auto-info = true
+auto-pairs = true
+completion-trigger-len = 0
+gutters = ["diagnostics", "line-numbers"]
+idle-timeout = 0
+line-number = "relative"
+middle-click-paste = true
+mouse = true
+rulers = [80, 120]
+scroll-lines = 2
+scrolloff = 8
+shell = ["sh", "-c"]
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+git-exclude = true
+git-global = true
+git-ignore = true
+hidden = false
+ignore = true
+parents = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.whitespace.render]
+newline = "none"
+space = "none"
+tab = "none"
+
+[keys.normal]
+N = ["search_prev", "align_view_center"]
+n = ["search_next", "align_view_center"]
